@@ -40,16 +40,22 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // update constraint to be off center to the left (because of hamburger contentView exposure)
         centerConstraint.constant -= 25
         
-        avatarImageView.layoutIfNeeded()
-        let radius = avatarImageView.frame.size.width / 2
-        avatarImageView.layer.cornerRadius = radius
-        avatarImageView.layer.borderColor = UIColor.white.cgColor
-        avatarImageView.layer.borderWidth = 2.0
-        avatarImageView.layer.masksToBounds = false
-        avatarImageView.clipsToBounds = true
+        // round the user's avatar image
+        roundAvatarImage()
 
+        // setup the navigation controllers
+        viewControllers = setupNavigationControllers()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func setupNavigationControllers() -> [UIViewController] {
         let nib = UINib(nibName: "MenuItemCollectionViewCell", bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: "MenuItemCell")
         
@@ -72,18 +78,22 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         bottomsNavigationController = articlesStoryboard.instantiateViewController(withIdentifier: "BottomsNavigationController")
         accountNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "AccountNavigationController")
         
-        viewControllers = [bottomsNavigationController, topsNavigationController, myFavsNavigationController, myClosetNavigationController]
-        
         hamburgerViewController.contentViewController = myClosetNavigationController
         
-        // TODO: Accounts should be a modal view with it's own icon somewhere on the menu screen
+        return [bottomsNavigationController, topsNavigationController, myFavsNavigationController, myClosetNavigationController]
+    }
+    
+    func roundAvatarImage() {
+        avatarImageView.layoutIfNeeded()
+        let radius = avatarImageView.frame.size.width / 2
+        avatarImageView.layer.cornerRadius = radius
+        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.borderWidth = 2.0
+        avatarImageView.layer.masksToBounds = false
+        avatarImageView.clipsToBounds = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menuItems.count
     }
@@ -96,7 +106,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
-    // MARK: Collection View Delegate Flow Layout methods
+    // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = self.sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = collectionView.frame.width - paddingSpace
