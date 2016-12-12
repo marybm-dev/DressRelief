@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Hamburger View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HamburgerViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HamburgerViewController" id="BYZ-38-t0r" customClass="HamburgerViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -59,12 +60,12 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="140" y="138.98050974512745"/>
+            <point key="canvasLocation" x="169" y="692"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="p54-ry-KH1">
             <objects>
-                <viewController id="v86-u9-JJl" customClass="MenuViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" id="v86-u9-JJl" customClass="MenuViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eia-q2-1F1"/>
                         <viewControllerLayoutGuide type="bottom" id="Mts-3N-DbZ"/>
@@ -72,12 +73,86 @@
                     <view key="view" contentMode="scaleToFill" id="M0M-zY-6DS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="aId-Aa-4LD">
+                                <rect key="frame" x="88" y="41" width="125" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="gu2-sg-q6v"/>
+                                    <constraint firstAttribute="height" constant="125" id="kZ9-u4-FwY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mary Martinez" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35u-Ny-MnI">
+                                <rect key="frame" x="0.0" y="176" width="300" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="OGg-nv-HQA"/>
+                                    <constraint firstAttribute="width" constant="300" id="hyz-ZB-Nhh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="6hZ-pw-Rnx">
+                                <rect key="frame" x="21" y="209" width="259" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="GQt-Pa-3pX"/>
+                                    <constraint firstAttribute="width" constant="259" id="ebg-gR-Nev"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nDV-M8-nH9">
+                                <rect key="frame" x="21" y="253" width="259" height="410"/>
+                                <color key="backgroundColor" red="0.17897772479999999" green="0.34368873020000001" blue="0.66835330309999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="410" id="ZZk-Pk-AK3"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="84e-VG-z0L">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MenuItemCell" id="tYQ-Um-i5Y" customClass="MenuItemCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="v86-u9-JJl" id="9tG-tw-eyY"/>
+                                    <outlet property="delegate" destination="v86-u9-JJl" id="YK1-lT-gmp"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.17897772479999999" green="0.34368873020000001" blue="0.66835330309999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="35u-Ny-MnI" firstAttribute="centerX" secondItem="aId-Aa-4LD" secondAttribute="centerX" id="A5e-gZ-vbh"/>
+                            <constraint firstItem="aId-Aa-4LD" firstAttribute="leading" secondItem="M0M-zY-6DS" secondAttribute="leading" constant="88" id="CWH-lG-1d8"/>
+                            <constraint firstItem="nDV-M8-nH9" firstAttribute="top" secondItem="6hZ-pw-Rnx" secondAttribute="bottom" id="L4X-ii-NLC"/>
+                            <constraint firstItem="35u-Ny-MnI" firstAttribute="top" secondItem="aId-Aa-4LD" secondAttribute="bottom" constant="10" id="Nge-3L-Ep6"/>
+                            <constraint firstItem="6hZ-pw-Rnx" firstAttribute="top" secondItem="35u-Ny-MnI" secondAttribute="bottom" constant="12" id="WQT-KJ-4k9"/>
+                            <constraint firstItem="aId-Aa-4LD" firstAttribute="top" secondItem="eia-q2-1F1" secondAttribute="bottom" constant="21" id="byI-e1-g9F"/>
+                            <constraint firstItem="6hZ-pw-Rnx" firstAttribute="centerX" secondItem="aId-Aa-4LD" secondAttribute="centerX" id="cWZ-30-q2o"/>
+                            <constraint firstItem="nDV-M8-nH9" firstAttribute="leading" secondItem="M0M-zY-6DS" secondAttribute="leadingMargin" constant="5" id="lum-Ra-LNS"/>
+                            <constraint firstItem="nDV-M8-nH9" firstAttribute="centerX" secondItem="aId-Aa-4LD" secondAttribute="centerX" id="uKS-jg-jsd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="avatarImageView" destination="aId-Aa-4LD" id="TuE-DV-KL1"/>
+                        <outlet property="collectionView" destination="nDV-M8-nH9" id="Sor-SK-2Dv"/>
+                        <outlet property="nameLabel" destination="35u-Ny-MnI" id="uN8-gM-mD1"/>
+                        <outlet property="searchBar" destination="6hZ-pw-Rnx" id="ZVy-PP-8r2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gTJ-7Y-gA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="693"/>
+            <point key="canvasLocation" x="852" y="692.20389805097454"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="avatar" width="634" height="592"/>
+    </resources>
 </document>
