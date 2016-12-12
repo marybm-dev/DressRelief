@@ -40,6 +40,37 @@
             </objects>
             <point key="canvasLocation" x="143" y="853"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="eLg-x9-0p9">
+            <objects>
+                <viewController id="p34-AZ-ftW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vuc-rI-fRo"/>
+                        <viewControllerLayoutGuide type="bottom" id="E0l-sv-i5C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b9L-UN-GKv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ots-z0-7wU">
+                                <rect key="frame" x="155" y="323" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ots-z0-7wU" firstAttribute="centerX" secondItem="b9L-UN-GKv" secondAttribute="centerX" id="Xa9-qe-Lgs"/>
+                            <constraint firstItem="Ots-z0-7wU" firstAttribute="centerY" secondItem="b9L-UN-GKv" secondAttribute="centerY" id="zKp-I1-JgX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="He7-fo-nVY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GHG-pm-lS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="852"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6IV-bq-VBm">
             <objects>
@@ -57,6 +88,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U03-ry-k9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="142" y="102"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="htC-SV-IxO">
+            <objects>
+                <navigationController storyboardIdentifier="SettingsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="zMA-qw-iqt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="t0e-be-BKd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="p34-AZ-ftW" kind="relationship" relationship="rootViewController" id="SiP-UE-PaX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uta-rh-Rgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="101"/>
         </scene>
     </scenes>
 </document>

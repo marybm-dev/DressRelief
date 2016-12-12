@@ -12,12 +12,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     var hamburgerViewController: HamburgerViewController!
     
-    var viewControllers: [UIViewController]! {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
-    
+    var viewControllers = [UIViewController]()
     var menuItems = [MenuItem]()
     
     private var myClosetNavigationController: UIViewController!
@@ -25,6 +20,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
     private var topsNavigationController: UIViewController!
     private var bottomsNavigationController: UIViewController!
     private var accountNavigationController: UIViewController!
+    private var settingsNavigationController: UIViewController!
     
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -47,7 +43,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         roundAvatarImage()
 
         // setup the navigation controllers
-        viewControllers = setupNavigationControllers()
+        setupNavigationControllers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,7 +51,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Dispose of any resources that can be recreated.
     }
     
-    func setupNavigationControllers() -> [UIViewController] {
+    func setupNavigationControllers() {
         let nib = UINib(nibName: "MenuItemCollectionViewCell", bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: "MenuItemCell")
         
@@ -77,10 +73,16 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         topsNavigationController = articlesStoryboard.instantiateViewController(withIdentifier: "TopsNavigationController")
         bottomsNavigationController = articlesStoryboard.instantiateViewController(withIdentifier: "BottomsNavigationController")
         accountNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "AccountNavigationController")
+        settingsNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "SettingsNavigationController")
+        
+        viewControllers.append(myClosetNavigationController)
+        viewControllers.append(myFavsNavigationController)
+        viewControllers.append(topsNavigationController)
+        viewControllers.append(bottomsNavigationController)
+        viewControllers.append(accountNavigationController)
+        viewControllers.append(settingsNavigationController)
         
         hamburgerViewController.contentViewController = myClosetNavigationController
-        
-        return [bottomsNavigationController, topsNavigationController, myFavsNavigationController, myClosetNavigationController]
     }
     
     func roundAvatarImage() {
@@ -104,6 +106,12 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.menuItem = menuItems[indexPath.row]
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+
+        hamburgerViewController.contentViewController = viewControllers[indexPath.row]
     }
     
     // MARK: UICollectionViewDelegateFlowLayout
