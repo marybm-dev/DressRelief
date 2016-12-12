@@ -69,10 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				447798011DFC9EBA004DA42D /* AppDelegate.swift */,
-				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
-				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
-				44A777C21DFDF67400FD2A48 /* MenuItem.swift */,
-				44A777B71DFDD5BE00FD2A48 /* Navigation View Controllers */,
+				44A777B71DFDD5BE00FD2A48 /* Navigation */,
 				44A777B61DFDD55500FD2A48 /* Storyboards */,
 				447798081DFC9EBA004DA42D /* Assets.xcassets */,
 				4477980A1DFC9EBA004DA42D /* LaunchScreen.storyboard */,
@@ -92,13 +89,16 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		44A777B71DFDD5BE00FD2A48 /* Navigation View Controllers */ = {
+		44A777B71DFDD5BE00FD2A48 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				447798031DFC9EBA004DA42D /* HamburgerViewController.swift */,
 				447798131DFCABD3004DA42D /* MenuViewController.swift */,
+				44A777C21DFDF67400FD2A48 /* MenuItem.swift */,
+				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
+				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
 			);
-			name = "Navigation View Controllers";
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

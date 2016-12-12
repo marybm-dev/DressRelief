@@ -31,12 +31,16 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var centerConstraint: NSLayoutConstraint!
+    
     // Collection View Cell boundaries
     let itemsPerRow: CGFloat = 2
     let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        centerConstraint.constant -= 25
         
         avatarImageView.layoutIfNeeded()
         let radius = avatarImageView.frame.size.width / 2
