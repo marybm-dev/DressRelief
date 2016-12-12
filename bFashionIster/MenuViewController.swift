@@ -15,6 +15,8 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
     var viewControllers = [UIViewController]()
     var menuItems = [MenuItem]()
     
+    var selectedMenuItem: MenuItem!
+    
     private var myClosetNavigationController: UIViewController!
     private var myFavsNavigationController: UIViewController!
     private var topsNavigationController: UIViewController!
@@ -56,12 +58,15 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.collectionView.register(nib, forCellWithReuseIdentifier: "MenuItemCell")
         
         // setup menu items
-        menuItems.append(MenuItem(title: "My Closet", iconName: .closet))
-        menuItems.append(MenuItem(title: "My Favs", iconName: .favs))
-        menuItems.append(MenuItem(title: "Tops", iconName: .tops))
-        menuItems.append(MenuItem(title: "Bottoms", iconName: .bottoms))
-        menuItems.append(MenuItem(title: "Account", iconName: .account))
-        menuItems.append(MenuItem(title: "Settings", iconName: .settings))
+        let closetItem = MenuItem(title: "My Closet", iconName: .closet, iconFilledName: .closetFilled)
+        menuItems.append(closetItem)
+        menuItems.append(MenuItem(title: "My Favs", iconName: .favs, iconFilledName: .favsFilled))
+        menuItems.append(MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled))
+        menuItems.append(MenuItem(title: "Bottoms", iconName: .bottoms, iconFilledName: .bottomsFilled))
+        menuItems.append(MenuItem(title: "Account", iconName: .account, iconFilledName: .accountFilled))
+        menuItems.append(MenuItem(title: "Settings", iconName: .settings, iconFilledName: .settingsFilled))
+        
+        selectedMenuItem = closetItem
         
         // setup navigation controllers
         let closetStoryboard = UIStoryboard(name: "Closet", bundle: nil)
@@ -103,13 +108,23 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuItemCell", for: indexPath) as! MenuItemCollectionViewCell
         
-        cell.menuItem = menuItems[indexPath.row]
+        let menuItem = menuItems[indexPath.row]
+        cell.menuItem = menuItem
         
+        guard selectedMenuItem != nil else { return cell }
+        cell.isCurrentMenuItem = (selectedMenuItem! == menuItem) ? true : false
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
+        let menuItem = cell.menuItem
+
+        self.selectedMenuItem = menuItem
+        self.collectionView.reloadData()
 
         hamburgerViewController.contentViewController = viewControllers[indexPath.row]
     }

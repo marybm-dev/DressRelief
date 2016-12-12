@@ -13,9 +13,14 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var iconLabel: UILabel!
     
+    var isCurrentMenuItem = false {
+        didSet {
+            self.setIcon()
+        }
+    }
+    
     var menuItem: MenuItem! {
         didSet {
-            iconImageView.image = UIImage(named: menuItem.iconName.rawValue)
             iconLabel.text = menuItem.title
         }
     }
@@ -23,6 +28,10 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setIcon() {
+        iconImageView.image = UIImage(named: (isCurrentMenuItem) ? menuItem.iconFilledName.rawValue : menuItem.iconName.rawValue)
     }
 
 }
