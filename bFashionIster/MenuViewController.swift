@@ -112,7 +112,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.menuItem = menuItem
         
         guard selectedMenuItem != nil else { return cell }
-        cell.isCurrentMenuItem = (selectedMenuItem! == menuItem) ? true : false
+        cell.isCurrentMenuItem = (selectedMenuItem == menuItem) ? true : false
 
         return cell
     }
