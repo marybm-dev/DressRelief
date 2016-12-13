@@ -15,7 +15,11 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
     var viewControllers = [UIViewController]()
     var menuItems = [MenuItem]()
     
-    var selectedMenuItem: MenuItem!
+    var selectedMenuItem: MenuItem! {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     private var myClosetNavigationController: UIViewController!
     private var myFavsNavigationController: UIViewController!
@@ -122,9 +126,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let cell = collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
         let menuItem = cell.menuItem
-
         self.selectedMenuItem = menuItem
-        self.collectionView.reloadData()
 
         hamburgerViewController.contentViewController = viewControllers[indexPath.row]
     }
