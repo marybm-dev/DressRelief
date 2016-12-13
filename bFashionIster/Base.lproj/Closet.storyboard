@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--My Closet View Controller-->
         <scene sceneID="9rw-qg-cjX">
             <objects>
-                <viewController id="lFo-gG-Zd9" sceneMemberID="viewController">
+                <viewController id="lFo-gG-Zd9" customClass="MyClosetViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="da3-X3-Wwy"/>
                         <viewControllerLayoutGuide type="bottom" id="Bo1-nc-wVL"/>

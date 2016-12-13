@@ -17,6 +17,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var selectedMenuItem: MenuItem! {
         didSet {
+//            self.setNavigationBarTitle(menuItem: selectedMenuItem)
             self.collectionView.reloadData()
         }
     }
@@ -103,7 +104,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         avatarImageView.layer.masksToBounds = false
         avatarImageView.clipsToBounds = true
     }
-
+    
     // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menuItems.count
@@ -127,7 +128,7 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         let cell = collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
         let menuItem = cell.menuItem
         self.selectedMenuItem = menuItem
-
+        
         hamburgerViewController.contentViewController = viewControllers[indexPath.row]
     }
     
