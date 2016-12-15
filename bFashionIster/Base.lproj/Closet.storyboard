@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="-591" y="236"/>
         </scene>
-        <!--View Controller-->
+        <!--My Favs View Controller-->
         <scene sceneID="VdP-Lj-mkm">
             <objects>
-                <viewController id="oZQ-nZ-LrX" sceneMemberID="viewController">
+                <viewController id="oZQ-nZ-LrX" customClass="MyFavsViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hJY-ub-Qyv"/>
                         <viewControllerLayoutGuide type="bottom" id="gkJ-Ry-PG6"/>

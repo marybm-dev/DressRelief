@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Account View Controller-->
         <scene sceneID="LRH-eQ-b37">
             <objects>
-                <viewController id="uwm-pU-wjN" sceneMemberID="viewController">
+                <viewController id="uwm-pU-wjN" customClass="AccountViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zYp-1f-2FA"/>
                         <viewControllerLayoutGuide type="bottom" id="CxR-gl-UKR"/>
@@ -40,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="143" y="853"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="eLg-x9-0p9">
             <objects>
-                <viewController id="p34-AZ-ftW" sceneMemberID="viewController">
+                <viewController id="p34-AZ-ftW" customClass="SettingsViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vuc-rI-fRo"/>
                         <viewControllerLayoutGuide type="bottom" id="E0l-sv-i5C"/>

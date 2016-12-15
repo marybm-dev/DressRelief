@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4452B3161E0264CA0068A85E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B3151E0264CA0068A85E /* Extensions.swift */; };
 		447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798011DFC9EBA004DA42D /* AppDelegate.swift */; };
 		447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798031DFC9EBA004DA42D /* HamburgerViewController.swift */; };
 		447798071DFC9EBA004DA42D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447798051DFC9EBA004DA42D /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4452B3151E0264CA0068A85E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		447797FE1DFC9EBA004DA42D /* bFashionIster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bFashionIster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447798011DFC9EBA004DA42D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		447798031DFC9EBA004DA42D /* HamburgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
 				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
 				44CD8DC81DFF8C6B00BD4CF1 /* Helper.swift */,
+				4452B3151E0264CA0068A85E /* Extensions.swift */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */,
 				44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
+				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,
 				447798141DFCABD3004DA42D /* MenuViewController.swift in Sources */,
 				447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */,
 				44A777C31DFDF67400FD2A48 /* MenuItem.swift in Sources */,
