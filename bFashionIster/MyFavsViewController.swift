@@ -15,9 +15,8 @@ class MyFavsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let navBar = self.navigationController?.navigationBar
         menuItem = MenuItem(title: "My Favs", iconName: .favs, iconFilledName: .favsFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem, for: navBar)
+        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

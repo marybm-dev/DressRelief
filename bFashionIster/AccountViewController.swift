@@ -15,9 +15,8 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let navBar = self.navigationController?.navigationBar
-        menuItem = MenuItem(title: "Account", iconName: .favs, iconFilledName: .favsFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem, for: navBar)
+        menuItem = MenuItem(title: "Account", iconName: .account, iconFilledName: .accountFilled)
+        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

@@ -15,9 +15,8 @@ class TopsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let navBar = self.navigationController?.navigationBar
         menuItem = MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem, for: navBar)
+        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

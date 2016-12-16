@@ -15,9 +15,8 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let navBar = self.navigationController?.navigationBar
         menuItem = MenuItem(title: "Settings", iconName: .settings, iconFilledName: .settingsFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem, for: navBar)
+        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {
