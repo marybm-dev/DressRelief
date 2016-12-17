@@ -21,7 +21,7 @@ class Outfit: Object {
     dynamic var bottomImgUrl = ""
     dynamic var combinedImgUrl = ""
     
-    dynamic var tags: [String] = []
+//    dynamic var tags: [String] = []
     
     override class func primaryKey() -> String? {
         return "outfitId"
@@ -31,12 +31,12 @@ class Outfit: Object {
         return ["isLiked", "isDisliked"]
     }
     
-    convenience init(topImgUrl: String, bottomImgUrl: String, combinedImgUrl: String, tags: [String]) {
+    convenience init(topImgUrl: String, bottomImgUrl: String, combinedImgUrl: String) {
         self.init()
         
         self.topImgUrl = topImgUrl
         self.bottomImgUrl = bottomImgUrl
         self.combinedImgUrl = combinedImgUrl
-        self.tags = tags
+//        self.tags = tags
     }
 }

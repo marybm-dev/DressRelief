@@ -19,19 +19,19 @@ class Top: Object {
     dynamic var texture = ""
     dynamic var category = ""
     dynamic var countLikes = 0
-    dynamic var tags: [String] = []
+//    dynamic var tags: [String] = []
     
     override class func primaryKey() -> String? {
         return "topId"
     }
     
-    convenience init(imgUrl: String, color: String, texture: String, category: String, tags: [String]) {
+    convenience init(imgUrl: String, color: String, texture: String, category: String) {
         self.init()
         
         self.imgUrl = imgUrl
         self.color = color
         self.texture = texture
         self.category = category
-        self.tags = tags
+//        self.tags = tags
     }
 }
