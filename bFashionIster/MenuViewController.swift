@@ -17,7 +17,6 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var selectedMenuItem: MenuItem! {
         didSet {
-//            self.setNavigationBarTitle(menuItem: selectedMenuItem)
             self.collectionView.reloadData()
         }
     }
