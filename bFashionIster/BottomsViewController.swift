@@ -8,15 +8,11 @@
 
 import UIKit
 
-class BottomsViewController: UIViewController {
+class BottomsViewController: MeuItemViewController {
 
-    var menuItem: MenuItem!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuItem = MenuItem(title: "Bottoms", iconName: .bottoms, iconFilledName: .bottomsFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

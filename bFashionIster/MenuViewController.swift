@@ -64,20 +64,25 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // setup menu items
         let closetItem = MenuItem(title: "My Closet", iconName: .closet, iconFilledName: .closetFilled)
+        let myFavsItem = MenuItem(title: "My Favs", iconName: .favs, iconFilledName: .favsFilled)
+        let topsItem = MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled)
+        let bottomsItem = MenuItem(title: "Bottoms", iconName: .bottoms, iconFilledName: .bottomsFilled)
+        let accountItem = MenuItem(title: "Account", iconName: .account, iconFilledName: .accountFilled)
+        let settingsItem = MenuItem(title: "Settings", iconName: .settings, iconFilledName: .settingsFilled)
         menuItems.append(closetItem)
-        menuItems.append(MenuItem(title: "My Favs", iconName: .favs, iconFilledName: .favsFilled))
-        menuItems.append(MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled))
-        menuItems.append(MenuItem(title: "Bottoms", iconName: .bottoms, iconFilledName: .bottomsFilled))
-        menuItems.append(MenuItem(title: "Account", iconName: .account, iconFilledName: .accountFilled))
-        menuItems.append(MenuItem(title: "Settings", iconName: .settings, iconFilledName: .settingsFilled))
+        menuItems.append(myFavsItem)
+        menuItems.append(topsItem)
+        menuItems.append(bottomsItem)
+        menuItems.append(accountItem)
+        menuItems.append(settingsItem)
         
+        // set the default selected menuItem
         selectedMenuItem = closetItem
         
-        // setup navigation controllers
+        // init navigation controllers
         let closetStoryboard = UIStoryboard(name: "Closet", bundle: nil)
         let articlesStoryboard = UIStoryboard(name: "Articles", bundle: nil)
         let accountStoryboard = UIStoryboard(name: "Account", bundle: nil)
-        
         myClosetNavigationController = closetStoryboard.instantiateViewController(withIdentifier: "MyClosetNavigationController")
         myFavsNavigationController = closetStoryboard.instantiateViewController(withIdentifier: "MyFavsNavigationController")
         topsNavigationController = articlesStoryboard.instantiateViewController(withIdentifier: "TopsNavigationController")
@@ -85,6 +90,15 @@ class MenuViewController: UIViewController, UICollectionViewDataSource, UICollec
         accountNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "AccountNavigationController")
         settingsNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "SettingsNavigationController")
         
+        // add the menuItems to their respected viewController
+        (myClosetNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = closetItem
+        (myFavsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = myFavsItem
+        (topsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = topsItem
+        (bottomsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = bottomsItem
+        (accountNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = accountItem
+        (settingsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = settingsItem
+        
+        // add the viewControllers to navigation array
         viewControllers.append(myClosetNavigationController)
         viewControllers.append(myFavsNavigationController)
         viewControllers.append(topsNavigationController)

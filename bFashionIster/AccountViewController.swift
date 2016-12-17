@@ -8,15 +8,11 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: MeuItemViewController {
 
-    var menuItem: MenuItem!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuItem = MenuItem(title: "Account", iconName: .account, iconFilledName: .accountFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

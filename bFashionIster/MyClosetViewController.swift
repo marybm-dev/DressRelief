@@ -8,15 +8,11 @@
 
 import UIKit
 
-class MyClosetViewController: UIViewController {
+class MyClosetViewController: MeuItemViewController {
 
-    var menuItem: MenuItem!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuItem = MenuItem(title: "My Closet", iconName: .closet, iconFilledName: .closetFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,15 +8,11 @@
 
 import UIKit
 
-class TopsViewController: UIViewController {
+class TopsViewController: MeuItemViewController {
 
-    var menuItem: MenuItem!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuItem = MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

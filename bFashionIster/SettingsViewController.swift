@@ -8,15 +8,11 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: MeuItemViewController {
 
-    var menuItem: MenuItem!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuItem = MenuItem(title: "Settings", iconName: .settings, iconFilledName: .settingsFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

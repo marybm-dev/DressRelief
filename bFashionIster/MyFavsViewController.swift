@@ -8,15 +8,11 @@
 
 import UIKit
 
-class MyFavsViewController: UIViewController {
+class MyFavsViewController: MeuItemViewController {
 
-    var menuItem: MenuItem!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuItem = MenuItem(title: "My Favs", iconName: .favs, iconFilledName: .favsFilled)
-        self.navigationItem.titleView = Helper.getNavigationBarItem(menuItem: menuItem)
     }
 
     override func didReceiveMemoryWarning() {

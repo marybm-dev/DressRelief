@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */; };
 		4452B3161E0264CA0068A85E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B3151E0264CA0068A85E /* Extensions.swift */; };
 		447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798011DFC9EBA004DA42D /* AppDelegate.swift */; };
 		447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798031DFC9EBA004DA42D /* HamburgerViewController.swift */; };
@@ -26,10 +27,10 @@
 		44CD8DC21DFF8BB600BD4CF1 /* BottomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DC11DFF8BB600BD4CF1 /* BottomsViewController.swift */; };
 		44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DC31DFF8BC300BD4CF1 /* AccountViewController.swift */; };
 		44CD8DC61DFF8BCE00BD4CF1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DC51DFF8BCE00BD4CF1 /* SettingsViewController.swift */; };
-		44CD8DC91DFF8C6B00BD4CF1 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DC81DFF8C6B00BD4CF1 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeuItemViewController.swift; sourceTree = "<group>"; };
 		4452B3151E0264CA0068A85E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		447797FE1DFC9EBA004DA42D /* bFashionIster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bFashionIster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447798011DFC9EBA004DA42D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		44CD8DC11DFF8BB600BD4CF1 /* BottomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomsViewController.swift; sourceTree = "<group>"; };
 		44CD8DC31DFF8BC300BD4CF1 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		44CD8DC51DFF8BCE00BD4CF1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		44CD8DC81DFF8C6B00BD4CF1 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,9 +112,9 @@
 				447798031DFC9EBA004DA42D /* HamburgerViewController.swift */,
 				447798131DFCABD3004DA42D /* MenuViewController.swift */,
 				44A777C21DFDF67400FD2A48 /* MenuItem.swift */,
+				442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */,
 				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
 				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
-				44CD8DC81DFF8C6B00BD4CF1 /* Helper.swift */,
 				4452B3151E0264CA0068A85E /* Extensions.swift */,
 			);
 			name = Navigation;
@@ -217,12 +217,12 @@
 				44A777BE1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift in Sources */,
 				447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */,
 				44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */,
+				442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
 				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,
 				447798141DFCABD3004DA42D /* MenuViewController.swift in Sources */,
 				447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */,
 				44A777C31DFDF67400FD2A48 /* MenuItem.swift in Sources */,
-				44CD8DC91DFF8C6B00BD4CF1 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
