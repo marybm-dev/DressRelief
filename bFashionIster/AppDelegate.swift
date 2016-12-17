@@ -13,9 +13,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    // navy blue hex #1a3e84
+    // tinder swipes, use Koloda cocoapod - https://github.com/Yalantis/Koloda
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let hamburgerVC = storyboard.instantiateViewController(withIdentifier: "HamburgerViewController") as! HamburgerViewController
+        let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        
+        menuVC.hamburgerViewController = hamburgerVC
+        hamburgerVC.menuViewController = menuVC
+        
+        window?.rootViewController = hamburgerVC
+        
         return true
     }
 
