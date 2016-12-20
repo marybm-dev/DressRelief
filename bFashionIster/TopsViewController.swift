@@ -13,6 +13,8 @@ class TopsViewController: ArticleCollectionView {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var subscription: NotificationToken?
+    
     override var items: Results<Article>! {
         didSet {
             collectionView.reloadData()
@@ -26,6 +28,7 @@ class TopsViewController: ArticleCollectionView {
         collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
         
         items = getTops()
+        subscription = notificationSubscription(for: items)
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,5 +41,33 @@ class TopsViewController: ArticleCollectionView {
         articles = realm.objects(Article.self)
         
         return articles.filter("articleType = %@", ArticleType.top.rawValue)
+    }
+    
+    func notificationSubscription(for tops: Results<Article>) -> NotificationToken {
+        return tops.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Article>>) in
+            // some results
+            self?.updateUI(with: changes)
+        })
+    }
+    
+    func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
+        switch changes {
+        case .initial(_):
+            collectionView.reloadData()
+        case let .update(_, deletions, insertions, modifications):
+            
+            collectionView.performBatchUpdates({
+                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
+                
+            }, completion: { (completed: Bool) in
+                // do any updates
+            })
+            
+            break
+        case let .error(error):
+            print(error.localizedDescription)
+        }
     }
 }
