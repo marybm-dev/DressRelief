@@ -11,6 +11,7 @@
 		442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */; };
 		4452B3161E0264CA0068A85E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B3151E0264CA0068A85E /* Extensions.swift */; };
 		4460BD251E08D01A00753281 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD241E08D01A00753281 /* TestData.swift */; };
+		4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD261E08D7C900753281 /* ArticleCollectionView.swift */; };
 		447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798011DFC9EBA004DA42D /* AppDelegate.swift */; };
 		447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798031DFC9EBA004DA42D /* HamburgerViewController.swift */; };
 		447798071DFC9EBA004DA42D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447798051DFC9EBA004DA42D /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeuItemViewController.swift; sourceTree = "<group>"; };
 		4452B3151E0264CA0068A85E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4460BD241E08D01A00753281 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		4460BD261E08D7C900753281 /* ArticleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionView.swift; sourceTree = "<group>"; };
 		447797FE1DFC9EBA004DA42D /* bFashionIster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bFashionIster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447798011DFC9EBA004DA42D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		447798031DFC9EBA004DA42D /* HamburgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				44CD8DBF1DFF8BA700BD4CF1 /* TopsViewController.swift */,
 				44CD8DC11DFF8BB600BD4CF1 /* BottomsViewController.swift */,
+				4460BD261E08D7C900753281 /* ArticleCollectionView.swift */,
 				44CDFC6F1E05F8F1002FFC6D /* Cells */,
 			);
 			name = Clothes;
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */,
 				44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */,
 				44CD8DC21DFF8BB600BD4CF1 /* BottomsViewController.swift in Sources */,
 				448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */,
