@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // tinder swipes, use Koloda cocoapod - https://github.com/Yalantis/Koloda
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // Drops DB and Recreates if migration is needed
+        var config = Realm.Configuration()
+        config.deleteRealmIfMigrationNeeded = true
+        Realm.Configuration.defaultConfiguration = config
+        
+        TestData.defaults()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let hamburgerVC = storyboard.instantiateViewController(withIdentifier: "HamburgerViewController") as! HamburgerViewController

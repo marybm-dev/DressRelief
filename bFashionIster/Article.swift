@@ -18,7 +18,7 @@ class Article: Object {
     dynamic var articleId = UUID().uuidString
     dynamic var created = Date()
     
-    dynamic var type = ""
+    dynamic var articleType = ""
     dynamic var imgUrl = ""
     dynamic var color = ""
     dynamic var texture = ""
@@ -36,5 +36,6 @@ class Article: Object {
         self.color = color
         self.texture = texture
         self.category = category
+        self.articleType = type
     }
 }

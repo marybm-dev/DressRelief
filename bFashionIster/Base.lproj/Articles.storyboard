@@ -53,7 +53,9 @@
                             <constraint firstAttribute="trailing" secondItem="Xex-c7-EQc" secondAttribute="trailing" id="tiO-wo-CQg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="J1W-Wn-HZF"/>
+                    <navigationItem key="navigationItem" id="J1W-Wn-HZF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dd8-Nk-C6h"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Xex-c7-EQc" id="BCN-qc-ok0"/>
                     </connections>

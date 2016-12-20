@@ -13,8 +13,12 @@ class TopsViewController: MeuItemViewController, UICollectionViewDataSource, UIC
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-//    var tops: Results<Article>!
-    var tops = [Article]()
+    var articles: Results<Article>!
+    var tops: Results<Article>! {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     let itemsPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
@@ -25,31 +29,7 @@ class TopsViewController: MeuItemViewController, UICollectionViewDataSource, UIC
         let nib = UINib(nibName: "ArticleCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
         
-        let tops1 = Article(imgUrl: "", color: "blue", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-        tops1.countLikes = 5
-        let tops2 = Article(imgUrl: "", color: "red", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-        tops2.countLikes = 7
-        let tops3 = Article(imgUrl: "", color: "orange", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-        tops3.countLikes = 524
-        let tops4 = Article(imgUrl: "", color: "yellow", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-        tops4.countLikes = 12
-        let tops5 = Article(imgUrl: "", color: "blue", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-        tops5.countLikes = 9
-        let tops6 = Article(imgUrl: "", color: "purple", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-        tops6.countLikes = 35
-        let tops7 = Article(imgUrl: "", color: "red", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-        tops7.countLikes = 77
-        
-        tops.append(tops1)
-        tops.append(tops2)
-        tops.append(tops3)
-        tops.append(tops4)
-        tops.append(tops5)
-        tops.append(tops6)
-        tops.append(tops7)
-        
-//        let realm = try! Realm()
-//        tops = realm.objects(Article.self)
+        tops = getTops()
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,9 +37,16 @@ class TopsViewController: MeuItemViewController, UICollectionViewDataSource, UIC
         // Dispose of any resources that can be recreated.
     }
     
+    func getTops() -> Results<Article> {
+        let realm = try! Realm()
+        articles = realm.objects(Article.self)
+        
+        return articles.filter("articleType = %@", ArticleType.top.rawValue)
+    }
+    
     // Mark: – UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tops.count
+        return tops.count 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
