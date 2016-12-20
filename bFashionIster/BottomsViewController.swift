@@ -13,8 +13,6 @@ class BottomsViewController: ArticleCollectionView {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var subscription: NotificationToken?
-    
     override var items: Results<Article>! {
         didSet {
             collectionView.reloadData()
@@ -43,14 +41,7 @@ class BottomsViewController: ArticleCollectionView {
         return articles.filter("articleType = %@", ArticleType.bottom.rawValue)
     }
     
-    func notificationSubscription(for bottoms: Results<Article>) -> NotificationToken {
-        return bottoms.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Article>>) in
-            // some results
-            self?.updateUI(with: changes)
-        })
-    }
-    
-    func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
+    override func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
         switch changes {
         case .initial(_):
             collectionView.reloadData()

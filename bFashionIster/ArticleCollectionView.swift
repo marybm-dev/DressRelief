@@ -13,6 +13,7 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
     
     var articles: Results<Article>!
     var items: Results<Article>!
+    var subscription: NotificationToken?
     
     let itemsPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
@@ -20,6 +21,15 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    func notificationSubscription(for bottoms: Results<Article>) -> NotificationToken {
+        return bottoms.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Article>>) in
+            self?.updateUI(with: changes)
+        })
+    }
+    
+    func updateUI(with changes: RealmCollectionChange<Results<Article>>) {   
     }
     
     // Mark: – UICollectionViewDataSource
