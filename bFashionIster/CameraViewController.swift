@@ -88,7 +88,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
             
             // save to album
 //            UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
-            // or save to documentss
+            // save to documentss
             saveImageToDocuments(image: image!, fileNameWithExtension: "test.jpg")
             print("Did save image in documents")
             
@@ -98,10 +98,11 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
         
     }
     
-    func saveImageToDocuments(image: UIImage, fileNameWithExtension: String){
+    func saveImageToDocuments(image: UIImage, fileNameWithExtension: String) {
+        let image = cropImageIntoSquare(image: image)
         let imagePath = fileDirectory.appendingPathComponent("\(fileNameWithExtension)")
         guard imagePath?.path != nil else { return }
-        guard let imageData = UIImageJPEGRepresentation(image, 0.6) else { return }
+        guard let imageData = UIImageJPEGRepresentation(image!, 0.6) else { return }
         
         do {
             try imageData.write(to: URL(fileURLWithPath: (imagePath?.path)!), options: .atomic)
@@ -109,8 +110,25 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
             print(error)
         }
         
-        let params: [Any] = [(imagePath?.path)! as String, image as UIImage]
+        let params: [Any] = [(imagePath?.path)! as String, image! as UIImage]
         performSegue(withIdentifier: "FromImageToCreateArticle", sender: params)
+    }
+    
+    func cropImageIntoSquare(image: UIImage) -> UIImage? {
+        let imageSize: CGSize = image.size
+        let width = imageSize.width
+        let height = imageSize.height
+        if width != height {
+            let newDimension: CGFloat = min(width, height)
+            let widthOffset: CGFloat = (width - newDimension)/2
+            let heightOffset: CGFloat = (height - newDimension)/2
+            UIGraphicsBeginImageContext(CGSize(width: newDimension, height: newDimension))
+            image.draw(at: CGPoint(x: -widthOffset, y: -heightOffset))
+            let imageResult: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            return imageResult
+        }
+        return nil
     }
     
     // TODO: read back from here: 

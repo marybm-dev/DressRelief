@@ -86,10 +86,10 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImgOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="dKK-sV-3vo">
-                                <rect key="frame" x="7" y="237" width="360" height="192"/>
+                                <rect key="frame" x="37" y="183" width="300" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="360" id="0CX-bQ-Ve4"/>
-                                    <constraint firstAttribute="height" constant="192" id="yba-3v-Agl"/>
+                                    <constraint firstAttribute="width" constant="300" id="0CX-bQ-Ve4"/>
+                                    <constraint firstAttribute="height" constant="300" id="yba-3v-Agl"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etZ-r2-zdB">
@@ -117,14 +117,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YyE-cH-l0i">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="XTy-aH-nNm">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tHd-5p-3fK">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="5aF-ye-GQI">
                             <connections>
-                                <action selector="didTapCancelButton:" destination="7bV-Ty-DJv" id="VZG-CE-44y"/>
+                                <action selector="didTapCancelButton:" destination="7bV-Ty-DJv" id="jCE-hq-99K"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -135,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZp-sp-1ec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="743.20000000000005" y="1492.8035982008996"/>
+            <point key="canvasLocation" x="284" y="2197.1514242878561"/>
         </scene>
         <!--Article Create View Controller-->
         <scene sceneID="cNW-0f-vws">
@@ -160,7 +155,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y7o-9g-oWe">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y7o-9g-oWe">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
                                                 </imageView>
                                             </subviews>
@@ -302,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="du8-gk-yZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1432.8" y="1492.8035982008996"/>
+            <point key="canvasLocation" x="1188" y="2197"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ns9-DJ-hX2">
@@ -367,7 +362,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dlX-79-3eY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tEJ-LP-tMM"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tEJ-LP-tMM">
+                            <connections>
+                                <segue destination="bR3-lW-ihM" kind="presentation" id="kGq-gj-OeZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="l1X-6p-6Mi" id="fXE-4N-f8o"/>
@@ -411,11 +410,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xxj-rQ-OXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-196" y="1492.8035982008996"/>
+            <point key="canvasLocation" x="284" y="1493"/>
         </scene>
     </scenes>
     <resources>
         <image name="ImgOverlay" width="114" height="64"/>
-        <image name="shutter" width="76" height="76"/>
+        <image name="shutter" width="102" height="102"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kGq-gj-OeZ"/>
+    </inferredMetricsTieBreakers>
 </document>

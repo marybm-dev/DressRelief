@@ -21,6 +21,10 @@
 		447CBDB71E0966F700176997 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDB61E0966F700176997 /* Category.swift */; };
 		447CBDB91E0967D700176997 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDB81E0967D700176997 /* Color.swift */; };
 		447CBDBB1E09683500176997 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDBA1E09683500176997 /* Texture.swift */; };
+		447CBDBE1E097F7F00176997 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDBD1E097F7F00176997 /* CameraViewController.swift */; };
+		447CBDC01E09A0ED00176997 /* ArticleCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDBF1E09A0ED00176997 /* ArticleCreateViewController.swift */; };
+		447CBDC21E09A3FE00176997 /* ArticleCreateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */; };
+		447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */; };
 		448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E37DA1E05E88100A62DC6 /* Outfit.swift */; };
 		448E37E11E05EB1E00A62DC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E37E01E05EB1E00A62DC6 /* User.swift */; };
 		44A777B01DFDD3C800FD2A48 /* Closet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A777AE1DFDD3C800FD2A48 /* Closet.storyboard */; };
@@ -57,6 +61,10 @@
 		447CBDB61E0966F700176997 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		447CBDB81E0967D700176997 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		447CBDBA1E09683500176997 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		447CBDBD1E097F7F00176997 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		447CBDBF1E09A0ED00176997 /* ArticleCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCreateViewController.swift; sourceTree = "<group>"; };
+		447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCreateTableViewCell.swift; sourceTree = "<group>"; };
+		447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCreateImageTableViewCell.swift; sourceTree = "<group>"; };
 		448E37DA1E05E88100A62DC6 /* Outfit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
 		448E37E01E05EB1E00A62DC6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		44A777AF1DFDD3C800FD2A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Closet.storyboard; sourceTree = "<group>"; };
@@ -193,6 +201,10 @@
 				44CDFC6A1E05F8B0002FFC6D /* Account */,
 				44CDFC691E05F883002FFC6D /* Outfits */,
 				44CDFC681E05F87B002FFC6D /* Clothes */,
+				447CBDBD1E097F7F00176997 /* CameraViewController.swift */,
+				447CBDBF1E09A0ED00176997 /* ArticleCreateViewController.swift */,
+				447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */,
+				447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -375,17 +387,21 @@
 				4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */,
 				44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */,
 				447CBDB91E0967D700176997 /* Color.swift in Sources */,
+				447CBDBE1E097F7F00176997 /* CameraViewController.swift in Sources */,
 				44CD8DC21DFF8BB600BD4CF1 /* BottomsViewController.swift in Sources */,
+				447CBDC21E09A3FE00176997 /* ArticleCreateTableViewCell.swift in Sources */,
 				448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */,
 				4460BD251E08D01A00753281 /* TestData.swift in Sources */,
 				44CD8DC61DFF8BCE00BD4CF1 /* SettingsViewController.swift in Sources */,
 				44CD8DBC1DFF8B8900BD4CF1 /* MyClosetViewController.swift in Sources */,
+				447CBDC01E09A0ED00176997 /* ArticleCreateViewController.swift in Sources */,
 				44A777BE1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift in Sources */,
 				447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */,
 				448E37E11E05EB1E00A62DC6 /* User.swift in Sources */,
 				44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */,
 				447CBDB71E0966F700176997 /* Category.swift in Sources */,
 				442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */,
+				447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
 				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,
 				447798141DFCABD3004DA42D /* MenuViewController.swift in Sources */,

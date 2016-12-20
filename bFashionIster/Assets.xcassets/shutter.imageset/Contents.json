@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "shutter~universal@1x.png",
+      "filename" : "CaptureButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "shutter~universal@2x.png",
+      "filename" : "CaptureButton@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "shutter~universal@3x.png",
+      "filename" : "CaptureButton@3x.png",
       "scale" : "3x"
     }
   ],
