@@ -25,6 +25,8 @@ class BottomsViewController: ArticleCollectionView {
         let nib = UINib(nibName: "ArticleCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
         
+        collectionView.backgroundColor = UIColor.appleLightestGray()
+        
         items = getBottoms()
         subscription = notificationSubscription(for: items)
     }

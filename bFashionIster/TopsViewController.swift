@@ -25,6 +25,8 @@ class TopsViewController: ArticleCollectionView {
         let nib = UINib(nibName: "ArticleCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
         
+        collectionView.backgroundColor = UIColor.appleLightestGray()
+        
         items = getTops()
         subscription = notificationSubscription(for: items)
     }
