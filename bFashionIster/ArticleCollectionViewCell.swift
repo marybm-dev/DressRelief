@@ -23,6 +23,15 @@ class ArticleCollectionViewCell: UICollectionViewCell {
                 let url = NSURL(string: item.imgUrl)
                 let data = NSData(contentsOf: url as! URL)
                 self.itemImageView.image = UIImage(data: data! as Data)
+                
+            } else {
+                
+                if item.articleType == ArticleType.top.rawValue {
+                    itemImageView.image = #imageLiteral(resourceName: "topsBar")
+                    
+                } else {
+                    itemImageView.image = #imageLiteral(resourceName: "bottomsBar")
+                }
             }
         }
     }
