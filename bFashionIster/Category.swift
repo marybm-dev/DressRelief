@@ -7,3 +7,22 @@
 //
 
 import Foundation
+
+enum Category: Int, CustomStringConvertible {
+    case business, casual, dressy, dressyCasual, nightOut, sporty, comfy
+    
+    var description: String {
+        switch self {
+        case .business:         return "Business"
+        case .casual:           return "Casual"
+        case .dressy:           return "Dressy"
+        case .dressyCasual:     return "Dressy Casual"
+        case .nightOut:         return "Night Out"
+        case .sporty:           return "Sporty"
+        case .comfy:            return "Comfy"
+        }
+    }
+    
+    static let allRawValues = business.rawValue...comfy.rawValue
+    static let allValues = allRawValues.map { Category(rawValue: $0)!.description }
+}
