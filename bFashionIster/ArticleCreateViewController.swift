@@ -111,7 +111,18 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTextureCell", for: indexPath) as! ArticleCreateTableViewCell
-            
+            // determine if we need to display the checked image
+            let checkedOrNil = selectedColorIndex == indexPath.row ? UIImage(named: "checked") : nil
+            cell.checkedImageView.image = checkedOrNil
+            // determine which label to display
+            let text = (indexPath.row == 0) ? selectedTexture : textures[indexPath.row-1]
+            cell.descriptionLabel.text = text
+            // if distances are collapsed, show the checked circle in the first row
+            if indexPath.row == 0 && !shouldDisplayAllTextures && selectedTexture != Texture.display.description {
+                cell.checkedImageView.image = UIImage(named: "checked")
+            } else {
+                cell.checkedImageView.image = nil
+            }
             return cell
         }
     }
@@ -149,7 +160,7 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
                 return
             }
             if shouldDisplayAllColors {
-                // updated the selected category
+                // updated the selected color
                 let cell = tableView.cellForRow(at: indexPath) as! ArticleCreateTableViewCell
                 cell.checkedImageView.image = UIImage(named: "checked")
                 selectedColorIndex = indexPath.row
@@ -158,7 +169,27 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
             // reload the tableView
             shouldDisplayAllColors = !shouldDisplayAllColors
             tableView.reloadData()
+        
+        } else if indexPath.section == 3 {
+            if indexPath.row == 0 {
+                shouldDisplayAllTextures = !shouldDisplayAllTextures
+                selectedTexture = Texture.display.description
+                if !shouldDisplayAllTextures {
+                    selectedTextureIndex = indexPath.row
+                }
+                tableView.reloadData()
+                return
+            }
+            if shouldDisplayAllTextures {
+                // updated the selected texture
+                let cell = tableView.cellForRow(at: indexPath) as! ArticleCreateTableViewCell
+                cell.checkedImageView.image = UIImage(named: "checked")
+                selectedTextureIndex = indexPath.row
+                selectedTexture = cell.descriptionLabel.text!
+            }
+            // reload the tableView
+            shouldDisplayAllTextures = !shouldDisplayAllTextures
+            tableView.reloadData()
         }
-    
     }
 }
