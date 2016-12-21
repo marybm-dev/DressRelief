@@ -21,13 +21,13 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
     var shouldDisplayAllTextures = false
     var shouldDisplayAllColors = false
     
-    var selectedCategory = "Select a Category..."
+    var selectedCategory = Category.display.description
     var selectedCategoryIndex = 10
     
-    var selectedColor = "Select a Color"
+    var selectedColor = Color.display.description
     var selectedColorIndex = 0
     
-    var selectedTexture = "Select a Texture"
+    var selectedTexture = Texture.display.description
     var selectedTextureIndex = 0
     
     override func viewDidLoad() {
@@ -86,14 +86,27 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
             let text = (indexPath.row == 0) ? selectedCategory : categories[indexPath.row-1]
             cell.descriptionLabel.text = text
             // if distances are collapsed, show the checked circle in the first row
-            if indexPath.row == 0 && !shouldDisplayAllCategories && selectedCategory != "Select a Category..." {
+            if indexPath.row == 0 && !shouldDisplayAllCategories && selectedCategory != Category.display.description {
                 cell.checkedImageView.image = UIImage(named: "checked")
+            } else {
+                cell.checkedImageView.image = nil
             }
             return cell
             
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleColorCell", for: indexPath) as! ArticleCreateTableViewCell
-            
+            // determine if we need to display the checked image
+            let checkedOrNil = selectedColorIndex == indexPath.row ? UIImage(named: "checked") : nil
+            cell.checkedImageView.image = checkedOrNil
+            // determine which label to display
+            let text = (indexPath.row == 0) ? selectedColor : colors[indexPath.row-1]
+            cell.descriptionLabel.text = text
+            // if distances are collapsed, show the checked circle in the first row
+            if indexPath.row == 0 && !shouldDisplayAllColors && selectedColor != Color.display.description {
+                cell.checkedImageView.image = UIImage(named: "checked")
+            } else {
+                cell.checkedImageView.image = nil
+            }
             return cell
             
         } else {
@@ -107,7 +120,7 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
         if indexPath.section == 1 {
             if indexPath.row == 0 {
                 shouldDisplayAllCategories = !shouldDisplayAllCategories
-                selectedCategory = "Select a Category..."
+                selectedCategory = Category.display.description
                 if !shouldDisplayAllCategories {
                     selectedCategoryIndex = indexPath.row
                 }
@@ -124,6 +137,28 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
             // reload the tableView
             shouldDisplayAllCategories = !shouldDisplayAllCategories
             tableView.reloadData()
+        
+        }  else if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                shouldDisplayAllColors = !shouldDisplayAllColors
+                selectedColor = Color.display.description
+                if !shouldDisplayAllColors {
+                    selectedColorIndex = indexPath.row
+                }
+                tableView.reloadData()
+                return
+            }
+            if shouldDisplayAllColors {
+                // updated the selected category
+                let cell = tableView.cellForRow(at: indexPath) as! ArticleCreateTableViewCell
+                cell.checkedImageView.image = UIImage(named: "checked")
+                selectedColorIndex = indexPath.row
+                selectedColor = cell.descriptionLabel.text!
+            }
+            // reload the tableView
+            shouldDisplayAllColors = !shouldDisplayAllColors
+            tableView.reloadData()
         }
+    
     }
 }

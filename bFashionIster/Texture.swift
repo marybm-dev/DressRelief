@@ -9,13 +9,14 @@
 import Foundation
 
 enum Texture: Int, CustomStringConvertible {
-    case denim, glossy, corduroy
+    case denim, glossy, corduroy, display
     
     var description: String {
         switch self {
         case .denim:           return "Denim"
         case .glossy:          return "Glossy"
         case .corduroy:        return "Corduroy"
+        case .display:         return "Select a Texture..."
         }
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 
 enum Category: Int, CustomStringConvertible {
-    case business, casual, dressy, dressyCasual, nightOut, sporty, comfy
+    case business, casual, dressy, dressyCasual, nightOut, sporty, comfy, display
     
     var description: String {
         switch self {
@@ -20,6 +20,7 @@ enum Category: Int, CustomStringConvertible {
         case .nightOut:         return "Night Out"
         case .sporty:           return "Sporty"
         case .comfy:            return "Comfy"
+        case .display:          return "Select a Category..."
         }
     }
     
