@@ -11,6 +11,8 @@ import AVFoundation
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UINavigationControllerDelegate {
     
+    var entryPoint: ArticleType!
+    
     @IBOutlet weak var cameraView: UIView!
     
     var captureSession = AVCaptureSession()

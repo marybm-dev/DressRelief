@@ -30,10 +30,26 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
     var selectedTexture = Texture.display.description
     var selectedTextureIndex = 0
     
+    var saveButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
-        // do stuff
+        saveButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ArticleCreateViewController.didTapSaveButton))
     }
     
+    func didTapSaveButton() {
+        // 1. validate we have all data
+        // - imagePath
+        // - category
+        // - color
+        // - texture
+        
+        
+        // 2. save to Realm
+        
+        // 3. create delegaet to load file into collectionViews
+    }
+    
+    // Mark: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
@@ -127,6 +143,7 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
         }
     }
     
+    // Mark: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 0 {

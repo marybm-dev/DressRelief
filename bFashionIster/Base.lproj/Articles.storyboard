@@ -57,7 +57,7 @@
                     <navigationItem key="navigationItem" id="J1W-Wn-HZF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dd8-Nk-C6h">
                             <connections>
-                                <segue destination="bR3-lW-ihM" kind="presentation" id="5az-hK-0zX"/>
+                                <segue destination="bR3-lW-ihM" kind="presentation" identifier="ToCameraCreateFromTops" id="5az-hK-0zX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -149,7 +149,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleImageCell" rowHeight="300" id="s60-b4-aZG" customClass="ArticleCreateImageTableViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="300"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s60-b4-aZG" id="gaY-tG-3Lg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
@@ -171,7 +171,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleCategoryCell" rowHeight="44" id="wM7-To-lLK" customClass="ArticleCreateTableViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="356" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="355.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wM7-To-lLK" id="UQr-Gi-5P5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -204,7 +204,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleColorCell" rowHeight="44" id="IXW-yP-Gzj" customClass="ArticleCreateTableViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="400" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="399.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IXW-yP-Gzj" id="f1N-rL-Kgk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -237,7 +237,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleTextureCell" rowHeight="44" id="AAz-bn-U4Y" customClass="ArticleCreateTableViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="444" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="443.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AAz-bn-U4Y" id="jkD-9w-d8a">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -364,7 +364,7 @@
                     <navigationItem key="navigationItem" id="dlX-79-3eY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="tEJ-LP-tMM">
                             <connections>
-                                <segue destination="bR3-lW-ihM" kind="presentation" id="kGq-gj-OeZ"/>
+                                <segue destination="bR3-lW-ihM" kind="presentation" identifier="ToCameraCreateFromBottoms" id="kGq-gj-OeZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -63,4 +63,12 @@ class TopsViewController: ArticleCollectionView {
             print(error.localizedDescription)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToCameraCreateFromTops" {
+            let cameraNavigationController = segue.destination as! UINavigationController
+            let cameraViewController = cameraNavigationController.topViewController as? CameraViewController
+            cameraViewController?.entryPoint = ArticleType(rawValue: ArticleType.top.rawValue)
+        }
+    }
 }
