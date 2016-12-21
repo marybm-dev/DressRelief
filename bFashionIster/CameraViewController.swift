@@ -11,7 +11,7 @@ import AVFoundation
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UINavigationControllerDelegate {
     
-    var entryPoint: ArticleType!
+    var articleType: String!
     
     @IBOutlet weak var cameraView: UIView!
     
@@ -24,7 +24,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
         return try! FileManager.default.url(for: .documentDirectory , in: .userDomainMask , appropriateFor: nil, create: true)
     }() as NSURL
 
-    var imageCaptured: UIImage!
+    var selectedImage: UIImage!
+    var selectedImagePath: String!
     
     override func viewDidLoad() {
 
@@ -87,9 +88,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
                 print("error image is nil")
                 return
             }
-            
-            // save to album
-//            UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+
             // save to documentss
             saveImageToDocuments(image: image!, fileNameWithExtension: "test.jpg")
             print("Did save image in documents")
@@ -112,8 +111,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
             print(error)
         }
         
-        let params: [Any] = [(imagePath?.path)! as String, image! as UIImage]
-        performSegue(withIdentifier: "FromImageToCreateArticle", sender: params)
+        selectedImagePath = (imagePath?.path)! as String
+        selectedImage = image! as UIImage
+        performSegue(withIdentifier: "FromImageToCreateArticle", sender: nil)
     }
     
     func cropImageIntoSquare(image: UIImage) -> UIImage? {
@@ -139,11 +139,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FromImageToCreateArticle" {
             let articleCreateViewController = segue.destination as! ArticleCreateViewController
-            let params = sender as! [Any]
-            let path = params[0] as! String
-            let image = params[1] as! UIImage
-            articleCreateViewController.articleImage = image
-            articleCreateViewController.articleImagePath = path
+            articleCreateViewController.articleImage = selectedImage
+            articleCreateViewController.articleImagePath = selectedImagePath
+            articleCreateViewController.articleType = self.articleType
         }
     }
 }

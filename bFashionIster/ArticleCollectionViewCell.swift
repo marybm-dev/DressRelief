@@ -17,12 +17,13 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     var item: Article! {
         didSet {
             likesCountLabel.text = "\(item.countLikes)"
-            self.likedImageView.image = item.countLikes > 0 ? #imageLiteral(resourceName: "liked") : #imageLiteral(resourceName: "likedFilled")
+            self.likedImageView.image = item.countLikes > 0 ? #imageLiteral(resourceName: "likedFilled") : #imageLiteral(resourceName: "liked")
             
             if FileManager.default.fileExists(atPath: item.imgUrl) {
-                let url = NSURL(string: item.imgUrl)
-                let data = NSData(contentsOf: url as! URL)
-                self.itemImageView.image = UIImage(data: data! as Data)
+                let url = URL(string: item.imgUrl)
+                let imageURL = URL(fileURLWithPath: item.imgUrl)
+//                let data = try! Data(contentsOf: url!)
+                self.itemImageView.image = UIImage(contentsOfFile: imageURL.path)
                 
             } else {
                 
@@ -41,3 +42,4 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 }
+

@@ -68,7 +68,7 @@ class TopsViewController: ArticleCollectionView {
         if segue.identifier == "ToCameraCreateFromTops" {
             let cameraNavigationController = segue.destination as! UINavigationController
             let cameraViewController = cameraNavigationController.topViewController as? CameraViewController
-            cameraViewController?.entryPoint = ArticleType(rawValue: ArticleType.top.rawValue)
+            cameraViewController?.articleType = ArticleType.top.rawValue
         }
     }
 }

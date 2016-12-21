@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var articleImage: UIImage!
     var articleImagePath: String!
+    var articleType: String!
     
     var categories = Category.allValues
     var colors = Color.allValues
@@ -34,19 +36,27 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         saveButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ArticleCreateViewController.didTapSaveButton))
+        navigationItem.setRightBarButton(saveButton, animated: true)
     }
     
     func didTapSaveButton() {
         // 1. validate we have all data
-        // - imagePath
-        // - category
-        // - color
-        // - texture
-        
+        // TODO: provide visual feedback when failing a validation
+        guard articleImagePath != nil else { return }
+        guard selectedCategory != Category.display.description else { return }
+        guard selectedColor != Color.display.description else { return }
+        guard selectedTexture != Texture.display.description else { return }
+        guard articleType != nil else { return }
         
         // 2. save to Realm
+        let article = Article(imgUrl: articleImagePath, color: selectedColor, texture: selectedTexture, category: selectedCategory, type: articleType)
         
-        // 3. create delegaet to load file into collectionViews
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(article)
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     // Mark: - UITableViewDataSource
@@ -67,18 +77,18 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
         return 0
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if section == 0 {
-//            return nil
-//        } else if section == 1 {
-//            return "Category"
-//        } else if section == 2 {
-//            return "Color"
-//        } else if section == 3 {
-//            return "Texture"
-//        }
-//        return nil
-//    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return nil
+        } else if section == 1 {
+            return "Category"
+        } else if section == 2 {
+            return "Color"
+        } else if section == 3 {
+            return "Texture"
+        }
+        return nil
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
