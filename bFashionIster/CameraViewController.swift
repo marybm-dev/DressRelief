@@ -90,13 +90,17 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
             }
 
             // save to documentss
-            saveImageToDocuments(image: image!, fileNameWithExtension: "test.jpg")
+            saveImageToDocuments(image: image!, fileNameWithExtension: getUniqueFileName())
             print("Did save image in documents")
             
         } else {
             print("error with buffer")
         }
         
+    }
+    
+    func getUniqueFileName() -> String {
+        return "\(articleType)-\(UUID().uuidString).jpg"
     }
     
     func saveImageToDocuments(image: UIImage, fileNameWithExtension: String) {
@@ -132,9 +136,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
         }
         return nil
     }
-    
-    // TODO: read back from here: 
-    // [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0]
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FromImageToCreateArticle" {
