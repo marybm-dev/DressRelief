@@ -86,7 +86,7 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
             let text = (indexPath.row == 0) ? selectedCategory : categories[indexPath.row-1]
             cell.descriptionLabel.text = text
             // if distances are collapsed, show the checked circle in the first row
-            if indexPath.row == 0 && !shouldDisplayAllCategories {
+            if indexPath.row == 0 && !shouldDisplayAllCategories && selectedCategory != "Select a Category..." {
                 cell.checkedImageView.image = UIImage(named: "checked")
             }
             return cell
