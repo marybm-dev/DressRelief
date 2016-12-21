@@ -18,6 +18,13 @@
 		447798091DFC9EBA004DA42D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447798081DFC9EBA004DA42D /* Assets.xcassets */; };
 		4477980C1DFC9EBA004DA42D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4477980A1DFC9EBA004DA42D /* LaunchScreen.storyboard */; };
 		447798141DFCABD3004DA42D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798131DFCABD3004DA42D /* MenuViewController.swift */; };
+		447CBDB71E0966F700176997 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDB61E0966F700176997 /* Category.swift */; };
+		447CBDB91E0967D700176997 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDB81E0967D700176997 /* Color.swift */; };
+		447CBDBB1E09683500176997 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDBA1E09683500176997 /* Texture.swift */; };
+		447CBDBE1E097F7F00176997 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDBD1E097F7F00176997 /* CameraViewController.swift */; };
+		447CBDC01E09A0ED00176997 /* ArticleCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDBF1E09A0ED00176997 /* ArticleCreateViewController.swift */; };
+		447CBDC21E09A3FE00176997 /* ArticleCreateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */; };
+		447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */; };
 		448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E37DA1E05E88100A62DC6 /* Outfit.swift */; };
 		448E37E11E05EB1E00A62DC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E37E01E05EB1E00A62DC6 /* User.swift */; };
 		44A777B01DFDD3C800FD2A48 /* Closet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A777AE1DFDD3C800FD2A48 /* Closet.storyboard */; };
@@ -51,6 +58,13 @@
 		4477980B1DFC9EBA004DA42D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4477980D1DFC9EBA004DA42D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447798131DFCABD3004DA42D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		447CBDB61E0966F700176997 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		447CBDB81E0967D700176997 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		447CBDBA1E09683500176997 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		447CBDBD1E097F7F00176997 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		447CBDBF1E09A0ED00176997 /* ArticleCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCreateViewController.swift; sourceTree = "<group>"; };
+		447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCreateTableViewCell.swift; sourceTree = "<group>"; };
+		447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCreateImageTableViewCell.swift; sourceTree = "<group>"; };
 		448E37DA1E05E88100A62DC6 /* Outfit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
 		448E37E01E05EB1E00A62DC6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		44A777AF1DFDD3C800FD2A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Closet.storyboard; sourceTree = "<group>"; };
@@ -93,6 +107,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		441C243E1E0A01A800A88AF5 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				447CBDBD1E097F7F00176997 /* CameraViewController.swift */,
+				447CBDBF1E09A0ED00176997 /* ArticleCreateViewController.swift */,
+				447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */,
+				447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */,
+			);
+			name = Create;
+			sourceTree = "<group>";
+		};
 		447797F51DFC9EBA004DA42D = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				447798011DFC9EBA004DA42D /* AppDelegate.swift */,
-				4460BD241E08D01A00753281 /* TestData.swift */,
+				447CBDBC1E096AE500176997 /* Common */,
 				448E37D51E05E84A00A62DC6 /* Assets */,
 				448E37E21E05EB8100A62DC6 /* Model */,
 				44A777B71DFDD5BE00FD2A48 /* Navigation */,
@@ -123,6 +148,15 @@
 				44A777B61DFDD55500FD2A48 /* Storyboards */,
 			);
 			path = bFashionIster;
+			sourceTree = "<group>";
+		};
+		447CBDBC1E096AE500176997 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4460BD241E08D01A00753281 /* TestData.swift */,
+				4452B3151E0264CA0068A85E /* Extensions.swift */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		448E37D51E05E84A00A62DC6 /* Assets */ = {
@@ -141,6 +175,9 @@
 				448E37DA1E05E88100A62DC6 /* Outfit.swift */,
 				44CDFC701E05FC67002FFC6D /* Article.swift */,
 				448E37E01E05EB1E00A62DC6 /* User.swift */,
+				447CBDB61E0966F700176997 /* Category.swift */,
+				447CBDB81E0967D700176997 /* Color.swift */,
+				447CBDBA1E09683500176997 /* Texture.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -165,7 +202,6 @@
 				442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */,
 				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
 				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
-				4452B3151E0264CA0068A85E /* Extensions.swift */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -187,6 +223,7 @@
 				44CD8DC11DFF8BB600BD4CF1 /* BottomsViewController.swift */,
 				4460BD261E08D7C900753281 /* ArticleCollectionView.swift */,
 				44CDFC6F1E05F8F1002FFC6D /* Cells */,
+				441C243E1E0A01A800A88AF5 /* Create */,
 			);
 			name = Clothes;
 			sourceTree = "<group>";
@@ -357,19 +394,26 @@
 			files = (
 				4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */,
 				44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */,
+				447CBDB91E0967D700176997 /* Color.swift in Sources */,
+				447CBDBE1E097F7F00176997 /* CameraViewController.swift in Sources */,
 				44CD8DC21DFF8BB600BD4CF1 /* BottomsViewController.swift in Sources */,
+				447CBDC21E09A3FE00176997 /* ArticleCreateTableViewCell.swift in Sources */,
 				448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */,
 				4460BD251E08D01A00753281 /* TestData.swift in Sources */,
 				44CD8DC61DFF8BCE00BD4CF1 /* SettingsViewController.swift in Sources */,
 				44CD8DBC1DFF8B8900BD4CF1 /* MyClosetViewController.swift in Sources */,
+				447CBDC01E09A0ED00176997 /* ArticleCreateViewController.swift in Sources */,
 				44A777BE1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift in Sources */,
 				447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */,
 				448E37E11E05EB1E00A62DC6 /* User.swift in Sources */,
 				44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */,
+				447CBDB71E0966F700176997 /* Category.swift in Sources */,
 				442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */,
+				447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
 				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,
 				447798141DFCABD3004DA42D /* MenuViewController.swift in Sources */,
+				447CBDBB1E09683500176997 /* Texture.swift in Sources */,
 				44CDFC711E05FC67002FFC6D /* Article.swift in Sources */,
 				44CDFC6D1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift in Sources */,
 				447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */,

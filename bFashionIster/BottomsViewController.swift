@@ -25,7 +25,10 @@ class BottomsViewController: ArticleCollectionView {
         let nib = UINib(nibName: "ArticleCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
         
+        collectionView.backgroundColor = UIColor.appleLightestGray()
+        
         items = getBottoms()
+        subscription = notificationSubscription(for: items)
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,5 +41,34 @@ class BottomsViewController: ArticleCollectionView {
         articles = realm.objects(Article.self)
         
         return articles.filter("articleType = %@", ArticleType.bottom.rawValue)
+    }
+    
+    override func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
+        switch changes {
+        case .initial(_):
+            collectionView.reloadData()
+        case let .update(_, deletions, insertions, modifications):
+            
+            collectionView.performBatchUpdates({
+                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
+                
+            }, completion: { (completed: Bool) in
+                // do any updates
+            })
+            
+            break
+        case let .error(error):
+            print(error.localizedDescription)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToCameraCreateFromBottoms" {
+            let cameraNavigationController = segue.destination as! UINavigationController
+            let cameraViewController = cameraNavigationController.topViewController as? CameraViewController
+            cameraViewController?.articleType = ArticleType.bottom.rawValue
+        }
     }
 }
