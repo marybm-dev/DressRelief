@@ -9,17 +9,20 @@
 import Foundation
 
 enum Texture: Int, CustomStringConvertible {
-    case denim, glossy, corduroy, display
+    case denim, pleated, lace, sequence, glossy, matte, display
     
     var description: String {
         switch self {
         case .denim:           return "Denim"
+        case .pleated:         return "Pleated"
+        case .lace:            return "Lace"
+        case .sequence:        return "Sequence"
         case .glossy:          return "Glossy"
-        case .corduroy:        return "Corduroy"
+        case .matte:           return "Matte"
         case .display:         return "Select a Texture..."
         }
     }
     
-    static let allRawValues = denim.rawValue...corduroy.rawValue
+    static let allRawValues = denim.rawValue...matte.rawValue
     static let allValues = allRawValues.map { Texture(rawValue: $0)!.description }
 }

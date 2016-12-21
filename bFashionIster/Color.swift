@@ -9,7 +9,7 @@
 import Foundation
 
 enum Color: Int, CustomStringConvertible {
-    case multi, pattern, blackAndWhite, bold, earthy, warm, cool, display
+    case multi, pattern, blackAndWhite, bold, pastel, earthy, warm, cool, display
 
     var description: String {
         switch self {
@@ -17,6 +17,7 @@ enum Color: Int, CustomStringConvertible {
         case .pattern:          return "Pattern"
         case .blackAndWhite:     return "B&W"
         case .bold:             return "Bold"
+        case .pastel:           return "Pastel"
         case .earthy:           return "Earthy"
         case .warm:             return "Warm"
         case .cool:             return "Cool"

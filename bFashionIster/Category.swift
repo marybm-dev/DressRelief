@@ -9,21 +9,22 @@
 import Foundation
 
 enum Category: Int, CustomStringConvertible {
-    case business, casual, dressy, dressyCasual, nightOut, sporty, comfy, display
+    case professional, casual, formal, dressyCasual, nightOut, sportsware, anytime, comfy, display
     
     var description: String {
         switch self {
-        case .business:         return "Business"
+        case .professional:     return "Professional"
         case .casual:           return "Casual"
-        case .dressy:           return "Dressy"
+        case .formal:           return "Formal"
         case .dressyCasual:     return "Dressy Casual"
         case .nightOut:         return "Night Out"
-        case .sporty:           return "Sporty"
+        case .sportsware:       return "Sportsware"
+        case .anytime:          return "Anytime"
         case .comfy:            return "Comfy"
         case .display:          return "Select a Category..."
         }
     }
     
-    static let allRawValues = business.rawValue...comfy.rawValue
+    static let allRawValues = professional.rawValue...comfy.rawValue
     static let allValues = allRawValues.map { Category(rawValue: $0)!.description }
 }

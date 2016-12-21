@@ -107,6 +107,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		441C243E1E0A01A800A88AF5 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				447CBDBD1E097F7F00176997 /* CameraViewController.swift */,
+				447CBDBF1E09A0ED00176997 /* ArticleCreateViewController.swift */,
+				447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */,
+				447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */,
+			);
+			name = Create;
+			sourceTree = "<group>";
+		};
 		447797F51DFC9EBA004DA42D = {
 			isa = PBXGroup;
 			children = (
@@ -201,10 +212,6 @@
 				44CDFC6A1E05F8B0002FFC6D /* Account */,
 				44CDFC691E05F883002FFC6D /* Outfits */,
 				44CDFC681E05F87B002FFC6D /* Clothes */,
-				447CBDBD1E097F7F00176997 /* CameraViewController.swift */,
-				447CBDBF1E09A0ED00176997 /* ArticleCreateViewController.swift */,
-				447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */,
-				447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -216,6 +223,7 @@
 				44CD8DC11DFF8BB600BD4CF1 /* BottomsViewController.swift */,
 				4460BD261E08D7C900753281 /* ArticleCollectionView.swift */,
 				44CDFC6F1E05F8F1002FFC6D /* Cells */,
+				441C243E1E0A01A800A88AF5 /* Create */,
 			);
 			name = Clothes;
 			sourceTree = "<group>";
