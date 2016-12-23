@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C807580BE00CD2180086C14 /* Pods_bFashionIster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62F2F795F36CDC2EDE7AF3F /* Pods_bFashionIster.framework */; };
 		442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */; };
+		443017DD1E0CD6E0000755BD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443017DC1E0CD6E0000755BD /* Helper.swift */; };
 		4452B3161E0264CA0068A85E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B3151E0264CA0068A85E /* Extensions.swift */; };
 		4460BD251E08D01A00753281 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD241E08D01A00753281 /* TestData.swift */; };
 		4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD261E08D7C900753281 /* ArticleCollectionView.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		1EB40BD5E21C1FE1FBA685C3 /* Pods-bFashionIster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bFashionIster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bFashionIster/Pods-bFashionIster.debug.xcconfig"; sourceTree = "<group>"; };
 		442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeuItemViewController.swift; sourceTree = "<group>"; };
+		443017DC1E0CD6E0000755BD /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4452B3151E0264CA0068A85E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4460BD241E08D01A00753281 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		4460BD261E08D7C900753281 /* ArticleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionView.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				4460BD241E08D01A00753281 /* TestData.swift */,
 				4452B3151E0264CA0068A85E /* Extensions.swift */,
+				443017DC1E0CD6E0000755BD /* Helper.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				447CBDB91E0967D700176997 /* Color.swift in Sources */,
 				447CBDBE1E097F7F00176997 /* CameraViewController.swift in Sources */,
 				44CD8DC21DFF8BB600BD4CF1 /* BottomsViewController.swift in Sources */,
+				443017DD1E0CD6E0000755BD /* Helper.swift in Sources */,
 				447CBDC21E09A3FE00176997 /* ArticleCreateTableViewCell.swift in Sources */,
 				448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */,
 				4460BD251E08D01A00753281 /* TestData.swift in Sources */,

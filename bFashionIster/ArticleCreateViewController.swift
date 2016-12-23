@@ -43,9 +43,14 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
     
     func didTapSaveButton() {
         // 1. validate we have all data
-        // TODO: provide visual feedback when failing a validation
-        guard articleImagePath != nil else { return }
-        guard articleType != nil else { return }
+        guard articleImagePath != nil else {
+            Helper.displayAlert(with: "Image path is broken", in: self)
+            return
+        }
+        guard articleType != nil else {
+            Helper.displayAlert(with: "Missing articleType parameter", in: self)
+            return
+        }
         
         guard selectedCategory != Category.display.description else {
             shakeCells(at: IndexPath(row: 0, section: 1))
