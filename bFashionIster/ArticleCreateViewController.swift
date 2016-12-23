@@ -11,6 +11,8 @@ import RealmSwift
 
 class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     var articleImage: UIImage!
     var articleImagePath: String!
     var articleType: String!
@@ -43,10 +45,20 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
         // 1. validate we have all data
         // TODO: provide visual feedback when failing a validation
         guard articleImagePath != nil else { return }
-        guard selectedCategory != Category.display.description else { return }
-        guard selectedColor != Color.display.description else { return }
-        guard selectedTexture != Texture.display.description else { return }
         guard articleType != nil else { return }
+        
+        guard selectedCategory != Category.display.description else {
+            shakeCells(at: IndexPath(row: 0, section: 1))
+            return
+        }
+        guard selectedColor != Color.display.description else {
+            shakeCells(at: IndexPath(row: 0, section: 2))
+            return
+        }
+        guard selectedTexture != Texture.display.description else {
+            shakeCells(at: IndexPath(row: 0, section: 3))
+            return
+        }
         
         // 2. save to Realm
         let article = Article(imgUrl: articleImagePath, color: selectedColor, texture: selectedTexture, category: selectedCategory, type: articleType)
@@ -57,6 +69,11 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    func shakeCells(at indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.shake()
     }
     
     // Mark: - UITableViewDataSource

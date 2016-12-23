@@ -20,9 +20,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
             self.likedImageView.image = item.countLikes > 0 ? #imageLiteral(resourceName: "likedFilled") : #imageLiteral(resourceName: "liked")
             
             if FileManager.default.fileExists(atPath: item.imgUrl) {
-                let url = URL(string: item.imgUrl)
                 let imageURL = URL(fileURLWithPath: item.imgUrl)
-//                let data = try! Data(contentsOf: url!)
                 self.itemImageView.image = UIImage(contentsOfFile: imageURL.path)
                 
             } else {
