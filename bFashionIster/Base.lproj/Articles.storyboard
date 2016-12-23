@@ -62,7 +62,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Xex-c7-EQc" id="BCN-qc-ok0"/>
-                        <segue destination="gae-eF-z3s" kind="presentation" id="vEL-Dt-fYb"/>
+                        <segue destination="gae-eF-z3s" kind="presentation" identifier="ToDetailFromTops" id="vEL-Dt-fYb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ab0-08-IoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,7 +148,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="l1X-6p-6Mi" id="fXE-4N-f8o"/>
-                        <segue destination="emU-Av-QwD" kind="presentation" id="e2E-G9-ni6"/>
+                        <segue destination="emU-Av-QwD" kind="presentation" identifier="ToDetailFromBottoms" id="e2E-G9-ni6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ot1-p8-XPA" userLabel="First Responder" sceneMemberID="firstResponder"/>

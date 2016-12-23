@@ -13,7 +13,7 @@
         <!--Article Detail View Controller-->
         <scene sceneID="lfZ-Bf-W8K">
             <objects>
-                <tableViewController id="FSf-yx-163" customClass="ArticleDetailViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ArticleDetailViewController" id="FSf-yx-163" customClass="ArticleDetailViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ec0-Qa-AtB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zEJ-7K-8uu">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zEJ-7K-8uu">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="375" id="LzY-3D-i0Y"/>
@@ -37,11 +37,7 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zEJ-7K-8uu" firstAttribute="top" secondItem="Ztc-NN-diR" secondAttribute="top" id="Hzh-bc-icq"/>
-                                                <constraint firstAttribute="trailing" secondItem="zEJ-7K-8uu" secondAttribute="trailing" id="Mii-1i-bjL"/>
                                                 <constraint firstItem="zEJ-7K-8uu" firstAttribute="centerX" secondItem="Ztc-NN-diR" secondAttribute="centerX" id="N1q-A0-Nly"/>
-                                                <constraint firstItem="zEJ-7K-8uu" firstAttribute="leading" secondItem="Ztc-NN-diR" secondAttribute="leading" id="QVl-c2-b9U"/>
-                                                <constraint firstAttribute="bottom" secondItem="zEJ-7K-8uu" secondAttribute="bottom" id="YNs-RQ-SQm"/>
                                                 <constraint firstItem="zEJ-7K-8uu" firstAttribute="centerY" secondItem="Ztc-NN-diR" secondAttribute="centerY" id="h5y-Z8-dbG"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -51,7 +47,7 @@
                             <tableViewSection headerTitle="Category" id="el5-g9-lRm">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vg8-3e-QBK">
-                                        <rect key="frame" x="0.0" y="392" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="391" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vg8-3e-QBK" id="qjn-Yr-I9z">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -79,7 +75,7 @@
                             <tableViewSection headerTitle="Color" id="nqe-5z-OOh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="G0o-yU-xVE">
-                                        <rect key="frame" x="0.0" y="493" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="491" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G0o-yU-xVE" id="2Ow-CF-qDj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -107,7 +103,7 @@
                             <tableViewSection headerTitle="Texture" id="QdN-cz-Wb4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KfX-e0-XmR">
-                                        <rect key="frame" x="0.0" y="594" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="591" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KfX-e0-XmR" id="ybN-ZD-1UY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -134,8 +130,8 @@
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="FSf-yx-163" id="SEU-OG-ZrX"/>
-                            <outlet property="delegate" destination="FSf-yx-163" id="vqi-wq-gvE"/>
+                            <outlet property="dataSource" destination="FSf-yx-163" id="1Lx-yt-imm"/>
+                            <outlet property="delegate" destination="FSf-yx-163" id="fUb-bZ-5c6"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="8zf-e5-CEL"/>

@@ -39,3 +39,7 @@ class Article: Object {
         self.articleType = type
     }
 }
+
+enum ArticleSegue: String {
+    case ToDetailFromTops, ToDetailFromBottoms, FromImageToCreateArticle, ToCameraCreateFromTops, ToCameraCreateFromBottoms
+}

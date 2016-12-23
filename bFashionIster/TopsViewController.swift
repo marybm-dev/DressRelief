@@ -65,10 +65,15 @@ class TopsViewController: ArticleCollectionView {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ToCameraCreateFromTops" {
+        if segue.identifier == ArticleSegue.ToCameraCreateFromTops.rawValue {
             let cameraNavigationController = segue.destination as! UINavigationController
             let cameraViewController = cameraNavigationController.topViewController as? CameraViewController
             cameraViewController?.articleType = ArticleType.top.rawValue
+        
+        } else if segue.identifier == ArticleSegue.ToDetailFromTops.rawValue {
+            let detailNavigationController = segue.destination as! UINavigationController
+            let detailViewController = detailNavigationController.topViewController as? ArticleDetailViewController
+            detailViewController?.article = self.selectedItem
         }
     }
 }

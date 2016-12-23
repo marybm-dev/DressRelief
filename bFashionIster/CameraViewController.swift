@@ -117,7 +117,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
         
         selectedImagePath = (imagePath?.path)! as String
         selectedImage = image! as UIImage
-        performSegue(withIdentifier: "FromImageToCreateArticle", sender: nil)
+        performSegue(withIdentifier: ArticleSegue.FromImageToCreateArticle.rawValue, sender: nil)
     }
     
     func cropImageIntoSquare(image: UIImage) -> UIImage? {
@@ -138,7 +138,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FromImageToCreateArticle" {
+        if segue.identifier == ArticleSegue.FromImageToCreateArticle.rawValue {
             let articleCreateViewController = segue.destination as! ArticleCreateViewController
             articleCreateViewController.articleImage = selectedImage
             articleCreateViewController.articleImagePath = selectedImagePath

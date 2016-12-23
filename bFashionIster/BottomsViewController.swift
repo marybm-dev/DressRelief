@@ -65,10 +65,15 @@ class BottomsViewController: ArticleCollectionView {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ToCameraCreateFromBottoms" {
+        if segue.identifier == ArticleSegue.ToCameraCreateFromBottoms.rawValue {
             let cameraNavigationController = segue.destination as! UINavigationController
             let cameraViewController = cameraNavigationController.topViewController as? CameraViewController
             cameraViewController?.articleType = ArticleType.bottom.rawValue
+        
+        } else if segue.identifier == ArticleSegue.ToDetailFromBottoms.rawValue {
+            let detailNavigationController = segue.destination as! UINavigationController
+            let detailViewController = detailNavigationController.topViewController as? ArticleDetailViewController
+            detailViewController?.article = self.selectedItem
         }
     }
 }
