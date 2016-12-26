@@ -1,5 +1,5 @@
 PODS:
-  - Koloda (3.1.2):
+  - Koloda (4.0):
     - pop (~> 1.0)
   - pop (1.0.9)
   - Realm (2.1.1):
@@ -9,15 +9,15 @@ PODS:
     - Realm (= 2.1.1)
 
 DEPENDENCIES:
-  - Koloda
+  - Koloda (~> 4.0)
   - RealmSwift
 
 SPEC CHECKSUMS:
-  Koloda: 5aee353329cd1605540f1215a4c1975481dc7a37
+  Koloda: cb171633afc6182a77821b7951e38b2cb272ba7c
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Realm: a55959c0b171a5fe5267406d17f314fec3cefaae
   RealmSwift: 749fd955bf8d6471c21d218b9389a47aaeccfe3f
 
-PODFILE CHECKSUM: 1ce48bfec10d5e0342d50ce83f3310bb621e6954
+PODFILE CHECKSUM: 9f8af67bce89a7ecb46e2a99799314a60ac7536f
 
 COCOAPODS: 1.1.1
