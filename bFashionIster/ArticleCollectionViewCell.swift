@@ -25,11 +25,17 @@ class ArticleCollectionViewCell: UICollectionViewCell {
                 
             } else {
                 
-                if item.articleType == ArticleType.top.rawValue {
-                    itemImageView.image = #imageLiteral(resourceName: "topsBar")
-                    
+                // attempt to load "named" image
+                if let image = UIImage(named: item.imgUrl) {
+                    itemImageView.image = image
+                
                 } else {
-                    itemImageView.image = #imageLiteral(resourceName: "bottomsBar")
+                    if item.articleType == ArticleType.top.rawValue {
+                        itemImageView.image = #imageLiteral(resourceName: "topsBar")
+                        
+                    } else {
+                        itemImageView.image = #imageLiteral(resourceName: "bottomsBar")
+                    }
                 }
             }
         }

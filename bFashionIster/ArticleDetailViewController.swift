@@ -39,12 +39,18 @@ class ArticleDetailViewController: UITableViewController {
             self.articleImageView.image = UIImage(contentsOfFile: imageURL.path)
             
         } else {
-            // defaults image - just in case
-            if article.articleType == ArticleType.top.rawValue {
-                articleImageView.image = #imageLiteral(resourceName: "topsBar")
+            // attempt to load "named" image
+            if let image = UIImage(named: article.imgUrl) {
+                articleImageView.image = image
                 
             } else {
-                articleImageView.image = #imageLiteral(resourceName: "bottomsBar")
+                // defaults image - just in case
+                if article.articleType == ArticleType.top.rawValue {
+                    articleImageView.image = #imageLiteral(resourceName: "topsBar")
+                    
+                } else {
+                    articleImageView.image = #imageLiteral(resourceName: "bottomsBar")
+                }
             }
         }
     }
