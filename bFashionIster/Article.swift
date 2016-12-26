@@ -40,6 +40,15 @@ class Article: Object {
     }
 }
 
+enum ArticleEntryPoint: String {
+    case create, edit
+}
+
 enum ArticleSegue: String {
-    case ToDetailFromTops, ToDetailFromBottoms, FromImageToCreateArticle, ToCameraCreateFromTops, ToCameraCreateFromBottoms
+    case ToDetailFromTops
+    case ToDetailFromBottoms
+    case FromImageToCreateArticle
+    case ToCameraCreateFromTops
+    case ToCameraCreateFromBottoms
+    case FromDetailToEditArticle
 }

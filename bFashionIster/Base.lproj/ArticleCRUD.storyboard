@@ -47,7 +47,7 @@
                             <tableViewSection headerTitle="Category" id="el5-g9-lRm">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vg8-3e-QBK">
-                                        <rect key="frame" x="0.0" y="391" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="392" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vg8-3e-QBK" id="qjn-Yr-I9z">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -75,7 +75,7 @@
                             <tableViewSection headerTitle="Color" id="nqe-5z-OOh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="G0o-yU-xVE">
-                                        <rect key="frame" x="0.0" y="491" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="493" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G0o-yU-xVE" id="2Ow-CF-qDj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -103,7 +103,7 @@
                             <tableViewSection headerTitle="Texture" id="QdN-cz-Wb4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KfX-e0-XmR">
-                                        <rect key="frame" x="0.0" y="591" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="594" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KfX-e0-XmR" id="ybN-ZD-1UY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -140,6 +140,7 @@
                         <outlet property="categoryLabel" destination="suM-Yb-S97" id="CWd-to-7Kq"/>
                         <outlet property="colorLabel" destination="EiT-KD-4bP" id="2Q1-Kn-nQz"/>
                         <outlet property="textureLabel" destination="MnC-d3-n27" id="vjm-Fu-nxh"/>
+                        <segue destination="DBj-Xx-8eB" kind="show" identifier="FromDetailToEditArticle" id="jVL-nX-mEf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROW-yj-VdF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -220,19 +221,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="eOa-UD-RPE" id="QVu-vJ-zGg"/>
-                        <segue destination="DBj-Xx-8eB" kind="show" identifier="FromImageToCreateArticle" id="Q0v-Bt-Rlp">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="DBj-Xx-8eB" kind="show" identifier="FromImageToCreateArticle" id="aJT-Ge-hH6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BkQ-5W-WWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="284" y="2309"/>
         </scene>
-        <!--Article Create View Controller-->
+        <!--Article Edit View Controller-->
         <scene sceneID="LTn-mC-etv">
             <objects>
-                <viewController storyboardIdentifier="ArticleCreateViewController" automaticallyAdjustsScrollViewInsets="NO" id="DBj-Xx-8eB" customClass="ArticleCreateViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArticleEditViewController" automaticallyAdjustsScrollViewInsets="NO" id="DBj-Xx-8eB" customClass="ArticleEditViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aMw-o9-Pgo"/>
                         <viewControllerLayoutGuide type="bottom" id="VGZ-x2-qlC"/>
@@ -392,12 +391,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="nMD-fk-Ik9" id="rZh-BZ-mnS"/>
+                        <outlet property="tableView" destination="nMD-fk-Ik9" id="7JC-I3-dmr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fUj-cE-5xD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="3144"/>
+            <point key="canvasLocation" x="708" y="3131"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sQf-qw-BMe">
@@ -422,4 +421,7 @@
         <image name="ImgOverlay" width="114" height="64"/>
         <image name="shutter" width="102" height="102"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aJT-Ge-hH6"/>
+    </inferredMetricsTieBreakers>
 </document>

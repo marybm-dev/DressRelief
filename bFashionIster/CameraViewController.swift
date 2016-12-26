@@ -139,10 +139,11 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ArticleSegue.FromImageToCreateArticle.rawValue {
-            let articleCreateViewController = segue.destination as! ArticleCreateViewController
-            articleCreateViewController.articleImage = selectedImage
-            articleCreateViewController.articleImagePath = selectedImagePath
-            articleCreateViewController.articleType = self.articleType
+            let articleEditViewController = segue.destination as! ArticleEditViewController
+            articleEditViewController.entryPoint = ArticleEntryPoint.create.rawValue
+            articleEditViewController.articleImage = selectedImage
+            articleEditViewController.articleImagePath = selectedImagePath
+            articleEditViewController.articleType = self.articleType
         }
     }
 }

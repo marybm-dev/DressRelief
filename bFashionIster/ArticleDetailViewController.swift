@@ -50,7 +50,7 @@ class ArticleDetailViewController: UITableViewController {
     }
     
     func didTapEditButton() {
-        
+        performSegue(withIdentifier: ArticleSegue.FromDetailToEditArticle.rawValue, sender: nil)
     }
     
     func didTapCancelButton() {
@@ -62,6 +62,11 @@ class ArticleDetailViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // TODO: add segue to edit
+        if segue.identifier == ArticleSegue.FromDetailToEditArticle.rawValue {
+            let articleEditViewController = segue.destination as! ArticleEditViewController
+            articleEditViewController.entryPoint = ArticleEntryPoint.edit.rawValue
+            articleEditViewController.articleImage = articleImageView.image
+            articleEditViewController.article = article
+        }
     }
 }
