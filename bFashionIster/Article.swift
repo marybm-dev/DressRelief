@@ -39,3 +39,16 @@ class Article: Object {
         self.articleType = type
     }
 }
+
+enum ArticleEntryPoint: String {
+    case create, edit
+}
+
+enum ArticleSegue: String {
+    case ToDetailFromTops
+    case ToDetailFromBottoms
+    case FromImageToCreateArticle
+    case ToCameraCreateFromTops
+    case ToCameraCreateFromBottoms
+    case FromDetailToEditArticle
+}

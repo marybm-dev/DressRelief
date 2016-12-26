@@ -90,13 +90,17 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
             }
 
             // save to documentss
-            saveImageToDocuments(image: image!, fileNameWithExtension: "test.jpg")
+            saveImageToDocuments(image: image!, fileNameWithExtension: getUniqueFileName())
             print("Did save image in documents")
             
         } else {
             print("error with buffer")
         }
         
+    }
+    
+    func getUniqueFileName() -> String {
+        return "\(articleType)-\(UUID().uuidString).jpg"
     }
     
     func saveImageToDocuments(image: UIImage, fileNameWithExtension: String) {
@@ -113,7 +117,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
         
         selectedImagePath = (imagePath?.path)! as String
         selectedImage = image! as UIImage
-        performSegue(withIdentifier: "FromImageToCreateArticle", sender: nil)
+        performSegue(withIdentifier: ArticleSegue.FromImageToCreateArticle.rawValue, sender: nil)
     }
     
     func cropImageIntoSquare(image: UIImage) -> UIImage? {
@@ -133,15 +137,13 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
         return nil
     }
     
-    // TODO: read back from here: 
-    // [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0]
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FromImageToCreateArticle" {
-            let articleCreateViewController = segue.destination as! ArticleCreateViewController
-            articleCreateViewController.articleImage = selectedImage
-            articleCreateViewController.articleImagePath = selectedImagePath
-            articleCreateViewController.articleType = self.articleType
+        if segue.identifier == ArticleSegue.FromImageToCreateArticle.rawValue {
+            let articleEditViewController = segue.destination as! ArticleEditViewController
+            articleEditViewController.entryPoint = ArticleEntryPoint.create.rawValue
+            articleEditViewController.articleImage = selectedImage
+            articleEditViewController.articleImagePath = selectedImagePath
+            articleEditViewController.articleType = self.articleType
         }
     }
 }

@@ -18,6 +18,8 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
     let itemsPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     
+    var selectedItem: Article!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,5 +67,13 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ArticleCollectionViewCell
+        self.selectedItem = cell.item
+        
+        let segueIdentifier = selectedItem.articleType == ArticleType.top.rawValue ? ArticleSegue.ToDetailFromTops.rawValue : ArticleSegue.ToDetailFromBottoms.rawValue
+        performSegue(withIdentifier: segueIdentifier, sender: nil)
     }
 }

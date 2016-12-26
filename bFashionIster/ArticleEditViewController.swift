@@ -1,19 +1,24 @@
 //
-//  ArticleCreateViewController.swift
+//  ArticleViewController.swift
 //  bFashionIster
 //
-//  Created by Mary Martinez on 12/20/16.
+//  Created by Mary Martinez on 12/22/16.
 //  Copyright © 2016 Mary Martinez. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ArticleEditViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    var entryPoint: String!
+    var article: Article!
+    
+    var articleType: String!
     var articleImage: UIImage!
     var articleImagePath: String!
-    var articleType: String!
     
     var categories = Category.allValues
     var colors = Color.allValues
@@ -24,39 +29,87 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
     var shouldDisplayAllColors = false
     
     var selectedCategory = Category.display.description
-    var selectedCategoryIndex = 10
-    
     var selectedColor = Color.display.description
-    var selectedColorIndex = 0
-    
     var selectedTexture = Texture.display.description
+    
+    var selectedCategoryIndex = 0
+    var selectedColorIndex = 0
     var selectedTextureIndex = 0
     
     var saveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
-        saveButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ArticleCreateViewController.didTapSaveButton))
+        saveButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ArticleEditViewController.didTapSaveButton))
         navigationItem.setRightBarButton(saveButton, animated: true)
     }
     
     func didTapSaveButton() {
         // 1. validate we have all data
-        // TODO: provide visual feedback when failing a validation
-        guard articleImagePath != nil else { return }
-        guard selectedCategory != Category.display.description else { return }
-        guard selectedColor != Color.display.description else { return }
-        guard selectedTexture != Texture.display.description else { return }
-        guard articleType != nil else { return }
+        guard isValidArticle() else {
+            return
+        }
         
         // 2. save to Realm
+        if entryPoint == ArticleEntryPoint.create.rawValue {
+            createArticle()
+        } else {
+            editArticle()
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func isValidArticle() -> Bool {
+        // these validations only needed when creating an article
+        if entryPoint == ArticleEntryPoint.create.rawValue {
+            guard articleImagePath != nil else {
+                Helper.displayAlert(with: "Image path is broken", in: self)
+                return false
+            }
+            guard articleType != nil else {
+                Helper.displayAlert(with: "Missing articleType parameter", in: self)
+                return false
+            }
+        }
+        
+        // these validations always required
+        guard selectedCategory != Category.display.description else {
+            shakeCells(at: IndexPath(row: 0, section: 1))
+            return false
+        }
+        guard selectedColor != Color.display.description else {
+            shakeCells(at: IndexPath(row: 0, section: 2))
+            return false
+        }
+        guard selectedTexture != Texture.display.description else {
+            shakeCells(at: IndexPath(row: 0, section: 3))
+            return false
+        }
+        
+        return true
+    }
+    
+    func createArticle() {
         let article = Article(imgUrl: articleImagePath, color: selectedColor, texture: selectedTexture, category: selectedCategory, type: articleType)
         
         let realm = try! Realm()
         try! realm.write {
             realm.add(article)
         }
-        
-        dismiss(animated: true, completion: nil)
+    }
+    
+    func editArticle() {
+        let realm = try! Realm()
+        try! realm.write {
+            article.category = selectedCategory
+            article.color = selectedColor
+            article.texture = selectedTexture
+        }
+    }
+    
+    func shakeCells(at indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.shake()
     }
     
     // Mark: - UITableViewDataSource
@@ -175,7 +228,7 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
             // reload the tableView
             shouldDisplayAllCategories = !shouldDisplayAllCategories
             tableView.reloadData()
-        
+            
         }  else if indexPath.section == 2 {
             if indexPath.row == 0 {
                 shouldDisplayAllColors = !shouldDisplayAllColors
@@ -196,7 +249,7 @@ class ArticleCreateViewController: UIViewController, UITableViewDataSource, UITa
             // reload the tableView
             shouldDisplayAllColors = !shouldDisplayAllColors
             tableView.reloadData()
-        
+            
         } else if indexPath.section == 3 {
             if indexPath.row == 0 {
                 shouldDisplayAllTextures = !shouldDisplayAllTextures
