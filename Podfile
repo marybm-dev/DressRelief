@@ -7,6 +7,7 @@ target 'bFashionIster' do
 
   # Pods for bFashionIster
   pod 'RealmSwift'
+  pod 'Koloda'
   
 end
 
