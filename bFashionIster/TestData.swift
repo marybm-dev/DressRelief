@@ -10,8 +10,12 @@ import Foundation
 import RealmSwift
 
 class TestData {
+    
+    static let fileDirectory : NSURL  = {
+        return try! FileManager.default.url(for: .documentDirectory , in: .userDomainMask , appropriateFor: nil, create: true)
+        }() as NSURL
+    
     static func defaults() {
-        
         let realm = try! Realm()
         guard realm.isEmpty else { return }
         
@@ -52,6 +56,39 @@ class TestData {
             realm.add(bottoms3)
             realm.add(bottoms4)
             realm.add(bottoms5)
+            
+            self.createOutfits()
+        }
+    }
+    
+    static func createOutfits() {
+        let realm = try! Realm()
+        let articles = realm.objects(Article.self)
+        let tops = articles.filter("articleType = %@", ArticleType.top.rawValue)
+        let bottoms = articles.filter("articleType = %@", ArticleType.top.rawValue)
+        
+        for top in tops {
+            if let topImage = UIImage(named: top.imgUrl) {
+                
+                for bottom in bottoms {
+                    if let bottomImage = UIImage(named: bottom.imgUrl) {
+                        let outfitImage = Outfit.outfitImage(top: topImage, bottom: bottomImage)
+                        
+                        let imagePath = fileDirectory.appendingPathComponent("Outfit-\(UUID().uuidString).jpg")
+                        guard imagePath?.path != nil else { return }
+                        guard let imageData = UIImageJPEGRepresentation(outfitImage!, 0.6) else { return }
+                        
+                        do {
+                            try imageData.write(to: URL(fileURLWithPath: (imagePath?.path)!), options: .atomic)
+                        } catch let error {
+                            print(error)
+                        }
+
+                        let outfit = Outfit(topImgUrl: top.imgUrl, bottomImgUrl: bottom.imgUrl, combinedImgUrl: (imagePath?.path)!)
+                        realm.add(outfit)
+                    }
+                }
+            }
         }
     }
 }
