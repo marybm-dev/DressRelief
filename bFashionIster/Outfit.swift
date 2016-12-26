@@ -20,9 +20,7 @@ class Outfit: Object {
     dynamic var topImgUrl = ""
     dynamic var bottomImgUrl = ""
     dynamic var combinedImgUrl = ""
-    
-//    dynamic var tags: [String] = []
-    
+
     override class func primaryKey() -> String? {
         return "outfitId"
     }
@@ -37,6 +35,18 @@ class Outfit: Object {
         self.topImgUrl = topImgUrl
         self.bottomImgUrl = bottomImgUrl
         self.combinedImgUrl = combinedImgUrl
-//        self.tags = tags
+    }
+    
+    static func outfitImage(top: UIImage, bottom: UIImage) -> UIImage? {
+        let newSize = CGSize(width: top.size.width, height: top.size.height + bottom.size.height)
+        
+        UIGraphicsBeginImageContext(newSize)
+        let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        top.draw(in: newRect)
+        bottom.draw(in: CGRect(x: 0, y: top.size.height, width: newRect.width, height: bottom.size.height))
+        let combinedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return combinedImage
     }
 }
