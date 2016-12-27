@@ -55,13 +55,13 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
     
     // Mark: – UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return outfits.count
+        return favs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitCell", for: indexPath) as! OutfitCollectionViewCell
         
-        cell.outfit = outfits[indexPath.row]
+        cell.outfit = favs[indexPath.row]
         cell.layer.cornerRadius = 5.0
         cell.layer.masksToBounds = true
         
@@ -89,7 +89,7 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedOutfit = outfits[Int(indexPath.row)]
+        self.selectedOutfit = favs[Int(indexPath.row)]
         performSegue(withIdentifier: OutfitSegue.FromOutfitFavsToDetail.rawValue, sender: nil)
     }
     

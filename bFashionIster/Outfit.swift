@@ -44,7 +44,7 @@ class Outfit: Object {
     }
     
     func setImagePath() {
-        if self.combinedImgUrl == "" {
+        if self.combinedImgUrl.isEmpty {
             let realm = try! Realm()
             try! realm.write {
                 self.combinedImgUrl = self.outfitImagePath()
@@ -71,6 +71,9 @@ class Outfit: Object {
         
         var topImage = Helper.image(atPath: self.topImgUrl)
         var bottomImage = Helper.image(atPath: self.bottomImgUrl)
+        
+        guard topImage != nil else { return "" }
+        guard bottomImage != nil else { return "" }
         
         var outfitImage = Outfit.outfitImage(top: topImage!, bottom: bottomImage!)
         guard let imageData = UIImageJPEGRepresentation(outfitImage!, 0.6) else { return "" }
