@@ -18,26 +18,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         didSet {
             likesCountLabel.text = "\(item.countLikes)"
             self.likedImageView.image = item.countLikes > 0 ? #imageLiteral(resourceName: "likedFilled") : #imageLiteral(resourceName: "liked")
-            
-            if FileManager.default.fileExists(atPath: item.imgUrl) {
-                let imageURL = URL(fileURLWithPath: item.imgUrl)
-                self.itemImageView.image = UIImage(contentsOfFile: imageURL.path)
-                
-            } else {
-                
-                // attempt to load "named" image
-                if let image = UIImage(named: item.imgUrl) {
-                    itemImageView.image = image
-                
-                } else {
-                    if item.articleType == ArticleType.top.rawValue {
-                        itemImageView.image = #imageLiteral(resourceName: "topsBar")
-                        
-                    } else {
-                        itemImageView.image = #imageLiteral(resourceName: "bottomsBar")
-                    }
-                }
-            }
+            Helper.set(article: item, in: itemImageView)
         }
     }
 

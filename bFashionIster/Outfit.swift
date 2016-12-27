@@ -29,14 +29,24 @@ class Outfit: Object {
         return ["isLiked", "isDisliked"]
     }
     
-    convenience init(topImgUrl: String, bottomImgUrl: String, combinedImgUrl: String) {
+    convenience init(topImgUrl: String, bottomImgUrl: String) {
         self.init()
         
         self.topImgUrl = topImgUrl
         self.bottomImgUrl = bottomImgUrl
-        self.combinedImgUrl = combinedImgUrl
     }
     
+    func setImagePath() {
+        if self.combinedImgUrl == "" {
+            DispatchQueue.global(qos: .background).async {
+                let realm = try! Realm()
+                try! realm.write {
+                    self.combinedImgUrl = self.outfitImagePath()
+                }
+            }
+        }
+    }
+
     static func outfitImage(top: UIImage, bottom: UIImage) -> UIImage? {
         let newSize = CGSize(width: top.size.width, height: top.size.height + bottom.size.height)
         
@@ -48,5 +58,29 @@ class Outfit: Object {
         UIGraphicsEndImageContext()
         
         return combinedImage
+    }
+    
+    func outfitImagePath() -> String {
+        let imagePath = Helper.fileDirectory.appendingPathComponent("Outfit-\(UUID().uuidString).jpg")
+        guard imagePath?.path != nil else { return "" }
+        
+        var topImage = Helper.articleImage(atPath: self.topImgUrl)
+        var bottomImage = Helper.articleImage(atPath: self.bottomImgUrl)
+        
+        var outfitImage = Outfit.outfitImage(top: topImage!, bottom: bottomImage!)
+        guard let imageData = UIImageJPEGRepresentation(outfitImage!, 0.6) else { return "" }
+
+        do {
+            try imageData.write(to: URL(fileURLWithPath: (imagePath?.path)!), options: .atomic)
+        } catch let error {
+            print(error)
+        }
+
+        // deallocate images
+        topImage = nil
+        bottomImage = nil
+        outfitImage = nil
+        
+        return (imagePath?.path)!
     }
 }

@@ -33,26 +33,7 @@ class ArticleDetailViewController: UITableViewController {
         categoryLabel.text = article.category
         colorLabel.text = article.color
         textureLabel.text = article.texture
-        
-        if FileManager.default.fileExists(atPath: article.imgUrl) {
-            let imageURL = URL(fileURLWithPath: article.imgUrl)
-            self.articleImageView.image = UIImage(contentsOfFile: imageURL.path)
-            
-        } else {
-            // attempt to load "named" image
-            if let image = UIImage(named: article.imgUrl) {
-                articleImageView.image = image
-                
-            } else {
-                // defaults image - just in case
-                if article.articleType == ArticleType.top.rawValue {
-                    articleImageView.image = #imageLiteral(resourceName: "topsBar")
-                    
-                } else {
-                    articleImageView.image = #imageLiteral(resourceName: "bottomsBar")
-                }
-            }
-        }
+        Helper.set(article: article, in: articleImageView)
     }
     
     func didTapEditButton() {

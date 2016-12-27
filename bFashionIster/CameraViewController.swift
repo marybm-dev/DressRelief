@@ -20,10 +20,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     var sessionOutputSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey:AVVideoCodecJPEG])
     var previewLayer = AVCaptureVideoPreviewLayer()
     
-    let fileDirectory : NSURL  = {
-        return try! FileManager.default.url(for: .documentDirectory , in: .userDomainMask , appropriateFor: nil, create: true)
-    }() as NSURL
-
     var selectedImage: UIImage!
     var selectedImagePath: String!
     
@@ -105,7 +101,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     
     func saveImageToDocuments(image: UIImage, fileNameWithExtension: String) {
         let image = cropImageIntoSquare(image: image)
-        let imagePath = fileDirectory.appendingPathComponent("\(fileNameWithExtension)")
+        let imagePath = Helper.fileDirectory.appendingPathComponent("\(fileNameWithExtension)")
         guard imagePath?.path != nil else { return }
         guard let imageData = UIImageJPEGRepresentation(image!, 0.6) else { return }
         

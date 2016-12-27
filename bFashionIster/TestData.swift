@@ -11,10 +11,6 @@ import RealmSwift
 
 class TestData {
     
-    static let fileDirectory : NSURL  = {
-        return try! FileManager.default.url(for: .documentDirectory , in: .userDomainMask , appropriateFor: nil, create: true)
-        }() as NSURL
-    
     static func defaults() {
         let realm = try! Realm()
         guard realm.isEmpty else { return }
@@ -57,38 +53,22 @@ class TestData {
             realm.add(bottoms4)
             realm.add(bottoms5)
             
-            self.createOutfits()
+            let tops = [tops1, tops2, tops3, tops4, tops5, tops6]
+            let bottoms = [bottoms1, bottoms2, bottoms3, bottoms4, bottoms5]
+            
+            let outfits = createOutfits(tops: tops, bottoms: bottoms)
+            realm.add(outfits)
         }
     }
     
-    static func createOutfits() {
-        let realm = try! Realm()
-        let articles = realm.objects(Article.self)
-        let tops = articles.filter("articleType = %@", ArticleType.top.rawValue)
-        let bottoms = articles.filter("articleType = %@", ArticleType.top.rawValue)
-        
+    static func createOutfits(tops: [Article], bottoms: [Article]) -> [Outfit] {
+        var outfits = [Outfit]()
         for top in tops {
-            if let topImage = UIImage(named: top.imgUrl) {
-                
-                for bottom in bottoms {
-                    if let bottomImage = UIImage(named: bottom.imgUrl) {
-                        let outfitImage = Outfit.outfitImage(top: topImage, bottom: bottomImage)
-                        
-                        let imagePath = fileDirectory.appendingPathComponent("Outfit-\(UUID().uuidString).jpg")
-                        guard imagePath?.path != nil else { return }
-                        guard let imageData = UIImageJPEGRepresentation(outfitImage!, 0.6) else { return }
-                        
-                        do {
-                            try imageData.write(to: URL(fileURLWithPath: (imagePath?.path)!), options: .atomic)
-                        } catch let error {
-                            print(error)
-                        }
-
-                        let outfit = Outfit(topImgUrl: top.imgUrl, bottomImgUrl: bottom.imgUrl, combinedImgUrl: (imagePath?.path)!)
-                        realm.add(outfit)
-                    }
-                }
+            for bottom in bottoms {
+                let outfit = Outfit(topImgUrl: top.imgUrl, bottomImgUrl: bottom.imgUrl)
+                outfits.append(outfit)
             }
         }
+        return outfits
     }
 }
