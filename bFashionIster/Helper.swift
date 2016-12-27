@@ -71,7 +71,7 @@ class Helper {
         }
     }
     
-    static func articleImage(atPath articlePath: String) -> UIImage? {
+    static func image(atPath articlePath: String) -> UIImage? {
         if FileManager.default.fileExists(atPath: articlePath) {
             let imageURL = URL(fileURLWithPath: articlePath)
             return UIImage(contentsOfFile: imageURL.path)

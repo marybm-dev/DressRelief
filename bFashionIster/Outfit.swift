@@ -62,8 +62,8 @@ class Outfit: Object {
         let imagePath = Helper.fileDirectory.appendingPathComponent("Outfit-\(UUID().uuidString).jpg")
         guard imagePath?.path != nil else { return "" }
         
-        var topImage = Helper.articleImage(atPath: self.topImgUrl)
-        var bottomImage = Helper.articleImage(atPath: self.bottomImgUrl)
+        var topImage = Helper.image(atPath: self.topImgUrl)
+        var bottomImage = Helper.image(atPath: self.bottomImgUrl)
         
         var outfitImage = Outfit.outfitImage(top: topImage!, bottom: bottomImage!)
         guard let imageData = UIImageJPEGRepresentation(outfitImage!, 0.6) else { return "" }

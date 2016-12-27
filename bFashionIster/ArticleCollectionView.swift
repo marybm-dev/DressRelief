@@ -43,7 +43,7 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCell", for: indexPath) as! ArticleCollectionViewCell
         
         cell.item = items[indexPath.row]
-        cell.layer.cornerRadius = 10.0
+        cell.layer.cornerRadius = 5.0
         cell.layer.masksToBounds = true
         
         return cell
