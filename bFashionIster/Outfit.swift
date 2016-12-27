@@ -15,25 +15,32 @@ class Outfit: Object {
     dynamic var created = Date()
     
     dynamic var isLiked = false
-    dynamic var isDisliked = false
     
     dynamic var topImgUrl = ""
     dynamic var bottomImgUrl = ""
     dynamic var combinedImgUrl = ""
+    
+    dynamic var category = ""
+    dynamic var color = ""
+    dynamic var texture = ""
 
     override class func primaryKey() -> String? {
         return "outfitId"
     }
     
     override class func indexedProperties() -> [String] {
-        return ["isLiked", "isDisliked"]
+        return ["isLiked"]
     }
     
-    convenience init(topImgUrl: String, bottomImgUrl: String) {
+    convenience init(top: Article, bottom: Article) {
         self.init()
         
-        self.topImgUrl = topImgUrl
-        self.bottomImgUrl = bottomImgUrl
+        self.topImgUrl = top.imgUrl
+        self.bottomImgUrl = bottom.imgUrl
+        
+        self.category = top.category
+        self.color = "\(top.color) + \(bottom.color)"
+        self.texture = "\(top.texture) + \(bottom.texture)"
     }
     
     func setImagePath() {
@@ -81,4 +88,8 @@ class Outfit: Object {
         
         return (imagePath?.path)!
     }
+}
+
+enum OutfitSegue: String {
+    case FromOutfitFavsToDetail
 }

@@ -60,7 +60,7 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
         
         try! realm.write {
             if direction == SwipeResultDirection.left {
-                outfit.isDisliked = true
+                outfit.isLiked = false
             
             } else if direction == SwipeResultDirection.right {
                 outfit.isLiked = true

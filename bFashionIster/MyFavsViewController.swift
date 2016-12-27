@@ -89,6 +89,14 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: do something with it
+        self.selectedOutfit = outfits[Int(indexPath.row)]
+        performSegue(withIdentifier: OutfitSegue.FromOutfitFavsToDetail.rawValue, sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == OutfitSegue.FromOutfitFavsToDetail.rawValue {
+            let outfitDetailViewController = segue.destination as! OutfitDetailViewController
+            outfitDetailViewController.outfit = selectedOutfit
+        }
     }
 }
