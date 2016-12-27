@@ -27,7 +27,7 @@ class MeuItemViewController: UIViewController {
     }
     
     func setNavigationBarItem() -> UIButton {
-        let imageName = "\(menuItem.iconName.rawValue)Bar"
+        let imageName = "\(menuItem.iconName.rawValue)Color"
         let navBarTitleButton = UIButton(type: .custom)
         navBarTitleButton.setImage(UIImage(named: imageName), for: .normal)
         navBarTitleButton.setTitle(menuItem.title, for: .normal)
