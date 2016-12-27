@@ -12,6 +12,7 @@ import RealmSwift
 
 class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, KolodaViewDelegate {
     
+    var realm: Realm!
     var outfits: Results<Outfit>!
     
     @IBOutlet weak var kolodaView: KolodaView!
@@ -19,11 +20,14 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let realm = try! Realm()
+        realm = try! Realm()
         outfits = realm.objects(Outfit.self)
         
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        
+        kolodaView.clipsToBounds = true
+        kolodaView.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,16 +35,36 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func didTapDislikeButton(_ sender: Any) {
+        kolodaView.swipe(SwipeResultDirection.left)
+    }
+    
+    @IBAction func didTapLikeButton(_ sender: Any) {
+        kolodaView.swipe(SwipeResultDirection.right)
+    }
+    
+    // Mark: Koloda
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
         return outfits.count
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let outfit = outfits[index]
+        let outfit: Outfit = outfits[Int(index)]
         outfit.setImagePath()
-        
         let image = Helper.articleImage(atPath: outfit.combinedImgUrl)
-        
         return UIImageView(image: image)
+    }
+    
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        let outfit = outfits[index]
+        
+        try! realm.write {
+            if direction == SwipeResultDirection.left {
+                outfit.isDisliked = true
+            
+            } else if direction == SwipeResultDirection.right {
+                outfit.isLiked = true
+            }
+        }
     }
 }

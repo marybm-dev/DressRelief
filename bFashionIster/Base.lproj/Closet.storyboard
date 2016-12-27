@@ -22,16 +22,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSf-h8-cLy" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="45" y="114" width="285" height="438"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="15" y="89" width="345" height="462"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39r-Ta-zuA">
+                                <rect key="frame" x="90" y="571" width="76" height="76"/>
+                                <state key="normal" image="dislike"/>
+                                <connections>
+                                    <action selector="didTapDislikeButton:" destination="lFo-gG-Zd9" eventType="touchUpInside" id="QNo-ps-Yaw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdB-aK-bJv">
+                                <rect key="frame" x="209" y="571" width="76" height="76"/>
+                                <state key="normal" image="like"/>
+                                <connections>
+                                    <action selector="didTapLikeButton:" destination="lFo-gG-Zd9" eventType="touchUpInside" id="dLs-Ee-8GG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="tSf-h8-cLy" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" constant="50" id="QIm-x3-j6t"/>
-                            <constraint firstAttribute="trailing" secondItem="tSf-h8-cLy" secondAttribute="trailing" constant="45" id="eJr-YZ-VvN"/>
-                            <constraint firstItem="tSf-h8-cLy" firstAttribute="centerY" secondItem="6GC-Fh-bub" secondAttribute="centerY" id="gfF-1S-qdt"/>
-                            <constraint firstItem="tSf-h8-cLy" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" constant="45" id="gfh-ez-Y0d"/>
-                            <constraint firstItem="tSf-h8-cLy" firstAttribute="centerX" secondItem="6GC-Fh-bub" secondAttribute="centerX" id="veh-xQ-6Vx"/>
+                            <constraint firstItem="39r-Ta-zuA" firstAttribute="top" secondItem="tSf-h8-cLy" secondAttribute="bottom" constant="20" id="1oh-qI-BRi"/>
+                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="39r-Ta-zuA" secondAttribute="bottom" constant="20" id="4FR-Nv-b7m"/>
+                            <constraint firstAttribute="trailing" secondItem="tdB-aK-bJv" secondAttribute="trailing" constant="90" id="Efv-xM-3hs"/>
+                            <constraint firstItem="tSf-h8-cLy" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" constant="15" id="JUR-3u-qMj"/>
+                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="tdB-aK-bJv" secondAttribute="bottom" constant="20" id="Pwv-pf-iQV"/>
+                            <constraint firstItem="tdB-aK-bJv" firstAttribute="height" secondItem="39r-Ta-zuA" secondAttribute="height" id="QIv-ou-8No"/>
+                            <constraint firstItem="39r-Ta-zuA" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" constant="90" id="RQA-KJ-VPq"/>
+                            <constraint firstItem="tSf-h8-cLy" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" constant="25" id="SN7-ZZ-wzA"/>
+                            <constraint firstItem="tdB-aK-bJv" firstAttribute="top" secondItem="tSf-h8-cLy" secondAttribute="bottom" constant="20" id="VDf-Ol-gOt"/>
+                            <constraint firstItem="tdB-aK-bJv" firstAttribute="top" secondItem="tSf-h8-cLy" secondAttribute="bottom" constant="20" id="aHp-oi-TKx"/>
+                            <constraint firstItem="tdB-aK-bJv" firstAttribute="width" secondItem="39r-Ta-zuA" secondAttribute="width" id="b4E-Er-5M9"/>
+                            <constraint firstAttribute="trailing" secondItem="tSf-h8-cLy" secondAttribute="trailing" constant="15" id="kvQ-Ck-EXn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DeK-8B-E3J"/>
@@ -110,4 +131,8 @@
             <point key="canvasLocation" x="394" y="-537"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dislike" width="76" height="76"/>
+        <image name="like" width="76" height="76"/>
+    </resources>
 </document>
