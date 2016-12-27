@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import Koloda
+import RealmSwift
 
-class MyClosetViewController: MeuItemViewController {
-
+class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, KolodaViewDelegate {
+    
+    var outfits: Results<Outfit>!
+    
+    @IBOutlet weak var kolodaView: KolodaView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let realm = try! Realm()
+        outfits = realm.objects(Outfit.self)
+        
+        kolodaView.dataSource = self
+        kolodaView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,4 +31,16 @@ class MyClosetViewController: MeuItemViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
+        return outfits.count
+    }
+    
+    func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
+        let outfit = outfits[index]
+        outfit.setImagePath()
+        
+        let image = Helper.articleImage(atPath: outfit.combinedImgUrl)
+        
+        return UIImageView(image: image)
+    }
 }

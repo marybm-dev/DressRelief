@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,23 +21,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Closet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkJ-ia-VDn">
-                                <rect key="frame" x="149" y="323" width="77" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSf-h8-cLy" customClass="KolodaView" customModule="Koloda">
+                                <rect key="frame" x="45" y="114" width="285" height="438"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="GkJ-ia-VDn" firstAttribute="centerY" secondItem="6GC-Fh-bub" secondAttribute="centerY" id="R8C-WV-thd"/>
-                            <constraint firstItem="GkJ-ia-VDn" firstAttribute="centerX" secondItem="6GC-Fh-bub" secondAttribute="centerX" id="hul-Jg-MKm"/>
+                            <constraint firstItem="tSf-h8-cLy" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" constant="50" id="QIm-x3-j6t"/>
+                            <constraint firstAttribute="trailing" secondItem="tSf-h8-cLy" secondAttribute="trailing" constant="45" id="eJr-YZ-VvN"/>
+                            <constraint firstItem="tSf-h8-cLy" firstAttribute="centerY" secondItem="6GC-Fh-bub" secondAttribute="centerY" id="gfF-1S-qdt"/>
+                            <constraint firstItem="tSf-h8-cLy" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" constant="45" id="gfh-ez-Y0d"/>
+                            <constraint firstItem="tSf-h8-cLy" firstAttribute="centerX" secondItem="6GC-Fh-bub" secondAttribute="centerX" id="veh-xQ-6Vx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DeK-8B-E3J"/>
+                    <connections>
+                        <outlet property="kolodaView" destination="tSf-h8-cLy" id="NCE-Zu-fKL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euU-Qt-r0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-591" y="236"/>
+            <point key="canvasLocation" x="-591.20000000000005" y="235.23238380809596"/>
         </scene>
         <!--My Favs View Controller-->
         <scene sceneID="VdP-Lj-mkm">

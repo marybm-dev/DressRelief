@@ -38,11 +38,9 @@ class Outfit: Object {
     
     func setImagePath() {
         if self.combinedImgUrl == "" {
-            DispatchQueue.global(qos: .background).async {
-                let realm = try! Realm()
-                try! realm.write {
-                    self.combinedImgUrl = self.outfitImagePath()
-                }
+            let realm = try! Realm()
+            try! realm.write {
+                self.combinedImgUrl = self.outfitImagePath()
             }
         }
     }
