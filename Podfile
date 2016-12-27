@@ -7,7 +7,7 @@ target 'bFashionIster' do
 
   # Pods for bFashionIster
   pod 'RealmSwift'
-  
+  pod 'Koloda', '~> 4.0'
 end
 
 post_install do |installer|

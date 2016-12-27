@@ -9,12 +9,7 @@
 import Foundation
 import RealmSwift
 
-enum ArticleType: String {
-    case top, bottom
-}
-
 class Article: Object {
-    
     dynamic var articleId = UUID().uuidString
     dynamic var created = Date()
     
@@ -38,6 +33,10 @@ class Article: Object {
         self.category = category
         self.articleType = type
     }
+}
+
+enum ArticleType: String {
+    case top, bottom
 }
 
 enum ArticleEntryPoint: String {
