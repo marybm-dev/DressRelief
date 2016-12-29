@@ -65,7 +65,7 @@ class TestData {
         var outfits = [Outfit]()
         for top in tops {
             for bottom in bottoms {
-                let outfit = Outfit(topImgUrl: top.imgUrl, bottomImgUrl: bottom.imgUrl)
+                let outfit = Outfit(top: top, bottom: bottom)
                 outfits.append(outfit)
             }
         }

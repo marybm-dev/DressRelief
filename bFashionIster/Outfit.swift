@@ -15,29 +15,36 @@ class Outfit: Object {
     dynamic var created = Date()
     
     dynamic var isLiked = false
-    dynamic var isDisliked = false
     
     dynamic var topImgUrl = ""
     dynamic var bottomImgUrl = ""
     dynamic var combinedImgUrl = ""
+    
+    dynamic var category = ""
+    dynamic var color = ""
+    dynamic var texture = ""
 
     override class func primaryKey() -> String? {
         return "outfitId"
     }
     
     override class func indexedProperties() -> [String] {
-        return ["isLiked", "isDisliked"]
+        return ["isLiked"]
     }
     
-    convenience init(topImgUrl: String, bottomImgUrl: String) {
+    convenience init(top: Article, bottom: Article) {
         self.init()
         
-        self.topImgUrl = topImgUrl
-        self.bottomImgUrl = bottomImgUrl
+        self.topImgUrl = top.imgUrl
+        self.bottomImgUrl = bottom.imgUrl
+        
+        self.category = top.category
+        self.color = "\(top.color) + \(bottom.color)"
+        self.texture = "\(top.texture) + \(bottom.texture)"
     }
     
     func setImagePath() {
-        if self.combinedImgUrl == "" {
+        if self.combinedImgUrl.isEmpty {
             let realm = try! Realm()
             try! realm.write {
                 self.combinedImgUrl = self.outfitImagePath()
@@ -59,11 +66,14 @@ class Outfit: Object {
     }
     
     func outfitImagePath() -> String {
-        let imagePath = Helper.fileDirectory.appendingPathComponent("Outfit-\(UUID().uuidString).jpg")
+        let imagePath = Helper.fileDirectory.appendingPathComponent("Images/Outfit-\(UUID().uuidString).jpg")
         guard imagePath?.path != nil else { return "" }
         
-        var topImage = Helper.articleImage(atPath: self.topImgUrl)
-        var bottomImage = Helper.articleImage(atPath: self.bottomImgUrl)
+        var topImage = Helper.image(atPath: self.topImgUrl)
+        var bottomImage = Helper.image(atPath: self.bottomImgUrl)
+        
+        guard topImage != nil else { return "" }
+        guard bottomImage != nil else { return "" }
         
         var outfitImage = Outfit.outfitImage(top: topImage!, bottom: bottomImage!)
         guard let imageData = UIImageJPEGRepresentation(outfitImage!, 0.6) else { return "" }
@@ -81,4 +91,8 @@ class Outfit: Object {
         
         return (imagePath?.path)!
     }
+}
+
+enum OutfitSegue: String {
+    case FromOutfitFavsToDetail
 }

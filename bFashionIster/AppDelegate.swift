@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        Helper.createImagesFolder()
+        
         // Drops DB and Recreates if migration is needed
         var config = Realm.Configuration()
         config.deleteRealmIfMigrationNeeded = true

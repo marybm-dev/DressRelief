@@ -25,6 +25,9 @@
 		447CBDBE1E097F7F00176997 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDBD1E097F7F00176997 /* CameraViewController.swift */; };
 		447CBDC21E09A3FE00176997 /* ArticleCreateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */; };
 		447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */; };
+		447D854E1E121F5600F6CD6D /* OutfitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447D854C1E121F5600F6CD6D /* OutfitCollectionViewCell.swift */; };
+		447D854F1E121F5600F6CD6D /* OutfitCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */; };
+		447D85511E122C1100F6CD6D /* OutfitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */; };
 		448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E37DA1E05E88100A62DC6 /* Outfit.swift */; };
 		448E37E11E05EB1E00A62DC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E37E01E05EB1E00A62DC6 /* User.swift */; };
 		44A777B01DFDD3C800FD2A48 /* Closet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A777AE1DFDD3C800FD2A48 /* Closet.storyboard */; };
@@ -68,6 +71,9 @@
 		447CBDBD1E097F7F00176997 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		447CBDC11E09A3FE00176997 /* ArticleCreateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCreateTableViewCell.swift; sourceTree = "<group>"; };
 		447CBDC31E09A46300176997 /* ArticleCreateImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCreateImageTableViewCell.swift; sourceTree = "<group>"; };
+		447D854C1E121F5600F6CD6D /* OutfitCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitCollectionViewCell.swift; sourceTree = "<group>"; };
+		447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutfitCollectionViewCell.xib; sourceTree = "<group>"; };
+		447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitDetailViewController.swift; sourceTree = "<group>"; };
 		448E37DA1E05E88100A62DC6 /* Outfit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
 		448E37E01E05EB1E00A62DC6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		44A777AF1DFDD3C800FD2A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Closet.storyboard; sourceTree = "<group>"; };
@@ -242,6 +248,9 @@
 			children = (
 				44CD8DBB1DFF8B8900BD4CF1 /* MyClosetViewController.swift */,
 				44CD8DBD1DFF8B9A00BD4CF1 /* MyFavsViewController.swift */,
+				447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */,
+				447D854C1E121F5600F6CD6D /* OutfitCollectionViewCell.swift */,
+				447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */,
 			);
 			name = Outfits;
 			sourceTree = "<group>";
@@ -338,6 +347,7 @@
 				44A777BF1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib in Resources */,
 				4477980C1DFC9EBA004DA42D /* LaunchScreen.storyboard in Resources */,
 				44A777B31DFDD3D300FD2A48 /* Articles.storyboard in Resources */,
+				447D854F1E121F5600F6CD6D /* OutfitCollectionViewCell.xib in Resources */,
 				447798091DFC9EBA004DA42D /* Assets.xcassets in Resources */,
 				44A777B01DFDD3C800FD2A48 /* Closet.storyboard in Resources */,
 				44AF4A091E0CE3C300A17659 /* ArticleCRUD.storyboard in Resources */,
@@ -422,9 +432,11 @@
 				442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */,
 				447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
+				447D854E1E121F5600F6CD6D /* OutfitCollectionViewCell.swift in Sources */,
 				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,
 				447798141DFCABD3004DA42D /* MenuViewController.swift in Sources */,
 				44AF4A061E0CDF5100A17659 /* ArticleDetailViewController.swift in Sources */,
+				447D85511E122C1100F6CD6D /* OutfitDetailViewController.swift in Sources */,
 				447CBDBB1E09683500176997 /* Texture.swift in Sources */,
 				44CDFC711E05FC67002FFC6D /* Article.swift in Sources */,
 				44CDFC6D1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift in Sources */,

@@ -51,7 +51,7 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let outfit: Outfit = outfits[Int(index)]
         outfit.setImagePath()
-        let image = Helper.articleImage(atPath: outfit.combinedImgUrl)
+        let image = Helper.image(atPath: outfit.combinedImgUrl)
         return UIImageView(image: image)
     }
     
@@ -60,7 +60,7 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
         
         try! realm.write {
             if direction == SwipeResultDirection.left {
-                outfit.isDisliked = true
+                outfit.isLiked = false
             
             } else if direction == SwipeResultDirection.right {
                 outfit.isLiked = true
