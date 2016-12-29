@@ -66,7 +66,7 @@ class Outfit: Object {
     }
     
     func outfitImagePath() -> String {
-        let imagePath = Helper.fileDirectory.appendingPathComponent("Outfit-\(UUID().uuidString).jpg")
+        let imagePath = Helper.fileDirectory.appendingPathComponent("Images/Outfit-\(UUID().uuidString).jpg")
         guard imagePath?.path != nil else { return "" }
         
         var topImage = Helper.image(atPath: self.topImgUrl)

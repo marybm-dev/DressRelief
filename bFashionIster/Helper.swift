@@ -86,4 +86,21 @@ class Helper {
             }
         }
     }
+    
+    static func createImagesFolder() {
+        let fileManager = FileManager.default
+        let docsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let photoDir = docsURL.appendingPathComponent("Images").path
+        var isDir : ObjCBool = false
+        
+        // if path does not exist, create it
+        if !fileManager.fileExists(atPath: photoDir, isDirectory:&isDir) {
+            do {
+                try fileManager.createDirectory(atPath: photoDir, withIntermediateDirectories: true, attributes: nil)
+            } catch let error as NSError {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+
 }
