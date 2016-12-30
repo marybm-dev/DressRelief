@@ -22,10 +22,7 @@ class OutfitCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let radius = closeButton.frame.size.width / 2
-        closeButton.layer.cornerRadius = radius
-        closeButton.clipsToBounds = true
-        closeButton.alpha = 0
+        closeButton.rounded()
     }
 
 }

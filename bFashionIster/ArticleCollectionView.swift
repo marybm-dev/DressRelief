@@ -11,20 +11,55 @@ import RealmSwift
 
 class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var articles: Results<Article>!
     var items: Results<Article>!
     var subscription: NotificationToken?
     
     let itemsPerRow: CGFloat = 3
+    let itemsPerCol: CGFloat = 4
     let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     
     var selectedItem: Article!
     
+    var editButton: UIBarButtonItem!
+    var isEditingFavs = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let nib = UINib(nibName: "ArticleCollectionViewCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
+        
+        collectionView.backgroundColor = UIColor.appleLightestGray()
+        
+        editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(MyFavsViewController.didTapEditButton))
+        navigationItem.setLeftBarButton(editButton, animated: true)
     }
     
+    func didTapEditButton() {
+        isEditingFavs = !isEditingFavs
+        editButton.title = isEditingFavs ? "Done" : "Edit"
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+    
+    func animateEditing(cell: ArticleCollectionViewCell) {
+        if isEditingFavs {
+            UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
+                cell.closeButton.alpha += 1.0
+            }, completion: nil)
+            cell.wobble()
+            
+        } else {
+            UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
+                cell.closeButton.alpha = 0
+            }, completion: nil)
+            cell.stopWobbling()
+        }
+    }
+    
+    // Mark: - Realm Subscription
     func notificationSubscription(for bottoms: Results<Article>) -> NotificationToken {
         return bottoms.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Article>>) in
             self?.updateUI(with: changes)
@@ -46,6 +81,8 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
         cell.layer.cornerRadius = 5.0
         cell.layer.masksToBounds = true
         
+        self.animateEditing(cell: cell)
+        
         return cell
     }
     
@@ -56,7 +93,7 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
         let widthPerItem = availableWidth / itemsPerRow
         
         let availableHeight = view.frame.height - paddingSpace - 64.0 // navBar space
-        let heightPerItem = availableHeight / itemsPerRow
+        let heightPerItem = availableHeight / itemsPerCol
         
         return CGSize(width: widthPerItem, height: heightPerItem)
     }

@@ -81,4 +81,11 @@ extension UIView {
         self.transform = CGAffineTransform.identity
         self.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     }
+    
+    func rounded() {
+        let radius = self.frame.size.width / 2
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+        self.alpha = 0
+    }
 }
