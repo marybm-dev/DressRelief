@@ -67,29 +67,22 @@ class Outfit: Object {
     
     func outfitImagePath() -> String {
         let imagePath = Helper.fileDirectory.appendingPathComponent("Images/Outfit-\(UUID().uuidString).jpg")
-        guard imagePath?.path != nil else { return "" }
         
-        var topImage = Helper.image(atPath: self.topImgUrl)
-        var bottomImage = Helper.image(atPath: self.bottomImgUrl)
+        guard let path      = imagePath?.path,
+            let top         = Helper.image(atPath: self.topImgUrl),
+            let bottom      = Helper.image(atPath: self.bottomImgUrl),
+            let outfit      = Outfit.outfitImage(top: top, bottom: bottom),
+            let imageData   = UIImageJPEGRepresentation(outfit, 0.6) else {
+                return ""
+        }
         
-        guard topImage != nil else { return "" }
-        guard bottomImage != nil else { return "" }
-        
-        var outfitImage = Outfit.outfitImage(top: topImage!, bottom: bottomImage!)
-        guard let imageData = UIImageJPEGRepresentation(outfitImage!, 0.6) else { return "" }
-
         do {
-            try imageData.write(to: URL(fileURLWithPath: (imagePath?.path)!), options: .atomic)
+            try imageData.write(to: URL(fileURLWithPath: path), options: .atomic)
         } catch let error {
             print(error)
         }
 
-        // deallocate images
-        topImage = nil
-        bottomImage = nil
-        outfitImage = nil
-        
-        return (imagePath?.path)!
+        return path
     }
 }
 
