@@ -51,6 +51,7 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let outfit: Outfit = outfits[Int(index)]
         outfit.setImagePath()
+//        outfit.setImagePath(for: outfit.outfitId, in: self.view)
         let image = Helper.image(atPath: outfit.combinedImgUrl)
         return UIImageView(image: image)
     }

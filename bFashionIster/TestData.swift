@@ -59,6 +59,8 @@ class TestData {
             let outfits = createOutfits(tops: tops, bottoms: bottoms)
             realm.add(outfits)
         }
+        
+//        Outfit.setAllCombinedImagePaths()
     }
     
     static func createOutfits(tops: [Article], bottoms: [Article]) -> [Outfit] {
