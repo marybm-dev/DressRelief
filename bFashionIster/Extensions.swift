@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension Int {
+    var degreesToRadians: Double { return Double(self) * .pi / 180 }
+    var radiansToDegrees: Double { return Double(self) * 180 / .pi }
+}
+
+extension FloatingPoint {
+    var degreesToRadians: Self { return self * .pi / 180 }
+    var radiansToDegrees: Self { return self * 180 / .pi }
+}
+
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
@@ -38,5 +48,44 @@ extension UIView {
         animation.duration = 0.6
         animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
         layer.add(animation, forKey: "shake")
+    }
+
+    func wobble() {
+        let degrees: CGFloat = 5.0
+        let animation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
+        animation.duration = 0.6
+        animation.isCumulative = true
+        animation.repeatCount = Float.infinity
+        animation.values = [0.0,
+                            (-degrees).degreesToRadians * 0.25,
+                            0.0,
+                            (degrees).degreesToRadians * 0.5,
+                            0.0,
+                            (-degrees).degreesToRadians,
+                            0.0,
+                            (degrees).degreesToRadians,
+                            0.0,
+                            (-degrees).degreesToRadians * 0.5,
+                            0.0,
+                            (degrees).degreesToRadians * 0.25,
+                            0.0]
+        animation.fillMode = kCAFillModeForwards;
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.isRemovedOnCompletion = true
+        
+        layer.add(animation, forKey: "wobble")
+    }
+    
+    func stopWobbling() {
+        self.layer.removeAllAnimations()
+        self.transform = CGAffineTransform.identity
+        self.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    }
+    
+    func rounded() {
+        let radius = self.frame.size.width / 2
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+        self.alpha = 0
     }
 }

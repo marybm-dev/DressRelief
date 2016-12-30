@@ -48,29 +48,7 @@ class Helper {
             }
         }
     }
-    
-    static func articleImage(forArticle article: Article) -> UIImage? {
-        if FileManager.default.fileExists(atPath: article.imgUrl) {
-            let imageURL = URL(fileURLWithPath: article.imgUrl)
-            return UIImage(contentsOfFile: imageURL.path)
-            
-        } else {
-            // attempt to load "named" image
-            if let image = UIImage(named: article.imgUrl) {
-                return image
-                
-            } else {
-                // defaults image - just in case
-                if article.articleType == ArticleType.top.rawValue {
-                    return #imageLiteral(resourceName: "topsBar")
-                    
-                } else {
-                    return #imageLiteral(resourceName: "bottomsBar")
-                }
-            }
-        }
-    }
-    
+
     static func image(atPath articlePath: String) -> UIImage? {
         if FileManager.default.fileExists(atPath: articlePath) {
             let imageURL = URL(fileURLWithPath: articlePath)

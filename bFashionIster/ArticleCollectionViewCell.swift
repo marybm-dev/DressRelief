@@ -13,6 +13,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var likedImageView: UIImageView!
     @IBOutlet weak var likesCountLabel: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
     
     var item: Article! {
         didSet {
@@ -25,6 +26,8 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        closeButton.rounded()
     }
 }
 

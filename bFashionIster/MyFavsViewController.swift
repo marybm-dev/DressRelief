@@ -22,9 +22,15 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
     
     var selectedOutfit: Outfit!
     
+    var editButton: UIBarButtonItem!
+    var isEditingFavs = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(MyFavsViewController.didTapEditButton))
+        navigationItem.setRightBarButton(editButton, animated: true)
+        
         let nib = UINib(nibName: "OutfitCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "OutfitCell")
         
@@ -35,6 +41,34 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func didTapEditButton() {
+        isEditingFavs = !isEditingFavs
+        editButton.title = isEditingFavs ? "Done" : "Edit"
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+    
+    func animateEditing(cell: OutfitCollectionViewCell) {
+        if isEditingFavs {
+            UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
+                cell.closeButton.alpha += 1.0
+            }, completion: nil)
+            cell.wobble()
+            
+        } else {
+            UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
+                cell.closeButton.alpha = 0
+            }, completion: nil)
+            cell.stopWobbling()
+        }
+    }
+    
+    func unfavorite(outfit: Outfit) {
+        let realm = try! Realm()
+        try! realm.write {
+            outfit.isLiked = false
+        }
     }
     
     func getFavs() -> Results<Outfit> {
@@ -51,6 +85,24 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
     }
     
     func updateUI(with changes: RealmCollectionChange<Results<Outfit>>) {
+        switch changes {
+        case .initial(_):
+            collectionView.reloadData()
+        case let .update(_, deletions, insertions, modifications):
+            
+            collectionView.performBatchUpdates({
+                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
+                
+            }, completion: { (completed: Bool) in
+                // do any updates
+            })
+            
+            break
+        case let .error(error):
+            print(error.localizedDescription)
+        }
     }
     
     // Mark: – UICollectionViewDataSource
@@ -64,6 +116,8 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
         cell.outfit = favs[indexPath.row]
         cell.layer.cornerRadius = 5.0
         cell.layer.masksToBounds = true
+        
+        self.animateEditing(cell: cell)
         
         return cell
     }
@@ -90,7 +144,23 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedOutfit = favs[Int(indexPath.row)]
-        performSegue(withIdentifier: OutfitSegue.FromOutfitFavsToDetail.rawValue, sender: nil)
+        
+        if isEditingFavs {
+            // prompt to delete this favorite outfit
+            let alertController = UIAlertController(title: "Delete Favorite?", message: "This will remove the outfit from your favorites.", preferredStyle: UIAlertControllerStyle.alert)
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) -> Void in
+                self.unfavorite(outfit: self.selectedOutfit)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
+                print("canceled")
+            }
+            alertController.addAction(cancelAction)
+            alertController.addAction(deleteAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            performSegue(withIdentifier: OutfitSegue.FromOutfitFavsToDetail.rawValue, sender: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

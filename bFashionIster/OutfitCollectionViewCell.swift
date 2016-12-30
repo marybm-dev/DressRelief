@@ -11,6 +11,7 @@ import UIKit
 class OutfitCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var outfitImageView: UIImageView!
+    @IBOutlet weak var closeButton: UIButton!
     
     var outfit: Outfit! {
         didSet {
@@ -20,7 +21,8 @@ class OutfitCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        closeButton.rounded()
     }
 
 }

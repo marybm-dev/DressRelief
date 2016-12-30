@@ -10,8 +10,6 @@ import UIKit
 import RealmSwift
 
 class TopsViewController: ArticleCollectionView {
-
-    @IBOutlet weak var collectionView: UICollectionView!
     
     override var items: Results<Article>! {
         didSet {
@@ -22,11 +20,6 @@ class TopsViewController: ArticleCollectionView {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let nib = UINib(nibName: "ArticleCollectionViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
-        
-        collectionView.backgroundColor = UIColor.appleLightestGray()
-        
         items = getTops()
         subscription = notificationSubscription(for: items)
     }
