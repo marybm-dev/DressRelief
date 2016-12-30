@@ -24,7 +24,7 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
     var selectedItem: Article!
     
     var editButton: UIBarButtonItem!
-    var isEditingFavs = false
+    var isEditingArticles = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +38,21 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
         navigationItem.setLeftBarButton(editButton, animated: true)
     }
     
+    func removeArticle(item: Article) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(item)
+        }
+    }
+    
     func didTapEditButton() {
-        isEditingFavs = !isEditingFavs
-        editButton.title = isEditingFavs ? "Done" : "Edit"
+        isEditingArticles = !isEditingArticles
+        editButton.title = isEditingArticles ? "Done" : "Edit"
         collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
     }
     
     func animateEditing(cell: ArticleCollectionViewCell) {
-        if isEditingFavs {
+        if isEditingArticles {
             UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
                 cell.closeButton.alpha += 1.0
             }, completion: nil)
@@ -110,7 +117,22 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
         let cell = collectionView.cellForItem(at: indexPath) as! ArticleCollectionViewCell
         self.selectedItem = cell.item
         
-        let segueIdentifier = selectedItem.articleType == ArticleType.top.rawValue ? ArticleSegue.ToDetailFromTops.rawValue : ArticleSegue.ToDetailFromBottoms.rawValue
-        performSegue(withIdentifier: segueIdentifier, sender: nil)
+        if isEditingArticles {
+            // prompt to delete this favorite outfit
+            let alertController = UIAlertController(title: "Delete Item?", message: "This will remove the item from your collection.", preferredStyle: UIAlertControllerStyle.alert)
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) -> Void in
+                self.removeArticle(item: self.selectedItem)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
+                print("canceled")
+            }
+            alertController.addAction(cancelAction)
+            alertController.addAction(deleteAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            let segueIdentifier = selectedItem.articleType == ArticleType.top.rawValue ? ArticleSegue.ToDetailFromTops.rawValue : ArticleSegue.ToDetailFromBottoms.rawValue
+            performSegue(withIdentifier: segueIdentifier, sender: nil)
+        }
     }
 }

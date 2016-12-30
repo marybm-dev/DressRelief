@@ -148,10 +148,10 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
         if isEditingFavs {
             // prompt to delete this favorite outfit
             let alertController = UIAlertController(title: "Delete Favorite?", message: "This will remove the outfit from your favorites.", preferredStyle: UIAlertControllerStyle.alert)
-            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) -> Void in
                 self.unfavorite(outfit: self.selectedOutfit)
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result :UIAlertAction) in
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
                 print("canceled")
             }
             alertController.addAction(cancelAction)
