@@ -46,21 +46,21 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
     func didTapEditButton() {
         isEditingFavs = !isEditingFavs
         editButton.title = isEditingFavs ? "Done" : "Edit"
-        
-        for cell in collectionView.visibleCells as! [OutfitCollectionViewCell] {
-            if isEditingFavs {
-                UIView.animate(withDuration: 0.25, delay: 0.1, options: [], animations: {
-                    cell.closeButton.alpha += 1.0
-                }, completion: nil)
-                cell.wobble()
-                
-            } else {
-                UIView.animate(withDuration: 0.25, delay: 0, options: [], animations: {
-                    cell.closeButton.alpha = 0
-                }, completion: nil)
-                cell.stopWobbling()
-            }
-
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+    
+    func animateEditing(cell: OutfitCollectionViewCell) {
+        if isEditingFavs {
+            UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
+                cell.closeButton.alpha += 1.0
+            }, completion: nil)
+            cell.wobble()
+            
+        } else {
+            UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
+                cell.closeButton.alpha = 0
+            }, completion: nil)
+            cell.stopWobbling()
         }
     }
     
@@ -116,6 +116,8 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
         cell.outfit = favs[indexPath.row]
         cell.layer.cornerRadius = 5.0
         cell.layer.masksToBounds = true
+        
+        self.animateEditing(cell: cell)
         
         return cell
     }
