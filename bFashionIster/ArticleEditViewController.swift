@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ArticleEditViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ArticleEditViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -112,7 +112,11 @@ class ArticleEditViewController: UIViewController, UITableViewDataSource, UITabl
         cell?.shake()
     }
     
-    // Mark: - UITableViewDataSource
+}
+
+// Mark: - UITableViewDataSource
+extension ArticleEditViewController: UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
@@ -205,8 +209,11 @@ class ArticleEditViewController: UIViewController, UITableViewDataSource, UITabl
             return cell
         }
     }
+}
+
+// Mark: - UITableViewDelegate
+extension ArticleEditViewController: UITableViewDelegate {
     
-    // Mark: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 0 {
