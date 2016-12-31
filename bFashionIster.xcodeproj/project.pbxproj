@@ -167,6 +167,7 @@
 				448E37E21E05EB8100A62DC6 /* Model */,
 				44A777B71DFDD5BE00FD2A48 /* Navigation */,
 				44CD8DC71DFF8BD400BD4CF1 /* Views */,
+				44E865341E1771EB00251310 /* Nibs */,
 				44A777B61DFDD55500FD2A48 /* Storyboards */,
 			);
 			path = bFashionIster;
@@ -216,8 +217,6 @@
 				44A777B11DFDD3D300FD2A48 /* Articles.storyboard */,
 				44AF4A071E0CE3C300A17659 /* ArticleCRUD.storyboard */,
 				44A777B41DFDD3DB00FD2A48 /* Account.storyboard */,
-				44E8652E1E17657D00251310 /* OverlayView.xib */,
-				44E8652B1E17655300251310 /* CustomOverlayView.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -286,6 +285,15 @@
 				44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		44E865341E1771EB00251310 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				44E8652E1E17657D00251310 /* OverlayView.xib */,
+				44E8652B1E17655300251310 /* CustomOverlayView.xib */,
+			);
+			name = Nibs;
 			sourceTree = "<group>";
 		};
 		ADE8AF427F472C233543B32F /* Frameworks */ = {

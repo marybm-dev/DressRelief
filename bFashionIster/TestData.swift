@@ -17,19 +17,16 @@ class TestData {
         
         try! realm.write {
             // Tops
-            let tops1 = Article(imgUrl: "top1.jpg", color: "blue", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-            tops1.countLikes = 0
             let tops2 = Article(imgUrl: "top2.jpg", color: "red", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-            tops2.countLikes = 2
+            tops2.countLikes = 32
             let tops3 = Article(imgUrl: "top3.jpg", color: "orange", texture: "denim", category: "business", type: ArticleType.top.rawValue)
             tops3.countLikes = 524
             let tops4 = Article(imgUrl: "top4.jpg", color: "yellow", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-            tops4.countLikes = 8
+            tops4.countLikes = 0
             let tops5 = Article(imgUrl: "top5.jpg", color: "green", texture: "denim", category: "business", type: ArticleType.top.rawValue)
             tops5.countLikes = 8
             let tops6 = Article(imgUrl: "top6.jpg", color: "green", texture: "denim", category: "business", type: ArticleType.top.rawValue)
-            tops6.countLikes = 8
-            realm.add(tops1)
+            tops6.countLikes = 0
             realm.add(tops2)
             realm.add(tops3)
             realm.add(tops4)
@@ -53,7 +50,7 @@ class TestData {
             realm.add(bottoms4)
             realm.add(bottoms5)
             
-            let tops = [tops1, tops2, tops3, tops4, tops5, tops6]
+            let tops = [tops2, tops3, tops4, tops5, tops6]
             let bottoms = [bottoms1, bottoms2, bottoms3, bottoms4, bottoms5]
             
             let outfits = createOutfits(tops: tops, bottoms: bottoms)
