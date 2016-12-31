@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MyFavsViewController: MeuItemViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -104,8 +104,11 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
             print(error.localizedDescription)
         }
     }
+}
+
+// Mark: – UICollectionViewDataSource
+extension MyFavsViewController: UICollectionViewDataSource {
     
-    // Mark: – UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favs.count
     }
@@ -121,8 +124,11 @@ class MyFavsViewController: MeuItemViewController, UICollectionViewDataSource, U
         
         return cell
     }
+}
+
+// Mark: - UICollectionViewDelegateFlowLayout
+extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
     
-    // Mark: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = self.sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
