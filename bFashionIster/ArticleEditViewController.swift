@@ -147,6 +147,14 @@ extension ArticleEditViewController: UITableViewDataSource {
         return nil
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 55.0
+        } else {
+            return 15.0
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 300.0
