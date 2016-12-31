@@ -38,6 +38,10 @@ extension UIColor {
     class func appleLightestGray() -> UIColor {
         return UIColor(netHex: 0xF0F0F0)
     }
+    
+    class func emeraldGreen() -> UIColor {
+        return UIColor(netHex: 0x169c78)
+    }
 }
 
 
