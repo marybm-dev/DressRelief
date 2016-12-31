@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ArticleCollectionView: MeuItemViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -75,8 +75,11 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
     
     func updateUI(with changes: RealmCollectionChange<Results<Article>>) {   
     }
+}
+
+// Mark: – UICollectionViewDataSource
+extension ArticleCollectionView: UICollectionViewDataSource {
     
-    // Mark: – UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
@@ -92,8 +95,11 @@ class ArticleCollectionView: MeuItemViewController, UICollectionViewDataSource, 
         
         return cell
     }
+}
     
-    // Mark: - UICollectionViewDelegateFlowLayout
+// Mark: - UICollectionViewDelegateFlowLayout
+extension ArticleCollectionView: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = self.sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
