@@ -115,12 +115,14 @@ extension AppDelegate {
         
         // add styles to nav and tab bars
         let navBar = UINavigationBar.appearance()
-//        navBar.tintColor = UIColor.movieDbGreen()       // bar button items
-//        navBar.barStyle = UIBarStyle.black              // bar style
+        navBar.tintColor = UIColor.appleLightestGray()
+        navBar.barStyle = UIBarStyle.black
+        navBar.barTintColor = UIColor.customBlue()
         
         let tabBar = UITabBar.appearance()
-//        tabBar.tintColor = UIColor.movieDbGreen()       // bar button items
-//        tabBar.barStyle = UIBarStyle.black              // bar style
+        tabBar.tintColor = UIColor.customBlue()                // bar button items
+        let tabBarBackground = #imageLiteral(resourceName: "bgWhite")
+        tabBar.backgroundImage = tabBarBackground
         
         return tabBarController
     }

@@ -32,8 +32,6 @@ class ArticleCollectionView: MeuItemViewController {
         let nib = UINib(nibName: "ArticleCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
         
-        collectionView.backgroundColor = UIColor.appleLightestGray()
-        
         editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(MyFavsViewController.didTapEditButton))
         navigationItem.setLeftBarButton(editButton, animated: true)
     }
