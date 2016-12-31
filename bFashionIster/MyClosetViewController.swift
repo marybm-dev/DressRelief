@@ -48,6 +48,10 @@ class MyClosetViewController: MeuItemViewController {
 
 //MARK: KolodaViewDelegate
 extension MyClosetViewController: KolodaViewDelegate {
+    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
+        kolodaView.resetCurrentCardIndex()
+    }
+    
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
         return true
     }
@@ -70,17 +74,21 @@ extension MyClosetViewController: KolodaViewDelegate {
 
 // MARK: KolodaViewDataSource
 extension MyClosetViewController: KolodaViewDataSource {
+    
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
         return outfits.count
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let outfit: Outfit = outfits[Int(index)]
+        outfit.setImagePath()
         let image = Helper.image(atPath: outfit.combinedImgUrl)
         return UIImageView(image: image)
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        guard index != outfits.count else { return }
+        
         let outfit = outfits[index]
         
         try! realm.write {

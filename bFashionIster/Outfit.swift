@@ -42,9 +42,18 @@ class Outfit: Object {
         self.color = "\(top.color) + \(bottom.color)"
         self.texture = "\(top.texture) + \(bottom.texture)"
         
-        self.combinedImgUrl = self.outfitImagePath()
+//        self.combinedImgUrl = self.outfitImagePath()
     }
 
+    func setImagePath() {
+        if self.combinedImgUrl.isEmpty {
+            let realm = try! Realm()
+            try! realm.write {
+                self.combinedImgUrl = self.outfitImagePath()
+            }
+        }
+    }
+    
     static func outfitImage(top: UIImage, bottom: UIImage) -> UIImage? {
         let newSize = CGSize(width: top.size.width, height: top.size.height + bottom.size.height)
         
