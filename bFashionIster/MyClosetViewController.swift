@@ -35,9 +35,6 @@ class MyClosetViewController: MeuItemViewController {
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
-        
-//        kolodaView.clipsToBounds = true
-//        kolodaView.layer.cornerRadius = 5
     }
 
     @IBAction func didTapDislikeButton(_ sender: Any) {
