@@ -31,7 +31,7 @@ class MeuItemViewController: UIViewController {
         let navBarTitleButton = UIButton(type: .custom)
         navBarTitleButton.setImage(UIImage(named: imageName), for: .normal)
         navBarTitleButton.setTitle(menuItem.title, for: .normal)
-        navBarTitleButton.setTitleColor(UIColor.customBlue(), for: .normal)
+        navBarTitleButton.setTitleColor(UIColor.white, for: .normal)
         navBarTitleButton.sizeToFit()
         
         return navBarTitleButton

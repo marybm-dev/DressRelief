@@ -48,6 +48,11 @@
 		44CDFC6D1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDFC6B1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift */; };
 		44CDFC6E1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */; };
 		44CDFC711E05FC67002FFC6D /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDFC701E05FC67002FFC6D /* Article.swift */; };
+		44E8652C1E17655300251310 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8652A1E17655300251310 /* CustomOverlayView.swift */; };
+		44E8652D1E17655300251310 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E8652B1E17655300251310 /* CustomOverlayView.xib */; };
+		44E8652F1E17657D00251310 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E8652E1E17657D00251310 /* OverlayView.xib */; };
+		44E865311E1765AE00251310 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E865301E1765AE00251310 /* CustomKolodaView.swift */; };
+		44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +99,11 @@
 		44CDFC6B1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
 		44CDFC701E05FC67002FFC6D /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		44E8652A1E17655300251310 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomOverlayView.swift; sourceTree = "<group>"; };
+		44E8652B1E17655300251310 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOverlayView.xib; sourceTree = "<group>"; };
+		44E8652E1E17657D00251310 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		44E865301E1765AE00251310 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKolodaView.swift; sourceTree = "<group>"; };
+		44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundKolodaAnimator.swift; sourceTree = "<group>"; };
 		C62F2F795F36CDC2EDE7AF3F /* Pods_bFashionIster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bFashionIster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0459BF5CBCBF72F759899DB /* Pods-bFashionIster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bFashionIster.release.xcconfig"; path = "Pods/Target Support Files/Pods-bFashionIster/Pods-bFashionIster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +167,7 @@
 				448E37E21E05EB8100A62DC6 /* Model */,
 				44A777B71DFDD5BE00FD2A48 /* Navigation */,
 				44CD8DC71DFF8BD400BD4CF1 /* Views */,
+				44E865341E1771EB00251310 /* Nibs */,
 				44A777B61DFDD55500FD2A48 /* Storyboards */,
 			);
 			path = bFashionIster;
@@ -168,6 +179,9 @@
 				4460BD241E08D01A00753281 /* TestData.swift */,
 				4452B3151E0264CA0068A85E /* Extensions.swift */,
 				443017DC1E0CD6E0000755BD /* Helper.swift */,
+				44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */,
+				44E8652A1E17655300251310 /* CustomOverlayView.swift */,
+				44E865301E1765AE00251310 /* CustomKolodaView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -273,6 +287,15 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		44E865341E1771EB00251310 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				44E8652E1E17657D00251310 /* OverlayView.xib */,
+				44E8652B1E17655300251310 /* CustomOverlayView.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
 		ADE8AF427F472C233543B32F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,10 +368,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				44A777BF1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib in Resources */,
+				44E8652F1E17657D00251310 /* OverlayView.xib in Resources */,
 				4477980C1DFC9EBA004DA42D /* LaunchScreen.storyboard in Resources */,
 				44A777B31DFDD3D300FD2A48 /* Articles.storyboard in Resources */,
 				447D854F1E121F5600F6CD6D /* OutfitCollectionViewCell.xib in Resources */,
 				447798091DFC9EBA004DA42D /* Assets.xcassets in Resources */,
+				44E8652D1E17655300251310 /* CustomOverlayView.xib in Resources */,
 				44A777B01DFDD3C800FD2A48 /* Closet.storyboard in Resources */,
 				44AF4A091E0CE3C300A17659 /* ArticleCRUD.storyboard in Resources */,
 				44A777B51DFDD3DB00FD2A48 /* Account.storyboard in Resources */,
@@ -413,7 +438,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */,
+				44E865311E1765AE00251310 /* CustomKolodaView.swift in Sources */,
 				44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */,
+				44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */,
 				447CBDB91E0967D700176997 /* Color.swift in Sources */,
 				447CBDBE1E097F7F00176997 /* CameraViewController.swift in Sources */,
 				44CD8DC21DFF8BB600BD4CF1 /* BottomsViewController.swift in Sources */,
@@ -431,6 +458,7 @@
 				447CBDB71E0966F700176997 /* Category.swift in Sources */,
 				442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */,
 				447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */,
+				44E8652C1E17655300251310 /* CustomOverlayView.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
 				447D854E1E121F5600F6CD6D /* OutfitCollectionViewCell.swift in Sources */,
 				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,

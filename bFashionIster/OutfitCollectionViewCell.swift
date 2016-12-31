@@ -23,6 +23,8 @@ class OutfitCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         closeButton.rounded()
+        outfitImageView.clipsToBounds = true
+        outfitImageView.layer.cornerRadius = 5
     }
 
 }

@@ -15,7 +15,7 @@ enum Color: Int, CustomStringConvertible {
         switch self {
         case .multi:            return "Multi"
         case .pattern:          return "Pattern"
-        case .blackAndWhite:     return "B&W"
+        case .blackAndWhite:    return "B&W"
         case .bold:             return "Bold"
         case .pastel:           return "Pastel"
         case .earthy:           return "Earthy"

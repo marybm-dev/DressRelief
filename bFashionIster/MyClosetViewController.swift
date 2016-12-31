@@ -9,13 +9,19 @@
 import UIKit
 import Koloda
 import RealmSwift
+import pop
 
-class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, KolodaViewDelegate {
+private let frameAnimationSpringBounciness: CGFloat = 9
+private let frameAnimationSpringSpeed: CGFloat = 16
+private let kolodaCountOfVisibleCards = 2
+private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
+
+class MyClosetViewController: MeuItemViewController {
     
     var realm: Realm!
     var outfits: Results<Outfit>!
     
-    @IBOutlet weak var kolodaView: KolodaView!
+    @IBOutlet weak var kolodaView: CustomKolodaView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +31,10 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
         
         kolodaView.dataSource = self
         kolodaView.delegate = self
-        
-        kolodaView.clipsToBounds = true
-        kolodaView.layer.cornerRadius = 5
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
+        kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
+        kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
     }
 
     @IBAction func didTapDislikeButton(_ sender: Any) {
@@ -42,8 +44,37 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
     @IBAction func didTapLikeButton(_ sender: Any) {
         kolodaView.swipe(SwipeResultDirection.right)
     }
+}
+
+//MARK: KolodaViewDelegate
+extension MyClosetViewController: KolodaViewDelegate {
+    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
+        kolodaView.resetCurrentCardIndex()
+    }
     
-    // Mark: Koloda
+    func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
+        return true
+    }
+    
+    func kolodaShouldMoveBackgroundCard(_ koloda: KolodaView) -> Bool {
+        return false
+    }
+    
+    func kolodaShouldTransparentizeNextCard(_ koloda: KolodaView) -> Bool {
+        return true
+    }
+    
+    func koloda(kolodaBackgroundCardAnimation koloda: KolodaView) -> POPPropertyAnimation? {
+        let animation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
+        animation?.springBounciness = frameAnimationSpringBounciness
+        animation?.springSpeed = frameAnimationSpringSpeed
+        return animation
+    }
+}
+
+// MARK: KolodaViewDataSource
+extension MyClosetViewController: KolodaViewDataSource {
+    
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
         return outfits.count
     }
@@ -56,15 +87,21 @@ class MyClosetViewController: MeuItemViewController, KolodaViewDataSource, Kolod
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        guard index != outfits.count else { return }
+        
         let outfit = outfits[index]
         
         try! realm.write {
             if direction == SwipeResultDirection.left {
                 outfit.isLiked = false
-            
+                
             } else if direction == SwipeResultDirection.right {
                 outfit.isLiked = true
             }
         }
+    }
+    
+    func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
+        return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
     }
 }

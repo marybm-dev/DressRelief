@@ -28,8 +28,15 @@ class OutfitDetailViewController: UIViewController {
         outfitImageView.image = Helper.image(atPath: outfit.combinedImgUrl)
         categoryImageView.image = Helper.image(atPath: "category")
         categoryLabel.text = outfit.category
-        colorLabel.text = outfit.color
-        textureLabel.text = outfit.texture
+        colorLabel.text = "Color: \(outfit.color)"
+        textureLabel.text = "Texture: \(outfit.texture)"
+        
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(OutfitDetailViewController.handleSwipe))
+        self.view.addGestureRecognizer(gesture)
+    }
+    
+    func handleSwipe() {
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
