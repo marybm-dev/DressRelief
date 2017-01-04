@@ -21,9 +21,12 @@ class MyFavsViewController: MeuItemViewController {
     let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     
     var selectedOutfit: Outfit!
+    var selectedImage: UIImageView!
     
     var editButton: UIBarButtonItem!
     var isEditingFavs = false
+    
+    let transition = TransitionAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,10 @@ class MyFavsViewController: MeuItemViewController {
         
         favs = getFavs()
         subscription = notificationSubscription(for: favs)
+        
+        transition.dismissCompletion = {
+            self.selectedImage!.isHidden = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -165,6 +172,9 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             self.present(alertController, animated: true, completion: nil)
             
         } else {
+            let cell = collectionView.cellForItem(at: indexPath) as! OutfitCollectionViewCell
+            self.selectedImage = cell.outfitImageView
+            
             performSegue(withIdentifier: OutfitSegue.FromOutfitFavsToDetail.rawValue, sender: nil)
         }
     }
@@ -173,6 +183,25 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
         if segue.identifier == OutfitSegue.FromOutfitFavsToDetail.rawValue {
             let outfitDetailViewController = segue.destination as! OutfitDetailViewController
             outfitDetailViewController.outfit = selectedOutfit
+            outfitDetailViewController.transitioningDelegate = self
         }
+    }
+}
+
+extension MyFavsViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        transition.originFrame = selectedImage!.superview!.convert(selectedImage!.frame, to: nil)
+        transition.presenting = true
+        selectedImage!.isHidden = true
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        transition.presenting = false
+        return transition
     }
 }

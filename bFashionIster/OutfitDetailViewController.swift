@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OutfitDetailViewController: UIViewController {
+class OutfitDetailViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
     var outfit: Outfit!
     
