@@ -85,11 +85,11 @@ extension AppDelegate {
         let settingsNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "SettingsNavigationController") as! UINavigationController
         
         // init tabBar items
-        myClosetNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "closet"), selectedImage: #imageLiteral(resourceName: "closetFilled"))
-        myFavsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "favs"), selectedImage: #imageLiteral(resourceName: "favsFilled"))
-        topsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "tops"), selectedImage: #imageLiteral(resourceName: "topsFilled"))
-        bottomsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "bottoms"), selectedImage: #imageLiteral(resourceName: "bottomsFilled"))
-        settingsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "settingsFilled"))
+        myClosetNavigationController.tabBarItem = UITabBarItem(title: "My Closet", image: #imageLiteral(resourceName: "closet"), selectedImage: #imageLiteral(resourceName: "closetFilled"))
+        myFavsNavigationController.tabBarItem = UITabBarItem(title: "My Favs", image: #imageLiteral(resourceName: "favs"), selectedImage: #imageLiteral(resourceName: "favsFilled"))
+        topsNavigationController.tabBarItem = UITabBarItem(title: "Tops", image: #imageLiteral(resourceName: "tops"), selectedImage: #imageLiteral(resourceName: "topsFilled"))
+        bottomsNavigationController.tabBarItem = UITabBarItem(title: "Bottoms", image: #imageLiteral(resourceName: "bottoms"), selectedImage: #imageLiteral(resourceName: "bottomsFilled"))
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "settingsFilled"))
         
         // init navBar items
         let closetItem = MenuItem(title: "My Closet", iconName: .closet, iconFilledName: .closetFilled)
