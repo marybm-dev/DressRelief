@@ -10,7 +10,7 @@ import UIKit
 
 class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    let duration = 1.0
+    let duration = 0.7
     var presenting = true
     var originFrame = CGRect.zero
     var dismissCompletion: (()->Void)?
@@ -52,7 +52,7 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.bringSubview(toFront: detailView)
         
         UIView.animate(withDuration: duration, delay:0.0,
-                       usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0,
+                       usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0,
             animations: {
                 detailView.transform = self.presenting ?
                 CGAffineTransform.identity : scaleTransform

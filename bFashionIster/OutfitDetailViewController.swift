@@ -13,10 +13,7 @@ class OutfitDetailViewController: UIViewController, UIViewControllerTransitionin
     var outfit: Outfit!
     
     @IBOutlet weak var outfitImageView: UIImageView!
-    @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var colorLabel: UILabel!
-    @IBOutlet weak var textureLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +23,7 @@ class OutfitDetailViewController: UIViewController, UIViewControllerTransitionin
         }
         
         outfitImageView.image = Helper.image(atPath: outfit.combinedImgUrl)
-        categoryImageView.image = Helper.image(atPath: "category")
         categoryLabel.text = outfit.category
-        colorLabel.text = "Color: \(outfit.color)"
-        textureLabel.text = "Texture: \(outfit.texture)"
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(OutfitDetailViewController.handleSwipe))
         self.view.addGestureRecognizer(gesture)
@@ -44,9 +38,9 @@ class OutfitDetailViewController: UIViewController, UIViewControllerTransitionin
         // Dispose of any resources that can be recreated.
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    override var prefersStatusBarHidden: Bool {
+        return true
+    } 
     
     @IBAction func didTapDoneButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
