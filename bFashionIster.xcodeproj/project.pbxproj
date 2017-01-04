@@ -29,6 +29,8 @@
 		447D854F1E121F5600F6CD6D /* OutfitCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */; };
 		447D85511E122C1100F6CD6D /* OutfitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */; };
 		448DE6561E1D78BA007582E0 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */; };
+		448DE6581E1D9E51007582E0 /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448DE6571E1D9E51007582E0 /* AboutTableViewCell.swift */; };
+		448DE65A1E1D9EF8007582E0 /* AboutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448DE6591E1D9EF8007582E0 /* AboutItem.swift */; };
 		448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E37DA1E05E88100A62DC6 /* Outfit.swift */; };
 		448E37E11E05EB1E00A62DC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E37E01E05EB1E00A62DC6 /* User.swift */; };
 		44A777B01DFDD3C800FD2A48 /* Closet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A777AE1DFDD3C800FD2A48 /* Closet.storyboard */; };
@@ -81,6 +83,8 @@
 		447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutfitCollectionViewCell.xib; sourceTree = "<group>"; };
 		447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitDetailViewController.swift; sourceTree = "<group>"; };
 		448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
+		448DE6571E1D9E51007582E0 /* AboutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableViewCell.swift; sourceTree = "<group>"; };
+		448DE6591E1D9EF8007582E0 /* AboutItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutItem.swift; sourceTree = "<group>"; };
 		448E37DA1E05E88100A62DC6 /* Outfit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
 		448E37E01E05EB1E00A62DC6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		44A777AF1DFDD3C800FD2A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Closet.storyboard; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				447CBDB61E0966F700176997 /* Category.swift */,
 				447CBDB81E0967D700176997 /* Color.swift */,
 				447CBDBA1E09683500176997 /* Texture.swift */,
+				44A777C21DFDF67400FD2A48 /* MenuItem.swift */,
+				448DE6591E1D9EF8007582E0 /* AboutItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -228,7 +234,6 @@
 			children = (
 				447798031DFC9EBA004DA42D /* HamburgerViewController.swift */,
 				447798131DFCABD3004DA42D /* MenuViewController.swift */,
-				44A777C21DFDF67400FD2A48 /* MenuItem.swift */,
 				442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */,
 				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
 				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
@@ -277,6 +282,7 @@
 			children = (
 				44CD8DC31DFF8BC300BD4CF1 /* AccountViewController.swift */,
 				44CD8DC51DFF8BCE00BD4CF1 /* SettingsViewController.swift */,
+				448DE6571E1D9E51007582E0 /* AboutTableViewCell.swift */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -440,7 +446,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				448DE65A1E1D9EF8007582E0 /* AboutItem.swift in Sources */,
 				4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */,
+				448DE6581E1D9E51007582E0 /* AboutTableViewCell.swift in Sources */,
 				44E865311E1765AE00251310 /* CustomKolodaView.swift in Sources */,
 				44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */,
 				44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */,

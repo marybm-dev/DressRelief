@@ -89,21 +89,21 @@ extension AppDelegate {
         myFavsNavigationController.tabBarItem = UITabBarItem(title: "My Favs", image: #imageLiteral(resourceName: "favs"), selectedImage: #imageLiteral(resourceName: "favsFilled"))
         topsNavigationController.tabBarItem = UITabBarItem(title: "Tops", image: #imageLiteral(resourceName: "tops"), selectedImage: #imageLiteral(resourceName: "topsFilled"))
         bottomsNavigationController.tabBarItem = UITabBarItem(title: "Bottoms", image: #imageLiteral(resourceName: "bottoms"), selectedImage: #imageLiteral(resourceName: "bottomsFilled"))
-        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "settingsFilled"))
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "About", image: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "aboutFilled"))
         
         // init navBar items
         let closetItem = MenuItem(title: "My Closet", iconName: .closet, iconFilledName: .closetFilled)
         let myFavsItem = MenuItem(title: "My Favs", iconName: .favs, iconFilledName: .favsFilled)
         let topsItem = MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled)
         let bottomsItem = MenuItem(title: "Bottoms", iconName: .bottoms, iconFilledName: .bottomsFilled)
-        let settingsItem = MenuItem(title: "Settings", iconName: .settings, iconFilledName: .settingsFilled)
+        let aboutItem = MenuItem(title: "About", iconName: .about, iconFilledName: .aboutFilled)
 
         // add the menuItems to their respected viewController
         (myClosetNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = closetItem
         (myFavsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = myFavsItem
         (topsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = topsItem
         (bottomsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = bottomsItem
-        (settingsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = settingsItem
+        (settingsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = aboutItem
         
         return [myClosetNavigationController, myFavsNavigationController, topsNavigationController, bottomsNavigationController, settingsNavigationController]
     }

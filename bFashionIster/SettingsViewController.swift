@@ -10,13 +10,36 @@ import UIKit
 
 class SettingsViewController: MeuItemViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    let items = AboutItem.all()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.reloadData()
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+// Mark: UITableViewDataSource
+extension SettingsViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AboutCell", for: indexPath) as! AboutTableViewCell
+        cell.item = items[indexPath.row]
+        
+        return cell
+    }
+}
+
+// Mark: UITableViewDelegate
+extension SettingsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // do something
     }
 }
