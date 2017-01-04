@@ -53,17 +53,17 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         UIView.animate(withDuration: duration, delay:0.0,
                        usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0,
-                       animations: {
-                        detailView.transform = self.presenting ?
-                            CGAffineTransform.identity : scaleTransform
-                        detailView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
-        },
-                       completion:{_ in
-                        if !self.presenting {
-                            self.dismissCompletion?()
-                        }
-                        transitionContext.completeTransition(true)
-        }
+            animations: {
+                detailView.transform = self.presenting ?
+                CGAffineTransform.identity : scaleTransform
+                detailView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
+            },
+            completion:{_ in
+                if !self.presenting {
+                    self.dismissCompletion?()
+                }
+                transitionContext.completeTransition(true)
+            }
         )
     }
 }
