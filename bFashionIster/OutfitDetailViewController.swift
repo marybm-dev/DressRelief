@@ -44,6 +44,10 @@ class OutfitDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @IBAction func didTapDoneButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
