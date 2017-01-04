@@ -9,11 +9,15 @@
 import Foundation
 
 enum Texture: Int, CustomStringConvertible {
-    case denim, pleated, lace, sequence, glossy, matte, display
+    case denim, silk, knit, linen, cotton, pleated, lace, sequence, glossy, matte, display
     
     var description: String {
         switch self {
         case .denim:           return "Denim"
+        case .silk:            return "Silk"
+        case .knit:            return "Knit"
+        case .linen:           return "Linen"
+        case .cotton:          return "Cotton"
         case .pleated:         return "Pleated"
         case .lace:            return "Lace"
         case .sequence:        return "Sequence"
