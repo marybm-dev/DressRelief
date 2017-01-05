@@ -42,24 +42,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
+    func application(_ application: UIApplication, didChangeStatusBarFrame oldStatusBarFrame: CGRect) {
+        var adjustment: CGFloat = 0;
         
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
+        if (UIApplication.shared.statusBarFrame.size.height == 40) {
+            adjustment = -20;
         
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
+        } else if (UIApplication.shared.statusBarFrame.size.height == 20 && oldStatusBarFrame.size.height == 40) {
+            adjustment = 20;
+        }
+        else {
+            return
+        }
         
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
+        let duration = UIApplication.shared.statusBarOrientationAnimationDuration
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(duration)
         
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        
+        let frame = window?.rootViewController?.view.frame
+        guard let viewFrame = frame else { return }
+        window?.rootViewController?.view.frame = CGRect(x: viewFrame.origin.x, y: viewFrame.origin.y + adjustment, width: viewFrame.size.width, height: viewFrame.size.height)
+        UIView.commitAnimations()
     }
 }
 
