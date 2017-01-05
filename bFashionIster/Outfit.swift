@@ -16,6 +16,9 @@ class Outfit: Object {
     
     dynamic var isLiked = false
     
+    dynamic var top: Article?
+    dynamic var bottom: Article?
+    
     dynamic var topImgUrl = ""
     dynamic var bottomImgUrl = ""
     dynamic var combinedImgUrl = ""
@@ -34,6 +37,9 @@ class Outfit: Object {
     
     convenience init(top: Article, bottom: Article) {
         self.init()
+        
+        self.top = top
+        self.bottom = bottom
         
         self.topImgUrl = top.imgUrl
         self.bottomImgUrl = bottom.imgUrl

@@ -94,9 +94,13 @@ extension MyClosetViewController: KolodaViewDataSource {
         try! realm.write {
             if direction == SwipeResultDirection.left {
                 outfit.isLiked = false
+                outfit.top?.countLikes -= 1
+                outfit.bottom?.countLikes -= 1
                 
             } else if direction == SwipeResultDirection.right {
                 outfit.isLiked = true
+                outfit.top?.countLikes += 1
+                outfit.bottom?.countLikes += 1
             }
         }
     }
