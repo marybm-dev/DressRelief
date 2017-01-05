@@ -19,10 +19,6 @@ class AboutTableViewCell: UITableViewCell {
             self.itemLabel.text = item.title
             self.iconImageView.image = Helper.image(atPath: item.imageName.rawValue)
             self.descriptionLabel.text = item.description != nil ? item.description : ""
-            
-            if item.title == "Icons8" {
-                self.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-            }
         }
     }
 }

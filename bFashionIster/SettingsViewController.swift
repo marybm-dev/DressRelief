@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class SettingsViewController: MeuItemViewController {
 
@@ -40,6 +41,37 @@ extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // do something
+        if indexPath.row == 0 {         // version row
+        
+        } else if indexPath.row == 1 {  // feedback row
+            self.sendEmail()
+        
+        } else if indexPath.row == 2 {  // icons8 row
+            UIApplication.shared.open(URL(string: "https://icons8.com/")!)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// Mark: MFMailComposeViewControllerDelegate
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["mlmartinez85@gmail.com"])
+            mail.setSubject("App Feedback")
+            mail.setMessageBody("You're so awesome!", isHTML: false)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
