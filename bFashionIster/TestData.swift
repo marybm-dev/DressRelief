@@ -46,10 +46,7 @@ class TestData {
             realm.add(bottoms2)
             realm.add(bottoms3)
             realm.add(bottoms4)
-            
-//            let tops = [tops2, tops3, tops4, tops5, tops6]
-//            let bottoms = [bottoms1, bottoms2, bottoms3, bottoms4]
-//            let outfits = createAllOutfitCombinations(tops: tops, bottoms: bottoms)
+
             let result = matchedOutfits(with: realm)
             guard let outfits = result else { return }
             realm.add(outfits)
@@ -68,21 +65,27 @@ class TestData {
     }
     
     static func matchedOutfits(with realm: Realm) -> [Outfit]? {
+        var hash = [String: Results<Article>]()
         var outfits = [Outfit]()
+        
+        // setup the category hash table
         for category in Category.allValues {
-            let t = Article.all(articleType: ArticleType.top.rawValue, by: category, with: realm)
-            let b = Article.all(articleType: ArticleType.bottom.rawValue, by: category, with: realm)
-            
-            guard let tops = t else { return nil }
-            guard let bottoms = b else { return nil }
+            guard let tops = Article.all(articleType: ArticleType.top.rawValue, by: category, with: realm) else { return nil }
+            hash[category] = tops
+        }
+        
+        // create the outfits
+        guard let bottoms = Article.all(articleType: ArticleType.bottom.rawValue, with: realm) else { return nil }
+        for bottom in bottoms {
+            let category = bottom.category
+            guard let tops = hash[category] else { return nil }
             
             for top in tops {
-                for bottom in bottoms {
-                    let outfit = Outfit(top: top, bottom: bottom)
-                    outfits.append(outfit)
-                }
+                let outfit = Outfit(top: top, bottom: bottom)
+                outfits.append(outfit)
             }
         }
+        
         return outfits
     }
 }

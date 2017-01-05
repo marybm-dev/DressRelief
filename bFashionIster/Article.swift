@@ -40,6 +40,11 @@ class Article: Object {
         
         return result.filter("articleType = %@ AND category = %@", articleType, category)
     }
+    
+    static func all(articleType: String, with realm: Realm) -> Results<Article>! {
+        let result = realm.objects(Article.self)
+        return result.filter("articleType = %@", articleType)
+    }
 }
 
 enum ArticleType: String {
