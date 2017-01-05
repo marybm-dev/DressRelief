@@ -15,6 +15,9 @@ enum IconName: String {
     case bottoms,   bottomsFilled
     case account,   accountFilled
     case settings,  settingsFilled
+    case about,     aboutFilled
+    
+    case version, feedback, icons8 // used in about tableView
 }
 
 struct MenuItem {

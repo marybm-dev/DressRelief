@@ -42,6 +42,10 @@ extension UIColor {
     class func emeraldGreen() -> UIColor {
         return UIColor(netHex: 0x169c78)
     }
+    
+    class func flatBlue() -> UIColor {
+        return UIColor(netHex: 0x3a99d8)
+    }
 }
 
 

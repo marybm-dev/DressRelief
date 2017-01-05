@@ -85,25 +85,25 @@ extension AppDelegate {
         let settingsNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "SettingsNavigationController") as! UINavigationController
         
         // init tabBar items
-        myClosetNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "closet"), selectedImage: #imageLiteral(resourceName: "closetFilled"))
-        myFavsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "favs"), selectedImage: #imageLiteral(resourceName: "favsFilled"))
-        topsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "tops"), selectedImage: #imageLiteral(resourceName: "topsFilled"))
-        bottomsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "bottoms"), selectedImage: #imageLiteral(resourceName: "bottomsFilled"))
-        settingsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "settingsFilled"))
+        myClosetNavigationController.tabBarItem = UITabBarItem(title: "My Closet", image: #imageLiteral(resourceName: "closet"), selectedImage: #imageLiteral(resourceName: "closetFilled"))
+        myFavsNavigationController.tabBarItem = UITabBarItem(title: "My Favs", image: #imageLiteral(resourceName: "favs"), selectedImage: #imageLiteral(resourceName: "favsFilled"))
+        topsNavigationController.tabBarItem = UITabBarItem(title: "Tops", image: #imageLiteral(resourceName: "tops"), selectedImage: #imageLiteral(resourceName: "topsFilled"))
+        bottomsNavigationController.tabBarItem = UITabBarItem(title: "Bottoms", image: #imageLiteral(resourceName: "bottoms"), selectedImage: #imageLiteral(resourceName: "bottomsFilled"))
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "About", image: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "aboutFilled"))
         
         // init navBar items
         let closetItem = MenuItem(title: "My Closet", iconName: .closet, iconFilledName: .closetFilled)
         let myFavsItem = MenuItem(title: "My Favs", iconName: .favs, iconFilledName: .favsFilled)
         let topsItem = MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled)
         let bottomsItem = MenuItem(title: "Bottoms", iconName: .bottoms, iconFilledName: .bottomsFilled)
-        let settingsItem = MenuItem(title: "Settings", iconName: .settings, iconFilledName: .settingsFilled)
+        let aboutItem = MenuItem(title: "About", iconName: .about, iconFilledName: .aboutFilled)
 
         // add the menuItems to their respected viewController
         (myClosetNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = closetItem
         (myFavsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = myFavsItem
         (topsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = topsItem
         (bottomsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = bottomsItem
-        (settingsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = settingsItem
+        (settingsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = aboutItem
         
         return [myClosetNavigationController, myFavsNavigationController, topsNavigationController, bottomsNavigationController, settingsNavigationController]
     }
@@ -120,7 +120,7 @@ extension AppDelegate {
         navBar.barTintColor = UIColor.emeraldGreen()
         
         let tabBar = UITabBar.appearance()
-        tabBar.tintColor = UIColor.emeraldGreen()                // bar button items
+        tabBar.tintColor = UIColor.flatBlue()                // bar button items
         let tabBarBackground = #imageLiteral(resourceName: "bgWhite")
         tabBar.backgroundImage = tabBarBackground
         
