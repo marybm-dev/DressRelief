@@ -36,7 +36,7 @@
                                     <action selector="didTapLikeButton:" destination="lFo-gG-Zd9" eventType="touchUpInside" id="dLs-Ee-8GG"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="tSf-h8-cLy" customClass="KolodaView" customModule="Koloda">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSf-h8-cLy" customClass="KolodaView" customModule="Koloda">
                                 <rect key="frame" x="30" y="104" width="315" height="451"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>

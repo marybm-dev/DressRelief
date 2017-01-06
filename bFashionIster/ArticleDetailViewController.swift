@@ -54,6 +54,7 @@ class ArticleDetailViewController: UITableViewController {
             articleEditViewController.entryPoint = ArticleEntryPoint.edit.rawValue
             articleEditViewController.articleImage = articleImageView.image
             articleEditViewController.article = article
+            articleEditViewController.articleType = article.articleType
         }
     }
     
