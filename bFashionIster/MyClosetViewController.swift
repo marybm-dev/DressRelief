@@ -13,7 +13,6 @@ import pop
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
-private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
 class MyClosetViewController: MeuItemViewController {
@@ -33,7 +32,6 @@ class MyClosetViewController: MeuItemViewController {
         kolodaView.delegate = self
 
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
-        kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
     }
 
@@ -80,7 +78,7 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let outfit: Outfit = outfits[Int(index)]
+        let outfit: Outfit = outfits[index]
         outfit.setImagePath()
         let image = Helper.image(atPath: outfit.combinedImgUrl)
         return UIImageView(image: image)
