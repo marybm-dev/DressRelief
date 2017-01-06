@@ -85,8 +85,13 @@ extension MyClosetViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let outfit: Outfit = outfits[index]
         outfit.setImagePath()
+        
         let image = Helper.image(atPath: outfit.combinedImgUrl)
-        return UIImageView(image: image)
+        let imageView = UIImageView(image: image)
+        imageView.layer.cornerRadius = 8
+        imageView.layer.masksToBounds = true
+        
+        return imageView
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
