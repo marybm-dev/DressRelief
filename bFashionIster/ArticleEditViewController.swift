@@ -96,15 +96,24 @@ class ArticleEditViewController: UIViewController {
         try! realm.write {
             realm.add(article)
         }
+        
+        // TODO: when article is added attempt to generate outfits on a bg thread
     }
     
     func editArticle() {
+        let oldCategory = article.category
+        let newCategory = selectedCategory
+        
         let realm = try! Realm()
         try! realm.write {
             article.category = selectedCategory
             article.color = selectedColor
             article.texture = selectedTexture
         }
+        
+        // TODO: when article is edited attempt to generate outfits on a bg thread
+        // first ensure that the category has not changed, we don't want duplicate outfits
+        guard oldCategory != newCategory else { return }
     }
     
     func shakeCells(at indexPath: IndexPath) {

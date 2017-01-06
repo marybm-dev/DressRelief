@@ -75,6 +75,8 @@ class MyFavsViewController: MeuItemViewController {
         let realm = try! Realm()
         try! realm.write {
             outfit.isLiked = false
+            outfit.top?.countLikes -= 1
+            outfit.bottom?.countLikes -= 1
         }
     }
     
