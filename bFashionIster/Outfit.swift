@@ -69,7 +69,7 @@ class Outfit: Object {
     func setImagePathInBackground(completion: @escaping (String?)->()) {
         if self.combinedImgUrl.isEmpty {
             let objectId = self.outfitId
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global(qos: .userInitiated).async {
                 let realm = try! Realm()
                 let current = realm.object(ofType: Outfit.self, forPrimaryKey: objectId)
                 guard let imagePath = current?.outfitImagePath() else {

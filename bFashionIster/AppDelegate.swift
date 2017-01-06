@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.deleteRealmIfMigrationNeeded = true
         Realm.Configuration.defaultConfiguration = config
         
-        TestData.defaults()
+//        TestData.defaults()
         
         self.configureAppStyling()
         

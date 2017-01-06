@@ -17,7 +17,7 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
 class MyClosetViewController: MeuItemViewController {
     
-    var realm: Realm!
+    var realm: Realm = try! Realm()
     var outfits: Results<Outfit>!
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
@@ -25,7 +25,6 @@ class MyClosetViewController: MeuItemViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        realm = try! Realm()
         outfits = realm.objects(Outfit.self)
         
         kolodaView.dataSource = self
@@ -33,6 +32,12 @@ class MyClosetViewController: MeuItemViewController {
 
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        realm.refresh()
+        outfits = realm.objects(Outfit.self)
+        kolodaView.resetCurrentCardIndex()
     }
 
     @IBAction func didTapDislikeButton(_ sender: Any) {
@@ -79,11 +84,7 @@ extension MyClosetViewController: KolodaViewDataSource {
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let outfit: Outfit = outfits[index]
-        
-        // TODO: Remove following line when ready for production - only used for test data
         outfit.setImagePath()
-        //
-        
         let image = Helper.image(atPath: outfit.combinedImgUrl)
         return UIImageView(image: image)
     }
