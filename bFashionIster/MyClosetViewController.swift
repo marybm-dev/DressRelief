@@ -79,7 +79,11 @@ extension MyClosetViewController: KolodaViewDataSource {
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let outfit: Outfit = outfits[index]
+        
+        // TODO: Remove following line when ready for production - only used for test data
         outfit.setImagePath()
+        //
+        
         let image = Helper.image(atPath: outfit.combinedImgUrl)
         return UIImageView(image: image)
     }

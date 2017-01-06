@@ -48,7 +48,10 @@ class Outfit: Object {
         self.color = "\(top.color) + \(bottom.color)"
         self.texture = "\(top.texture) + \(bottom.texture)"
         
-//        self.combinedImgUrl = self.outfitImagePath()
+        self.setImagePathInBackground { (imagePath) in
+            guard let imagePath = imagePath else { return }
+            self.combinedImgUrl = imagePath
+        }
     }
 
     func setImagePath() {
@@ -60,6 +63,21 @@ class Outfit: Object {
         }
     }
     
+    func setImagePathInBackground(completion: @escaping (String?)->()) {
+        let objectId = self.outfitId
+        DispatchQueue.global(qos: .background).async {
+            let realm = try! Realm()
+            let current = realm.object(ofType: Outfit.self, forPrimaryKey: objectId)
+            guard let imagePath = current?.outfitImagePath() else {
+                completion(nil)
+                return
+            }
+            DispatchQueue.main.async {
+                completion(imagePath)
+            }
+        }
+    }
+
     static func outfitImage(top: UIImage, bottom: UIImage) -> UIImage? {
         let newSize = CGSize(width: top.size.width, height: top.size.height + bottom.size.height)
         
