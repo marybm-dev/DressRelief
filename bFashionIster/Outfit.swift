@@ -88,9 +88,18 @@ class Outfit: Object {
         let newSize = CGSize(width: top.size.width, height: top.size.height + bottom.size.height)
         
         UIGraphicsBeginImageContext(newSize)
-        let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        top.draw(in: newRect)
-        bottom.draw(in: CGRect(x: 0, y: top.size.height, width: newRect.width, height: bottom.size.height))
+        top.draw(in: CGRect(x: 0,
+                            y: 0,
+                        width: newSize.width,
+                       height: top.size.height
+                     )
+                )
+        bottom.draw(in: CGRect(x: 0,
+                               y: top.size.height,
+                           width: newSize.width,
+                          height: bottom.size.height
+                        )
+                    )
         let combinedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
