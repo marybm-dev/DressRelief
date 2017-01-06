@@ -97,7 +97,34 @@ class ArticleEditViewController: UIViewController {
             realm.add(article)
         }
         
-        // When article is added attempt to generate outfits on a bg thread
+        // When article is added generate outfits
+        self.generateOutfits(forArticle: article)
+    }
+    
+    func editArticle() {
+        let oldCategory = article.category
+        let newCategory = selectedCategory
+        
+        let realm = try! Realm()
+        try! realm.write {
+            article.category = selectedCategory
+            article.color = selectedColor
+            article.texture = selectedTexture
+        }
+        
+        // When article is edited generate outfits
+        guard oldCategory != newCategory else { return }
+        self.generateOutfits(forArticle: article)
+    }
+    
+    func shakeCells(at indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.shake()
+    }
+    
+    func generateOutfits(forArticle article: Article) {
+        let realm = try! Realm()
+        
         let articleIsTop = articleType == ArticleType.top.rawValue
         let typeToUse = articleIsTop ? ArticleType.bottom.rawValue : ArticleType.top.rawValue
         guard let items = Article.all(ofArticleType: typeToUse, byCategory: selectedCategory, withRealm: realm) else { return }
@@ -114,28 +141,6 @@ class ArticleEditViewController: UIViewController {
             realm.add(matchedOutfits)
         }
     }
-    
-    func editArticle() {
-        let oldCategory = article.category
-        let newCategory = selectedCategory
-        
-        let realm = try! Realm()
-        try! realm.write {
-            article.category = selectedCategory
-            article.color = selectedColor
-            article.texture = selectedTexture
-        }
-        
-        // TODO: when article is edited attempt to generate outfits on a bg thread
-        // first ensure that the category has not changed, we don't want duplicate outfits
-        guard oldCategory != newCategory else { return }
-    }
-    
-    func shakeCells(at indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.shake()
-    }
-    
 }
 
 // Mark: - UITableViewDataSource
