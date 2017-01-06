@@ -168,8 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				447798011DFC9EBA004DA42D /* AppDelegate.swift */,
-				447CBDBC1E096AE500176997 /* Common */,
 				448E37D51E05E84A00A62DC6 /* Assets */,
+				447CBDBC1E096AE500176997 /* Common */,
 				448E37E21E05EB8100A62DC6 /* Model */,
 				44A777B71DFDD5BE00FD2A48 /* Navigation */,
 				44CD8DC71DFF8BD400BD4CF1 /* Views */,
@@ -185,11 +185,19 @@
 				4460BD241E08D01A00753281 /* TestData.swift */,
 				4452B3151E0264CA0068A85E /* Extensions.swift */,
 				443017DC1E0CD6E0000755BD /* Helper.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		448DE65B1E1DE0E7007582E0 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */,
 				44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */,
 				44E8652A1E17655300251310 /* CustomOverlayView.swift */,
 				44E865301E1765AE00251310 /* CustomKolodaView.swift */,
 			);
-			name = Common;
+			name = Animations;
 			sourceTree = "<group>";
 		};
 		448E37D51E05E84A00A62DC6 /* Assets */ = {
@@ -236,7 +244,6 @@
 				447798131DFCABD3004DA42D /* MenuViewController.swift */,
 				442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */,
 				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
-				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -254,12 +261,12 @@
 		44CDFC681E05F87B002FFC6D /* Clothes */ = {
 			isa = PBXGroup;
 			children = (
+				441C243E1E0A01A800A88AF5 /* Create */,
 				44CD8DBF1DFF8BA700BD4CF1 /* TopsViewController.swift */,
 				44CD8DC11DFF8BB600BD4CF1 /* BottomsViewController.swift */,
 				4460BD261E08D7C900753281 /* ArticleCollectionView.swift */,
 				44AF4A051E0CDF5100A17659 /* ArticleDetailViewController.swift */,
-				44CDFC6F1E05F8F1002FFC6D /* Cells */,
-				441C243E1E0A01A800A88AF5 /* Create */,
+				44CDFC6B1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift */,
 			);
 			name = Clothes;
 			sourceTree = "<group>";
@@ -267,12 +274,11 @@
 		44CDFC691E05F883002FFC6D /* Outfits */ = {
 			isa = PBXGroup;
 			children = (
+				448DE65B1E1DE0E7007582E0 /* Animations */,
 				44CD8DBB1DFF8B8900BD4CF1 /* MyClosetViewController.swift */,
 				44CD8DBD1DFF8B9A00BD4CF1 /* MyFavsViewController.swift */,
 				447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */,
 				447D854C1E121F5600F6CD6D /* OutfitCollectionViewCell.swift */,
-				447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */,
-				448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */,
 			);
 			name = Outfits;
 			sourceTree = "<group>";
@@ -287,18 +293,12 @@
 			name = Account;
 			sourceTree = "<group>";
 		};
-		44CDFC6F1E05F8F1002FFC6D /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				44CDFC6B1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift */,
-				44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
 		44E865341E1771EB00251310 /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
+				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
+				44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */,
+				447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */,
 				44E8652E1E17657D00251310 /* OverlayView.xib */,
 				44E8652B1E17655300251310 /* CustomOverlayView.xib */,
 			);

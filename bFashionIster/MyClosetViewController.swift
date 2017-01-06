@@ -13,12 +13,11 @@ import pop
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
-private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
 class MyClosetViewController: MeuItemViewController {
     
-    var realm: Realm!
+    var realm: Realm = try! Realm()
     var outfits: Results<Outfit>!
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
@@ -26,15 +25,19 @@ class MyClosetViewController: MeuItemViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        realm = try! Realm()
         outfits = realm.objects(Outfit.self)
         
         kolodaView.dataSource = self
         kolodaView.delegate = self
 
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
-        kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        realm.refresh()
+        outfits = realm.objects(Outfit.self)
+        kolodaView.resetCurrentCardIndex()
     }
 
     @IBAction func didTapDislikeButton(_ sender: Any) {
@@ -80,10 +83,15 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let outfit: Outfit = outfits[Int(index)]
+        let outfit: Outfit = outfits[index]
         outfit.setImagePath()
+        
         let image = Helper.image(atPath: outfit.combinedImgUrl)
-        return UIImageView(image: image)
+        let imageView = UIImageView(image: image)
+        imageView.layer.cornerRadius = 8
+        imageView.layer.masksToBounds = true
+        
+        return imageView
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
@@ -94,9 +102,13 @@ extension MyClosetViewController: KolodaViewDataSource {
         try! realm.write {
             if direction == SwipeResultDirection.left {
                 outfit.isLiked = false
+                outfit.top?.countLikes -= 1
+                outfit.bottom?.countLikes -= 1
                 
             } else if direction == SwipeResultDirection.right {
                 outfit.isLiked = true
+                outfit.top?.countLikes += 1
+                outfit.bottom?.countLikes += 1
             }
         }
     }

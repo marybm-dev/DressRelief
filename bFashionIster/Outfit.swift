@@ -16,6 +16,9 @@ class Outfit: Object {
     
     dynamic var isLiked = false
     
+    dynamic var top: Article?
+    dynamic var bottom: Article?
+    
     dynamic var topImgUrl = ""
     dynamic var bottomImgUrl = ""
     dynamic var combinedImgUrl = ""
@@ -35,6 +38,9 @@ class Outfit: Object {
     convenience init(top: Article, bottom: Article) {
         self.init()
         
+        self.top = top
+        self.bottom = bottom
+        
         self.topImgUrl = top.imgUrl
         self.bottomImgUrl = bottom.imgUrl
         
@@ -42,7 +48,13 @@ class Outfit: Object {
         self.color = "\(top.color) + \(bottom.color)"
         self.texture = "\(top.texture) + \(bottom.texture)"
         
-//        self.combinedImgUrl = self.outfitImagePath()
+        self.setImagePathInBackground { (imagePath) in
+            guard let imagePath = imagePath else { return }
+            let realm = try! Realm()
+            try! realm.write {
+                self.combinedImgUrl = imagePath
+            }
+        }
     }
 
     func setImagePath() {
@@ -54,13 +66,40 @@ class Outfit: Object {
         }
     }
     
+    func setImagePathInBackground(completion: @escaping (String?)->()) {
+        if self.combinedImgUrl.isEmpty {
+            let objectId = self.outfitId
+            DispatchQueue.global(qos: .userInitiated).async {
+                let realm = try! Realm()
+                let current = realm.object(ofType: Outfit.self, forPrimaryKey: objectId)
+                guard let imagePath = current?.outfitImagePath() else {
+                    completion(nil)
+                    return
+                }
+                DispatchQueue.main.async {
+                    completion(imagePath)
+                }
+            }
+        }
+        completion(nil)
+    }
+
     static func outfitImage(top: UIImage, bottom: UIImage) -> UIImage? {
         let newSize = CGSize(width: top.size.width, height: top.size.height + bottom.size.height)
         
         UIGraphicsBeginImageContext(newSize)
-        let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        top.draw(in: newRect)
-        bottom.draw(in: CGRect(x: 0, y: top.size.height, width: newRect.width, height: bottom.size.height))
+        top.draw(in: CGRect(x: 0,
+                            y: 0,
+                        width: newSize.width,
+                       height: top.size.height
+                     )
+                )
+        bottom.draw(in: CGRect(x: 0,
+                               y: top.size.height,
+                           width: newSize.width,
+                          height: bottom.size.height
+                        )
+                    )
         let combinedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

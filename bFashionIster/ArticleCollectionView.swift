@@ -86,7 +86,7 @@ extension ArticleCollectionView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCell", for: indexPath) as! ArticleCollectionViewCell
         
         cell.item = items[indexPath.row]
-        cell.layer.cornerRadius = 5.0
+        cell.layer.cornerRadius = 8
         cell.layer.masksToBounds = true
         
         self.animateEditing(cell: cell)

@@ -96,15 +96,25 @@ class ArticleEditViewController: UIViewController {
         try! realm.write {
             realm.add(article)
         }
+        
+        // When article is added generate outfits
+        self.generateOutfits(forArticle: article)
     }
     
     func editArticle() {
+        let oldCategory = article.category
+        let newCategory = selectedCategory
+        
         let realm = try! Realm()
         try! realm.write {
             article.category = selectedCategory
             article.color = selectedColor
             article.texture = selectedTexture
         }
+        
+        // When article is edited generate outfits
+        guard oldCategory != newCategory else { return }
+        self.generateOutfits(forArticle: article)
     }
     
     func shakeCells(at indexPath: IndexPath) {
@@ -112,6 +122,25 @@ class ArticleEditViewController: UIViewController {
         cell?.shake()
     }
     
+    func generateOutfits(forArticle article: Article) {
+        let realm = try! Realm()
+        
+        let articleIsTop = articleType == ArticleType.top.rawValue
+        let typeToUse = articleIsTop ? ArticleType.bottom.rawValue : ArticleType.top.rawValue
+        guard let items = Article.all(ofArticleType: typeToUse, byCategory: selectedCategory, withRealm: realm) else { return }
+        
+        var matchedOutfits = [Outfit]()
+        for item in items {
+            let top = articleIsTop ? article : item
+            let bottom = !articleIsTop ? article : item
+            let outfit = Outfit(top: top, bottom: bottom)
+            matchedOutfits.append(outfit)
+        }
+        
+        try! realm.write {
+            realm.add(matchedOutfits)
+        }
+    }
 }
 
 // Mark: - UITableViewDataSource
