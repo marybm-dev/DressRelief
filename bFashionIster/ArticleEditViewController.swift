@@ -97,7 +97,22 @@ class ArticleEditViewController: UIViewController {
             realm.add(article)
         }
         
-        // TODO: when article is added attempt to generate outfits on a bg thread
+        // When article is added attempt to generate outfits on a bg thread
+        let articleIsTop = articleType == ArticleType.top.rawValue
+        let typeToUse = articleIsTop ? ArticleType.bottom.rawValue : ArticleType.top.rawValue
+        guard let items = Article.all(ofArticleType: typeToUse, byCategory: selectedCategory, withRealm: realm) else { return }
+        
+        var matchedOutfits = [Outfit]()
+        for item in items {
+            let top = articleIsTop ? article : item
+            let bottom = !articleIsTop ? article : item
+            let outfit = Outfit(top: top, bottom: bottom)
+            matchedOutfits.append(outfit)
+        }
+        
+        try! realm.write {
+            realm.add(matchedOutfits)
+        }
     }
     
     func editArticle() {

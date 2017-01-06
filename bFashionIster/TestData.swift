@@ -70,12 +70,12 @@ class TestData {
         
         // setup the category hash table
         for category in Category.allValues {
-            guard let tops = Article.all(articleType: ArticleType.top.rawValue, by: category, with: realm) else { return nil }
+            guard let tops = Article.all(ofArticleType: ArticleType.top.rawValue, byCategory: category, withRealm: realm) else { return nil }
             hash[category] = tops
         }
         
         // create the outfits
-        guard let bottoms = Article.all(articleType: ArticleType.bottom.rawValue, with: realm) else { return nil }
+        guard let bottoms = Article.all(ofArticleType: ArticleType.bottom.rawValue, withRealm: realm) else { return nil }
         for bottom in bottoms {
             let category = bottom.category
             guard let tops = hash[category] else { return nil }

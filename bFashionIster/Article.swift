@@ -34,14 +34,12 @@ class Article: Object {
         self.articleType = type
     }
     
-    static func all(articleType: String, by category: String, with realm: Realm) -> Results<Article>! {
-//        let realm = try! Realm()
+    static func all(ofArticleType articleType: String, byCategory category: String, withRealm realm: Realm) -> Results<Article>! {
         let result = realm.objects(Article.self)
-        
         return result.filter("articleType = %@ AND category = %@", articleType, category)
     }
     
-    static func all(articleType: String, with realm: Realm) -> Results<Article>! {
+    static func all(ofArticleType articleType: String, withRealm realm: Realm) -> Results<Article>! {
         let result = realm.objects(Article.self)
         return result.filter("articleType = %@", articleType)
     }

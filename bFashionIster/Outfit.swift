@@ -50,7 +50,10 @@ class Outfit: Object {
         
         self.setImagePathInBackground { (imagePath) in
             guard let imagePath = imagePath else { return }
-            self.combinedImgUrl = imagePath
+            let realm = try! Realm()
+            try! realm.write {
+                self.combinedImgUrl = imagePath
+            }
         }
     }
 
@@ -64,18 +67,21 @@ class Outfit: Object {
     }
     
     func setImagePathInBackground(completion: @escaping (String?)->()) {
-        let objectId = self.outfitId
-        DispatchQueue.global(qos: .background).async {
-            let realm = try! Realm()
-            let current = realm.object(ofType: Outfit.self, forPrimaryKey: objectId)
-            guard let imagePath = current?.outfitImagePath() else {
-                completion(nil)
-                return
-            }
-            DispatchQueue.main.async {
-                completion(imagePath)
+        if self.combinedImgUrl.isEmpty {
+            let objectId = self.outfitId
+            DispatchQueue.global(qos: .background).async {
+                let realm = try! Realm()
+                let current = realm.object(ofType: Outfit.self, forPrimaryKey: objectId)
+                guard let imagePath = current?.outfitImagePath() else {
+                    completion(nil)
+                    return
+                }
+                DispatchQueue.main.async {
+                    completion(imagePath)
+                }
             }
         }
+        completion(nil)
     }
 
     static func outfitImage(top: UIImage, bottom: UIImage) -> UIImage? {
