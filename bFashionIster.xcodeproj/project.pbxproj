@@ -14,11 +14,8 @@
 		4460BD251E08D01A00753281 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD241E08D01A00753281 /* TestData.swift */; };
 		4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD261E08D7C900753281 /* ArticleCollectionView.swift */; };
 		447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798011DFC9EBA004DA42D /* AppDelegate.swift */; };
-		447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798031DFC9EBA004DA42D /* HamburgerViewController.swift */; };
-		447798071DFC9EBA004DA42D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447798051DFC9EBA004DA42D /* Main.storyboard */; };
 		447798091DFC9EBA004DA42D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447798081DFC9EBA004DA42D /* Assets.xcassets */; };
 		4477980C1DFC9EBA004DA42D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4477980A1DFC9EBA004DA42D /* LaunchScreen.storyboard */; };
-		447798141DFCABD3004DA42D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798131DFCABD3004DA42D /* MenuViewController.swift */; };
 		447CBDB71E0966F700176997 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDB61E0966F700176997 /* Category.swift */; };
 		447CBDB91E0967D700176997 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDB81E0967D700176997 /* Color.swift */; };
 		447CBDBB1E09683500176997 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBDBA1E09683500176997 /* Texture.swift */; };
@@ -67,12 +64,9 @@
 		4460BD261E08D7C900753281 /* ArticleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionView.swift; sourceTree = "<group>"; };
 		447797FE1DFC9EBA004DA42D /* bFashionIster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bFashionIster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447798011DFC9EBA004DA42D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		447798031DFC9EBA004DA42D /* HamburgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
-		447798061DFC9EBA004DA42D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		447798081DFC9EBA004DA42D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4477980B1DFC9EBA004DA42D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4477980D1DFC9EBA004DA42D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		447798131DFCABD3004DA42D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		447CBDB61E0966F700176997 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		447CBDB81E0967D700176997 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		447CBDBA1E09683500176997 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
@@ -228,7 +222,6 @@
 		44A777B61DFDD55500FD2A48 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				447798051DFC9EBA004DA42D /* Main.storyboard */,
 				44A777AE1DFDD3C800FD2A48 /* Closet.storyboard */,
 				44A777B11DFDD3D300FD2A48 /* Articles.storyboard */,
 				44AF4A071E0CE3C300A17659 /* ArticleCRUD.storyboard */,
@@ -240,8 +233,6 @@
 		44A777B71DFDD5BE00FD2A48 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				447798031DFC9EBA004DA42D /* HamburgerViewController.swift */,
-				447798131DFCABD3004DA42D /* MenuViewController.swift */,
 				442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */,
 				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
 			);
@@ -386,7 +377,6 @@
 				44A777B01DFDD3C800FD2A48 /* Closet.storyboard in Resources */,
 				44AF4A091E0CE3C300A17659 /* ArticleCRUD.storyboard in Resources */,
 				44A777B51DFDD3DB00FD2A48 /* Account.storyboard in Resources */,
-				447798071DFC9EBA004DA42D /* Main.storyboard in Resources */,
 				44CDFC6E1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,7 +453,6 @@
 				44CD8DC61DFF8BCE00BD4CF1 /* SettingsViewController.swift in Sources */,
 				44CD8DBC1DFF8B8900BD4CF1 /* MyClosetViewController.swift in Sources */,
 				44A777BE1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift in Sources */,
-				447798041DFC9EBA004DA42D /* HamburgerViewController.swift in Sources */,
 				448E37E11E05EB1E00A62DC6 /* User.swift in Sources */,
 				44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */,
 				447CBDB71E0966F700176997 /* Category.swift in Sources */,
@@ -474,7 +463,6 @@
 				448DE6561E1D78BA007582E0 /* TransitionAnimator.swift in Sources */,
 				447D854E1E121F5600F6CD6D /* OutfitCollectionViewCell.swift in Sources */,
 				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,
-				447798141DFCABD3004DA42D /* MenuViewController.swift in Sources */,
 				44AF4A061E0CDF5100A17659 /* ArticleDetailViewController.swift in Sources */,
 				447D85511E122C1100F6CD6D /* OutfitDetailViewController.swift in Sources */,
 				447CBDBB1E09683500176997 /* Texture.swift in Sources */,
@@ -488,14 +476,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		447798051DFC9EBA004DA42D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				447798061DFC9EBA004DA42D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4477980A1DFC9EBA004DA42D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
