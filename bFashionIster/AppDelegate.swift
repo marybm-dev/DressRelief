@@ -14,11 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    // navy blue hex #1a3e84
-    // tinder swipes, use Koloda cocoapod - https://github.com/Yalantis/Koloda
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // Create a folder for images
         Helper.createImagesFolder()
         
         // Drops DB and Recreates if migration is needed
@@ -26,18 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.deleteRealmIfMigrationNeeded = true
         Realm.Configuration.defaultConfiguration = config
         
-//        TestData.defaults()
+        // Test data
+        TestData.defaults()
         
+        // Setup styles
         self.configureAppStyling()
-        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let hamburgerVC = storyboard.instantiateViewController(withIdentifier: "HamburgerViewController") as! HamburgerViewController
-//        let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-//        
-//        menuVC.hamburgerViewController = hamburgerVC
-//        hamburgerVC.menuViewController = menuVC
-//        
-//        window?.rootViewController = hamburgerVC
         
         return true
     }
@@ -47,11 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (UIApplication.shared.statusBarFrame.size.height == 40) {
             adjustment = -20;
-        
         } else if (UIApplication.shared.statusBarFrame.size.height == 20 && oldStatusBarFrame.size.height == 40) {
             adjustment = 20;
-        }
-        else {
+        } else {
             return
         }
         
