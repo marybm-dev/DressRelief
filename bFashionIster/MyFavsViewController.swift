@@ -13,6 +13,9 @@ class MyFavsViewController: MeuItemViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var categories = [String]()
+    var outfitsByCategory = [String: Results<Outfit>]()
+    
     var outfits: Results<Outfit>!
     var favs: Results<Outfit>!
     var subscription: NotificationToken?
@@ -39,6 +42,9 @@ class MyFavsViewController: MeuItemViewController {
         
         favs = getFavs()
         subscription = notificationSubscription(for: favs)
+        
+        categories = getOutfitCategories()
+        getOutfitsByCategory()
         
         transition.dismissCompletion = {
             self.selectedImage!.isHidden = false
@@ -87,6 +93,17 @@ class MyFavsViewController: MeuItemViewController {
         return outfits.filter("isLiked = true")
     }
     
+    func getOutfitCategories() -> [String] {
+        let allCategories = favs.map { $0.category }
+        return Array(Set(allCategories))
+    }
+    
+    func getOutfitsByCategory() {
+        for category in categories {
+            outfitsByCategory[category] = outfits.filter("category = %@", category)
+        }
+    }
+    
     func notificationSubscription(for outfits: Results<Outfit>) -> NotificationToken {
         return outfits.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Outfit>>) in
             self?.updateUI(with: changes)
@@ -126,7 +143,7 @@ extension MyFavsViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitCell", for: indexPath) as! OutfitCollectionViewCell
         
         cell.outfit = favs[indexPath.row]
-        cell.layer.cornerRadius = 5.0
+        cell.layer.cornerRadius = 8.0
         cell.layer.masksToBounds = true
         
         self.animateEditing(cell: cell)
