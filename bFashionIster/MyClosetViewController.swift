@@ -17,29 +17,31 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
 class MyClosetViewController: MeuItemViewController {
     
-    var realm: Realm = try! Realm()
+    var realm: Realm!
     var outfits: Results<Outfit>!
     
-    @IBOutlet weak var kolodaView: CustomKolodaView!
+    @IBOutlet weak var kolodaView: KolodaView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        realm = try! Realm()
         outfits = realm.objects(Outfit.self)
         
         kolodaView.dataSource = self
         kolodaView.delegate = self
-
+        
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        guard realm != nil else { return }
         realm.refresh()
         outfits = realm.objects(Outfit.self)
-        kolodaView.resetCurrentCardIndex()
+        kolodaView.reloadData()
     }
-
+    
     @IBAction func didTapDislikeButton(_ sender: Any) {
         kolodaView.swipe(SwipeResultDirection.left)
     }
@@ -83,9 +85,8 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let outfit: Outfit = outfits[index]
+        let outfit: Outfit = outfits[Int(index)]
         outfit.setImagePath()
-        
         let image = Helper.image(atPath: outfit.combinedImgUrl)
         let imageView = UIImageView(image: image)
         imageView.layer.cornerRadius = 8
@@ -102,13 +103,9 @@ extension MyClosetViewController: KolodaViewDataSource {
         try! realm.write {
             if direction == SwipeResultDirection.left {
                 outfit.isLiked = false
-                outfit.top?.countLikes -= 1
-                outfit.bottom?.countLikes -= 1
                 
             } else if direction == SwipeResultDirection.right {
                 outfit.isLiked = true
-                outfit.top?.countLikes += 1
-                outfit.bottom?.countLikes += 1
             }
         }
     }
