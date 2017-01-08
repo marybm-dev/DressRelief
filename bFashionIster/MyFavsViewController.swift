@@ -51,9 +51,9 @@ class MyFavsViewController: MeuItemViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refreshData()
     }
     
     func didTapEditButton() {
@@ -104,6 +104,12 @@ class MyFavsViewController: MeuItemViewController {
         }
     }
     
+    func refreshData() {
+        categories = getOutfitCategories()
+        getOutfitsByCategory()
+        collectionView.reloadData()
+    }
+    
     func notificationSubscription(for outfits: Results<Outfit>) -> NotificationToken {
         return outfits.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Outfit>>) in
             self?.updateUI(with: changes)
@@ -115,15 +121,15 @@ class MyFavsViewController: MeuItemViewController {
         case .initial(_):
             collectionView.reloadData()
         case let .update(_, deletions, insertions, modifications):
+            self.refreshData()
             
-            collectionView.performBatchUpdates({
-                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
-                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
-                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
-                
-            }, completion: { (completed: Bool) in
-                // do any updates
-            })
+//            collectionView.performBatchUpdates({
+//                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+//                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
+//                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
+//            }, completion: { (completed: Bool) in
+//                // do any updates
+//            })
             
             break
         case let .error(error):
