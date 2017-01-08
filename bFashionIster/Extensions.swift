@@ -8,6 +8,28 @@
 
 import UIKit
 
+extension String {
+    func capitalizingFirstLetter() -> String {
+        let first = String(characters.prefix(1)).capitalized
+        let other = String(characters.dropFirst())
+        return first + other
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+    
+    func lowerFirstLetter() -> String {
+        let first = String(characters.prefix(1)).lowercased()
+        let other = String(characters.dropFirst())
+        return first + other
+    }
+    
+    mutating func lowerFirstLetter() {
+        self = self.lowerFirstLetter()
+    }
+}
+
 extension Int {
     var degreesToRadians: Double { return Double(self) * .pi / 180 }
     var radiansToDegrees: Double { return Double(self) * 180 / .pi }

@@ -161,6 +161,20 @@ extension MyFavsViewController: UICollectionViewDataSource {
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "OutfitCategoryHeaderView", for: indexPath) as! OutfitCategoryHeaderView
+            let category = categories[indexPath.section]
+            headerView.category = category
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
+        
+    }
 }
 
 // Mark: - UICollectionViewDelegateFlowLayout
