@@ -177,19 +177,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOa-UD-RPE">
+                            <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boutique" translatesAutoresizingMaskIntoConstraints="NO" id="ZOT-Be-zgF">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOa-UD-RPE">
+                                <rect key="frame" x="25" y="125" width="325" height="342"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImgOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="81c-yJ-3LO">
-                                <rect key="frame" x="37" y="183" width="300" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="2AY-n2-Tab"/>
-                                    <constraint firstAttribute="width" constant="300" id="Kzz-Ay-tRE"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awg-DG-lo0">
-                                <rect key="frame" x="150" y="527" width="76" height="76"/>
+                                <rect key="frame" x="150" y="491" width="76" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="nFs-1r-6gs"/>
                                     <constraint firstAttribute="height" constant="76" id="q2H-kI-9Ea"/>
@@ -202,14 +198,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eOa-UD-RPE" firstAttribute="top" secondItem="QNz-hH-9tI" secondAttribute="top" id="6xV-Mh-yGd"/>
-                            <constraint firstAttribute="trailing" secondItem="eOa-UD-RPE" secondAttribute="trailing" id="79C-x5-Avx"/>
-                            <constraint firstItem="81c-yJ-3LO" firstAttribute="centerY" secondItem="eOa-UD-RPE" secondAttribute="centerY" id="Rox-51-t8l"/>
-                            <constraint firstItem="pWc-2X-lww" firstAttribute="top" secondItem="eOa-UD-RPE" secondAttribute="bottom" id="TNq-V0-GeN"/>
-                            <constraint firstItem="eOa-UD-RPE" firstAttribute="leading" secondItem="QNz-hH-9tI" secondAttribute="leading" id="cEd-fk-ByH"/>
-                            <constraint firstItem="81c-yJ-3LO" firstAttribute="centerX" secondItem="eOa-UD-RPE" secondAttribute="centerX" id="dSE-xY-Tbm"/>
+                            <constraint firstItem="ZOT-Be-zgF" firstAttribute="leading" secondItem="QNz-hH-9tI" secondAttribute="leading" id="1kZ-QT-DFV"/>
+                            <constraint firstItem="eOa-UD-RPE" firstAttribute="top" secondItem="QNz-hH-9tI" secondAttribute="top" constant="125" id="6xV-Mh-yGd"/>
+                            <constraint firstAttribute="trailing" secondItem="eOa-UD-RPE" secondAttribute="trailing" constant="25" id="79C-x5-Avx"/>
+                            <constraint firstItem="pWc-2X-lww" firstAttribute="top" secondItem="eOa-UD-RPE" secondAttribute="bottom" constant="200" id="TNq-V0-GeN"/>
+                            <constraint firstItem="ZOT-Be-zgF" firstAttribute="top" secondItem="QNz-hH-9tI" secondAttribute="top" id="aHd-Lc-fzd"/>
+                            <constraint firstAttribute="trailing" secondItem="ZOT-Be-zgF" secondAttribute="trailing" id="bhR-wI-Oq1"/>
+                            <constraint firstItem="eOa-UD-RPE" firstAttribute="leading" secondItem="QNz-hH-9tI" secondAttribute="leading" constant="25" id="cEd-fk-ByH"/>
+                            <constraint firstItem="pWc-2X-lww" firstAttribute="top" secondItem="ZOT-Be-zgF" secondAttribute="bottom" id="dwu-vX-wdK"/>
                             <constraint firstItem="awg-DG-lo0" firstAttribute="centerX" secondItem="QNz-hH-9tI" secondAttribute="centerX" id="fWq-VH-tT6"/>
-                            <constraint firstItem="pWc-2X-lww" firstAttribute="top" secondItem="awg-DG-lo0" secondAttribute="bottom" constant="64" id="j65-qT-kB6"/>
+                            <constraint firstItem="pWc-2X-lww" firstAttribute="top" secondItem="awg-DG-lo0" secondAttribute="bottom" constant="100" id="j65-qT-kB6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="if0-yb-cvL">
@@ -226,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BkQ-5W-WWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="2309"/>
+            <point key="canvasLocation" x="284" y="2307.7961019490258"/>
         </scene>
         <!--Article Edit View Controller-->
         <scene sceneID="LTn-mC-etv">
@@ -245,7 +243,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleImageCell" rowHeight="300" id="JoD-Nk-4Pr" customClass="ArticleCreateImageTableViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="300"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JoD-Nk-4Pr" id="ood-s2-Lt9">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
@@ -267,7 +265,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleCategoryCell" rowHeight="44" id="qA4-jq-nme" customClass="ArticleCreateTableViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="355.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="356" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qA4-jq-nme" id="w79-Hd-3Dx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -300,7 +298,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleColorCell" rowHeight="44" id="H20-dp-Zhw" customClass="ArticleCreateTableViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="399.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="400" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H20-dp-Zhw" id="YF8-iH-5Ff">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -333,7 +331,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleTextureCell" rowHeight="44" id="n0c-tn-E1S" customClass="ArticleCreateTableViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="443.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="444" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n0c-tn-E1S" id="Pmx-ux-8jz">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -418,7 +416,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ImgOverlay" width="114" height="64"/>
+        <image name="boutique" width="375" height="667"/>
         <image name="shutter" width="102" height="102"/>
     </resources>
     <inferredMetricsTieBreakers>
