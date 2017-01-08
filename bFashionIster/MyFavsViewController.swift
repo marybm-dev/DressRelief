@@ -130,23 +130,34 @@ class MyFavsViewController: MeuItemViewController {
             print(error.localizedDescription)
         }
     }
+    
+    func outfit(for indexPath: IndexPath) -> Outfit? {
+        let category = categories[indexPath.section]
+        return outfitsByCategory[category]?[indexPath.row]
+    }
 }
 
 // Mark: – UICollectionViewDataSource
 extension MyFavsViewController: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return categories.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favs.count
+        let category = categories[section]
+        return outfitsByCategory[category]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitCell", for: indexPath) as! OutfitCollectionViewCell
-        
-        cell.outfit = favs[indexPath.row]
         cell.layer.cornerRadius = 8.0
         cell.layer.masksToBounds = true
         
         self.animateEditing(cell: cell)
+
+        guard let outfit = outfit(for: indexPath) else { return cell }
+        cell.outfit = outfit
         
         return cell
     }
@@ -179,7 +190,8 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedOutfit = favs[Int(indexPath.row)]
+        guard let outfit = outfit(for: indexPath) else { return }
+        self.selectedOutfit = outfit
         
         if isEditingFavs {
             // prompt to delete this favorite outfit
