@@ -20,7 +20,7 @@ class MyClosetViewController: MeuItemViewController {
     var realm: Realm = try! Realm()
     var outfits: Results<Outfit>!
     
-    @IBOutlet weak var kolodaView: CustomKolodaView!
+    @IBOutlet weak var kolodaView: KolodaView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

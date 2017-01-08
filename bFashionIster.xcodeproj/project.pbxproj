@@ -51,7 +51,6 @@
 		44E8652C1E17655300251310 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8652A1E17655300251310 /* CustomOverlayView.swift */; };
 		44E8652D1E17655300251310 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E8652B1E17655300251310 /* CustomOverlayView.xib */; };
 		44E8652F1E17657D00251310 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E8652E1E17657D00251310 /* OverlayView.xib */; };
-		44E865311E1765AE00251310 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E865301E1765AE00251310 /* CustomKolodaView.swift */; };
 		44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */; };
 /* End PBXBuildFile section */
 
@@ -102,7 +101,6 @@
 		44E8652A1E17655300251310 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomOverlayView.swift; sourceTree = "<group>"; };
 		44E8652B1E17655300251310 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOverlayView.xib; sourceTree = "<group>"; };
 		44E8652E1E17657D00251310 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
-		44E865301E1765AE00251310 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKolodaView.swift; sourceTree = "<group>"; };
 		44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundKolodaAnimator.swift; sourceTree = "<group>"; };
 		C62F2F795F36CDC2EDE7AF3F /* Pods_bFashionIster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bFashionIster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0459BF5CBCBF72F759899DB /* Pods-bFashionIster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bFashionIster.release.xcconfig"; path = "Pods/Target Support Files/Pods-bFashionIster/Pods-bFashionIster.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 				448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */,
 				44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */,
 				44E8652A1E17655300251310 /* CustomOverlayView.swift */,
-				44E865301E1765AE00251310 /* CustomKolodaView.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -439,7 +436,6 @@
 				448DE65A1E1D9EF8007582E0 /* AboutItem.swift in Sources */,
 				4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */,
 				448DE6581E1D9E51007582E0 /* AboutTableViewCell.swift in Sources */,
-				44E865311E1765AE00251310 /* CustomKolodaView.swift in Sources */,
 				44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */,
 				44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */,
 				447CBDB91E0967D700176997 /* Color.swift in Sources */,
