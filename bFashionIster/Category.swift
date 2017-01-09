@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Category: Int, CustomStringConvertible {
     case professional, casual, formal, dressyCasual, nightOut, sportsware, anytime, comfy, display
@@ -25,6 +26,31 @@ enum Category: Int, CustomStringConvertible {
         }
     }
     
+    var color: UIColor {
+        switch self {
+        case .professional:     return UIColor.flatRed()
+        case .casual:           return UIColor.flatYellow()
+        case .formal:           return UIColor.flatOrange()
+        case .dressyCasual:     return UIColor.flatGreen()
+        case .nightOut:         return UIColor.flatBlue()
+        case .sportsware:       return UIColor.flatPurple()
+        case .anytime:          return UIColor.flatDarkBlue()
+        case .comfy:            return UIColor.flatDarkGray()
+        default:                return UIColor.white
+        }
+    }
+    
     static let allRawValues = professional.rawValue...comfy.rawValue
     static let allValues = allRawValues.map { Category(rawValue: $0)!.description }
+    static let allColors = allRawValues.map { Category(rawValue: $0)!.color }
+}
+
+struct CategoryItem {
+    var name: String
+    var color: UIColor
+    
+    init(name: String, color: UIColor) {
+        self.name = name
+        self.color = color
+    }
 }

@@ -10,15 +10,16 @@ import UIKit
 
 class OutfitCategoryHeaderView: UICollectionReusableView {
     
-    @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    
+    var color: UIColor!
     
     var category: String! {
         didSet {
             headerLabel.text = category
-            let imageName = category.replacingOccurrences(of: " ", with: "").lowerFirstLetter()
-            guard let image = UIImage(named: imageName) else { return }
-            headerImageView.image = image
+//            guard color != nil else { return }
+//            headerLabel.textColor = color
         }
     }
 }

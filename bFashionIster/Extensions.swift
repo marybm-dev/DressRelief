@@ -52,11 +52,7 @@ extension UIColor {
     convenience init(netHex: Int) {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
-    
-    class func customBlue() -> UIColor {
-        return UIColor(netHex: 0x1a3e84)
-    }
-    
+
     class func appleLightestGray() -> UIColor {
         return UIColor(netHex: 0xF0F0F0)
     }
@@ -65,11 +61,80 @@ extension UIColor {
         return UIColor(netHex: 0x169c78)
     }
     
-    class func flatBlue() -> UIColor {
+    class func customBlue() -> UIColor {
         return UIColor(netHex: 0x3a99d8)
+    }
+    
+    class func flatTurquoise() -> UIColor {
+        return UIColor(netHex: 0x1abc9c)
+    }
+    
+    class func flatGreen() -> UIColor {
+        return UIColor(netHex: 0x2ecc71)
+    }
+    
+    class func flatBlue() -> UIColor {
+        return UIColor(netHex: 0x3498db)
+    }
+    
+    class func flatPurple() -> UIColor {
+        return UIColor(netHex: 0x9b59b6)
+    }
+    
+    class func flatYellow() -> UIColor {
+        return UIColor(netHex: 0xf1c40f)
+    }
+    
+    class func flatOrange() -> UIColor {
+        return UIColor(netHex: 0xe67e22)
+    }
+    
+    class func flatRed() -> UIColor {
+        return UIColor(netHex: 0xe74c3c)
+    }
+    
+    class func flatGray() -> UIColor {
+        return UIColor(netHex: 0xbdc3c7)
+    }
+    
+    class func flatDarkGray() -> UIColor {
+        return UIColor(netHex: 0x95a5a6)
+    }
+    
+    class func flatDarkBlue() -> UIColor {
+        return UIColor(netHex: 0x34495e)
     }
 }
 
+extension CALayer {
+    
+    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+        
+        let border = CALayer()
+        
+        switch edge {
+        case UIRectEdge.top:
+            border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: thickness)
+            break
+        case UIRectEdge.bottom:
+            border.frame = CGRect(x: 0, y: self.frame.height - thickness, width: self.frame.width, height: thickness)
+            break
+        case UIRectEdge.left:
+            border.frame = CGRect(x: 0, y: 0, width: thickness, height: self.frame.height)
+            break
+        case UIRectEdge.right:
+            border.frame = CGRect(x: self.frame.width - thickness, y: 0, width: thickness, height: self.frame.height)
+            break
+        default:
+            break
+        }
+        
+        border.backgroundColor = color.cgColor;
+        
+        self.addSublayer(border)
+    }
+    
+}
 
 extension UIView {
     func shake() {

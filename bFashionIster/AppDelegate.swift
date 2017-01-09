@@ -112,7 +112,7 @@ extension AppDelegate {
         navBar.barTintColor = UIColor.emeraldGreen()
         
         let tabBar = UITabBar.appearance()
-        tabBar.tintColor = UIColor.flatBlue()                // bar button items
+        tabBar.tintColor = UIColor.customBlue()                // bar button items
         let tabBarBackground = #imageLiteral(resourceName: "bgWhite")
         tabBar.backgroundImage = tabBarBackground
         

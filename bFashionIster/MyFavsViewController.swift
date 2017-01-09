@@ -13,15 +13,23 @@ class MyFavsViewController: MeuItemViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let allCategories = Category.allValues
+    
     var categories = [String]()
     var outfitsByCategory = [String: Results<Outfit>]()
+    
+    let colors = Category.allColors
+    var categoryColors = [String: UIColor]()
+    
+    var categoryItems = [CategoryItem]()
     
     var outfits: Results<Outfit>!
     var favs: Results<Outfit>!
     var subscription: NotificationToken?
     
-    let itemsPerRow: CGFloat = 3
-    let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+    let itemsPerRow: CGFloat = 2
+    let itemsPerCol: CGFloat = 2
+    let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0, right: 0.0)
     
     var selectedOutfit: Outfit!
     var selectedImage: UIImageView!
@@ -44,7 +52,8 @@ class MyFavsViewController: MeuItemViewController {
         subscription = notificationSubscription(for: favs)
         
         categories = getOutfitCategories()
-        getOutfitsByCategory()
+        setOutfitsHashTable()
+        setCategoryColors()
         
         transition.dismissCompletion = {
             self.selectedImage!.isHidden = false
@@ -55,7 +64,7 @@ class MyFavsViewController: MeuItemViewController {
         super.viewWillAppear(animated)
         self.refreshData()
     }
-    
+
     func didTapEditButton() {
         isEditingFavs = !isEditingFavs
         editButton.title = isEditingFavs ? "Done" : "Edit"
@@ -67,13 +76,13 @@ class MyFavsViewController: MeuItemViewController {
             UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
                 cell.closeButton.alpha += 1.0
             }, completion: nil)
-            cell.wobble()
+            cell.containerView.wobble()
             
         } else {
             UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
                 cell.closeButton.alpha = 0
             }, completion: nil)
-            cell.stopWobbling()
+            cell.containerView.stopWobbling()
         }
     }
     
@@ -97,16 +106,22 @@ class MyFavsViewController: MeuItemViewController {
         let allCategories = favs.map { $0.category }
         return Array(Set(allCategories))
     }
-    
-    func getOutfitsByCategory() {
+
+    func setOutfitsHashTable() {
         for category in categories {
             outfitsByCategory[category] = outfits.filter("category = %@", category)
         }
     }
     
+    func setCategoryColors() {
+        for (index,category) in allCategories.enumerated() {
+            categoryColors[category] = colors[index]
+        }
+    }
+    
     func refreshData() {
         categories = getOutfitCategories()
-        getOutfitsByCategory()
+        setOutfitsHashTable()
         collectionView.reloadData()
     }
     
@@ -122,15 +137,14 @@ class MyFavsViewController: MeuItemViewController {
             collectionView.reloadData()
         case let .update(_, deletions, insertions, modifications):
             self.refreshData()
-            
+
 //            collectionView.performBatchUpdates({
 //                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
 //                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
 //                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
 //            }, completion: { (completed: Bool) in
-//                // do any updates
+//                self.collectionView.reloadData()
 //            })
-            
             break
         case let .error(error):
             print(error.localizedDescription)
@@ -157,14 +171,16 @@ extension MyFavsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitCell", for: indexPath) as! OutfitCollectionViewCell
-        cell.layer.cornerRadius = 8.0
-        cell.layer.masksToBounds = true
-        
+
         self.animateEditing(cell: cell)
 
         guard let outfit = outfit(for: indexPath) else { return cell }
         cell.outfit = outfit
         
+        
+        guard let color = categoryColors[outfit.category] else { return cell }
+        cell.layer.addBorder(edge: .left, color: color, thickness: 5.0)
+
         return cell
     }
     
@@ -175,6 +191,9 @@ extension MyFavsViewController: UICollectionViewDataSource {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "OutfitCategoryHeaderView", for: indexPath) as! OutfitCategoryHeaderView
             let category = categories[indexPath.section]
             headerView.category = category
+            headerView.color = categoryColors[category]
+            headerView.containerView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 0.5)
+            headerView.containerView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 0.5)
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -191,8 +210,8 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        let availableHeight = view.frame.height - paddingSpace - 64.0 // navBar space
-        let heightPerItem = availableHeight / itemsPerRow
+        let availableHeight = view.frame.height - paddingSpace - 64.0 - 88.0 // navBar space
+        let heightPerItem = availableHeight / itemsPerCol
         
         return CGSize(width: widthPerItem, height: heightPerItem)
     }

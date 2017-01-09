@@ -82,13 +82,13 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jFb-Lt-eeq">
                                     <size key="itemSize" width="150" height="150"/>
-                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="50" height="40"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JYd-vQ-2XU">
-                                        <rect key="frame" x="0.0" y="50" width="150" height="150"/>
+                                        <rect key="frame" x="0.0" y="40" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -97,39 +97,35 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitCategoryHeaderView" id="Fzn-rg-U12" customClass="OutfitCategoryHeaderView" customModule="bFashionIster" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aB4-re-bl0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                        </imageView>
-                                        <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkR-LN-vIh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkR-LN-vIh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kML-zx-1BP">
+                                                    <rect key="frame" x="10" y="15" width="365" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.56178506299734754" green="0.56178506299734754" blue="0.56178506299734754" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="kML-zx-1BP" firstAttribute="leading" secondItem="IkR-LN-vIh" secondAttribute="leading" constant="10" id="H0R-Xc-sxE"/>
+                                                <constraint firstAttribute="bottom" secondItem="kML-zx-1BP" secondAttribute="bottom" constant="4.5" id="NoI-OF-uKe"/>
+                                                <constraint firstAttribute="trailing" secondItem="kML-zx-1BP" secondAttribute="trailing" id="e5N-an-wgo"/>
+                                            </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kML-zx-1BP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="aB4-re-bl0" firstAttribute="top" secondItem="Fzn-rg-U12" secondAttribute="top" id="2FO-wn-IRT"/>
-                                        <constraint firstAttribute="bottom" secondItem="kML-zx-1BP" secondAttribute="bottom" id="32o-KA-H1v"/>
                                         <constraint firstItem="IkR-LN-vIh" firstAttribute="top" secondItem="Fzn-rg-U12" secondAttribute="top" id="DSl-1S-4wM"/>
-                                        <constraint firstAttribute="trailing" secondItem="aB4-re-bl0" secondAttribute="trailing" id="SmU-Lp-QeE"/>
-                                        <constraint firstItem="kML-zx-1BP" firstAttribute="height" secondItem="aB4-re-bl0" secondAttribute="height" id="Zr9-cl-s2o"/>
-                                        <constraint firstItem="kML-zx-1BP" firstAttribute="leading" secondItem="Fzn-rg-U12" secondAttribute="leading" id="aX7-6g-2o6"/>
                                         <constraint firstItem="IkR-LN-vIh" firstAttribute="leading" secondItem="Fzn-rg-U12" secondAttribute="leading" id="c3r-sN-61Z"/>
-                                        <constraint firstAttribute="bottom" secondItem="aB4-re-bl0" secondAttribute="bottom" id="c6O-qC-biy"/>
-                                        <constraint firstAttribute="trailing" secondItem="kML-zx-1BP" secondAttribute="trailing" id="jFg-l5-owt"/>
-                                        <constraint firstItem="aB4-re-bl0" firstAttribute="leading" secondItem="Fzn-rg-U12" secondAttribute="leading" id="krh-kE-7gD"/>
                                         <constraint firstAttribute="trailing" secondItem="IkR-LN-vIh" secondAttribute="trailing" id="syn-nd-Ja5"/>
                                         <constraint firstAttribute="bottom" secondItem="IkR-LN-vIh" secondAttribute="bottom" id="zcx-z3-HMu"/>
                                     </constraints>
                                     <connections>
-                                        <outlet property="headerImageView" destination="aB4-re-bl0" id="1dl-Tu-yb8"/>
+                                        <outlet property="containerView" destination="IkR-LN-vIh" id="qja-nS-SyX"/>
                                         <outlet property="headerLabel" destination="kML-zx-1BP" id="kPd-wH-N1m"/>
                                     </connections>
                                 </collectionReusableView>
