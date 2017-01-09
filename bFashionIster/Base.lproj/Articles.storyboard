@@ -54,7 +54,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="J1W-Wn-HZF">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Dd8-Nk-C6h">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dd8-Nk-C6h">
                             <connections>
                                 <segue destination="lGe-M8-DNb" kind="presentation" identifier="ToCameraCreateFromTops" id="GKo-TV-if0"/>
                             </connections>
@@ -140,7 +140,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dlX-79-3eY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="tEJ-LP-tMM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tEJ-LP-tMM">
                             <connections>
                                 <segue destination="Lph-V1-n94" kind="presentation" identifier="ToCameraCreateFromBottoms" id="yot-m0-HsX"/>
                             </connections>

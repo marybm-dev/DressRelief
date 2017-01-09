@@ -10,6 +10,7 @@ import UIKit
 
 class OutfitCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var outfitImageView: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
     

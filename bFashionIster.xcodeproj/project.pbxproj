@@ -52,6 +52,7 @@
 		44E8652D1E17655300251310 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E8652B1E17655300251310 /* CustomOverlayView.xib */; };
 		44E8652F1E17657D00251310 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E8652E1E17657D00251310 /* OverlayView.xib */; };
 		44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */; };
+		44FB34D71E22002D00EE32AB /* OutfitCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FB34D61E22002D00EE32AB /* OutfitCategoryHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		44E8652B1E17655300251310 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOverlayView.xib; sourceTree = "<group>"; };
 		44E8652E1E17657D00251310 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundKolodaAnimator.swift; sourceTree = "<group>"; };
+		44FB34D61E22002D00EE32AB /* OutfitCategoryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitCategoryHeaderView.swift; sourceTree = "<group>"; };
 		C62F2F795F36CDC2EDE7AF3F /* Pods_bFashionIster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bFashionIster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0459BF5CBCBF72F759899DB /* Pods-bFashionIster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bFashionIster.release.xcconfig"; path = "Pods/Target Support Files/Pods-bFashionIster/Pods-bFashionIster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -265,6 +267,7 @@
 				448DE65B1E1DE0E7007582E0 /* Animations */,
 				44CD8DBB1DFF8B8900BD4CF1 /* MyClosetViewController.swift */,
 				44CD8DBD1DFF8B9A00BD4CF1 /* MyFavsViewController.swift */,
+				44FB34D61E22002D00EE32AB /* OutfitCategoryHeaderView.swift */,
 				447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */,
 				447D854C1E121F5600F6CD6D /* OutfitCollectionViewCell.swift */,
 			);
@@ -439,6 +442,7 @@
 				44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */,
 				44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */,
 				447CBDB91E0967D700176997 /* Color.swift in Sources */,
+				44FB34D71E22002D00EE32AB /* OutfitCategoryHeaderView.swift in Sources */,
 				447CBDBE1E097F7F00176997 /* CameraViewController.swift in Sources */,
 				44CD8DC21DFF8BB600BD4CF1 /* BottomsViewController.swift in Sources */,
 				443017DD1E0CD6E0000755BD /* Helper.swift in Sources */,

@@ -77,15 +77,29 @@ extension AppDelegate {
         let settingsNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "SettingsNavigationController") as! UINavigationController
         
         // init tabBar items
-        myClosetNavigationController.tabBarItem = UITabBarItem(title: "My Closet", image: #imageLiteral(resourceName: "closet"), selectedImage: #imageLiteral(resourceName: "closetFilled"))
-        myFavsNavigationController.tabBarItem = UITabBarItem(title: "My Favs", image: #imageLiteral(resourceName: "favs"), selectedImage: #imageLiteral(resourceName: "favsFilled"))
-        topsNavigationController.tabBarItem = UITabBarItem(title: "Tops", image: #imageLiteral(resourceName: "tops"), selectedImage: #imageLiteral(resourceName: "topsFilled"))
-        bottomsNavigationController.tabBarItem = UITabBarItem(title: "Bottoms", image: #imageLiteral(resourceName: "bottoms"), selectedImage: #imageLiteral(resourceName: "bottomsFilled"))
-        settingsNavigationController.tabBarItem = UITabBarItem(title: "About", image: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "aboutFilled"))
+        myClosetNavigationController.tabBarItem = UITabBarItem(title: "Wardrobe", image: (#imageLiteral(resourceName: "closet")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "closetFilled"))
+        myClosetNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
+        myClosetNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
+        
+        myFavsNavigationController.tabBarItem = UITabBarItem(title: "Favorites", image: (#imageLiteral(resourceName: "favs")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "favsFilled"))
+        myFavsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
+        myFavsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
+        
+        topsNavigationController.tabBarItem = UITabBarItem(title: "Tops", image: (#imageLiteral(resourceName: "tops")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "topsFilled"))
+        topsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
+        topsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
+        
+        bottomsNavigationController.tabBarItem = UITabBarItem(title: "Bottoms", image: (#imageLiteral(resourceName: "bottoms")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "bottomsFilled"))
+        bottomsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
+        bottomsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
+        
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "About", image: (#imageLiteral(resourceName: "about")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "aboutFilled"))
+        settingsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
+        settingsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
         
         // init navBar items
-        let closetItem = MenuItem(title: "My Closet", iconName: .closet, iconFilledName: .closetFilled)
-        let myFavsItem = MenuItem(title: "My Favs", iconName: .favs, iconFilledName: .favsFilled)
+        let closetItem = MenuItem(title: "Wardrobe", iconName: .closet, iconFilledName: .closetFilled)
+        let myFavsItem = MenuItem(title: "Favorites", iconName: .favs, iconFilledName: .favsFilled)
         let topsItem = MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled)
         let bottomsItem = MenuItem(title: "Bottoms", iconName: .bottoms, iconFilledName: .bottomsFilled)
         let aboutItem = MenuItem(title: "About", iconName: .about, iconFilledName: .aboutFilled)
@@ -112,8 +126,8 @@ extension AppDelegate {
         navBar.barTintColor = UIColor.emeraldGreen()
         
         let tabBar = UITabBar.appearance()
-        tabBar.tintColor = UIColor.flatBlue()                // bar button items
-        let tabBarBackground = #imageLiteral(resourceName: "bgWhite")
+        tabBar.tintColor = UIColor.customBlue()                // bar button items
+        let tabBarBackground = #imageLiteral(resourceName: "bgFlatGray")
         tabBar.backgroundImage = tabBarBackground
         
         return tabBarController
