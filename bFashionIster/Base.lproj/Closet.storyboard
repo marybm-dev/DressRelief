@@ -104,7 +104,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kML-zx-1BP">
-                                                    <rect key="frame" x="10" y="15" width="365" height="20.5"/>
+                                                    <rect key="frame" x="10" y="11.5" width="365" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.56178506299734754" green="0.56178506299734754" blue="0.56178506299734754" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -113,7 +113,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="kML-zx-1BP" firstAttribute="leading" secondItem="IkR-LN-vIh" secondAttribute="leading" constant="10" id="H0R-Xc-sxE"/>
-                                                <constraint firstAttribute="bottom" secondItem="kML-zx-1BP" secondAttribute="bottom" constant="4.5" id="NoI-OF-uKe"/>
+                                                <constraint firstAttribute="bottom" secondItem="kML-zx-1BP" secondAttribute="bottom" constant="8" id="NoI-OF-uKe"/>
                                                 <constraint firstAttribute="trailing" secondItem="kML-zx-1BP" secondAttribute="trailing" id="e5N-an-wgo"/>
                                             </constraints>
                                         </view>
@@ -142,7 +142,9 @@
                             <constraint firstItem="SUs-bG-cS8" firstAttribute="top" secondItem="nY6-nq-ACX" secondAttribute="top" id="uCx-46-Kk2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="beg-94-Lxf"/>
+                    <navigationItem key="navigationItem" id="beg-94-Lxf">
+                        <barButtonItem key="rightBarButtonItem" image="filter" id="Afi-GT-aKg"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="SUs-bG-cS8" id="LMg-cK-AhY"/>
                         <segue destination="umV-dG-K3x" kind="presentation" identifier="FromOutfitFavsToDetail" id="w8H-Ri-6Jx"/>
@@ -237,6 +239,7 @@
     </scenes>
     <resources>
         <image name="dislike" width="76" height="76"/>
+        <image name="filter" width="25" height="25"/>
         <image name="like" width="76" height="76"/>
     </resources>
 </document>

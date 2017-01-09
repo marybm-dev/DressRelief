@@ -34,6 +34,8 @@ class MyFavsViewController: MeuItemViewController {
     var selectedOutfit: Outfit!
     var selectedImage: UIImageView!
     
+    var filterButton: UIBarButtonItem!
+    
     var editButton: UIBarButtonItem!
     var isEditingFavs = false
     
@@ -43,7 +45,7 @@ class MyFavsViewController: MeuItemViewController {
         super.viewDidLoad()
 
         editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(MyFavsViewController.didTapEditButton))
-        navigationItem.setRightBarButton(editButton, animated: true)
+        navigationItem.setLeftBarButton(editButton, animated: true)
         
         let nib = UINib(nibName: "OutfitCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "OutfitCell")

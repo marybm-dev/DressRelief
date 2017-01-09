@@ -33,7 +33,7 @@ class ArticleCollectionView: MeuItemViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "ArticleCell")
         
         editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(MyFavsViewController.didTapEditButton))
-        navigationItem.setRightBarButton(editButton, animated: true)
+        navigationItem.setLeftBarButton(editButton, animated: true)
     }
     
     func removeArticle(item: Article) {
