@@ -13,13 +13,9 @@ class OutfitCategoryHeaderView: UICollectionReusableView {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     
-    var color: UIColor!
-    
     var category: String! {
         didSet {
             headerLabel.text = category
-//            guard color != nil else { return }
-//            headerLabel.textColor = color
         }
     }
 }
