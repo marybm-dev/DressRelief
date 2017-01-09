@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension Dictionary {
+    var keyCount: Int {
+        get {
+            let values = Array(self.values)
+            return values.flatMap { $0 }.count
+        }
+    }
+}
+
 extension String {
     func capitalizingFirstLetter() -> String {
         let first = String(characters.prefix(1)).capitalized
