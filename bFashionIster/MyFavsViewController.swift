@@ -193,7 +193,6 @@ extension MyFavsViewController: UICollectionViewDataSource {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "OutfitCategoryHeaderView", for: indexPath) as! OutfitCategoryHeaderView
             let category = categories[indexPath.section]
             headerView.category = category
-            headerView.color = categoryColors[category]
             headerView.containerView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 0.5)
             headerView.containerView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 0.5)
             return headerView
