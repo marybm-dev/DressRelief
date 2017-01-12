@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OutfitDetailViewController: UIViewController, UIViewControllerTransitioningDelegate {
+class OutfitDetailViewController: ViewControllerPannable {
 
     var outfit: Outfit!
     
@@ -18,26 +18,15 @@ class OutfitDetailViewController: UIViewController, UIViewControllerTransitionin
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.detailViewFrame = self.view.layer.frame
+        
         guard outfit != nil else {
             return
         }
-        
         outfitImageView.image = Helper.image(atPath: outfit.combinedImgUrl)
         categoryLabel.text = outfit.category
-        
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(OutfitDetailViewController.handleSwipe))
-        self.view.addGestureRecognizer(gesture)
-    }
-    
-    func handleSwipe() {
-        self.dismiss(animated: true, completion: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override var prefersStatusBarHidden: Bool {
         return true
     } 

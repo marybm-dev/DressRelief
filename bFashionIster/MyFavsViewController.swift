@@ -26,7 +26,7 @@ class MyFavsViewController: MeuItemViewController {
     let colors = Category.allColors
     var categoryColors = [String: UIColor]()
     
-    let itemsPerRow: CGFloat = 2
+    let itemsPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0, right: 0.0)
     
     var selectedOutfit: Outfit!
@@ -52,10 +52,7 @@ class MyFavsViewController: MeuItemViewController {
         categories = getOutfitCategories()
         setOutfitsHashTable()
         setCategoryColors()
-        
-        transition.dismissCompletion = {
-            self.selectedImage!.isHidden = false
-        }
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -222,6 +219,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             let outfitDetailViewController = segue.destination as! OutfitDetailViewController
             outfitDetailViewController.outfit = selectedOutfit
             outfitDetailViewController.transitioningDelegate = self
+            outfitDetailViewController.originalFrame = self.selectedImage.layer.frame
         }
     }
 }
@@ -230,16 +228,12 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
 extension MyFavsViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
         transition.originFrame = selectedImage!.superview!.convert(selectedImage!.frame, to: nil)
         transition.presenting = true
-        selectedImage!.isHidden = true
-        
         return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
         transition.presenting = false
         return transition
     }
