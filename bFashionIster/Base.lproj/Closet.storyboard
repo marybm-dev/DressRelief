@@ -147,7 +147,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="SUs-bG-cS8" id="LMg-cK-AhY"/>
-                        <segue destination="umV-dG-K3x" kind="presentation" identifier="FromOutfitFavsToDetail" modalPresentationStyle="overCurrentContext" id="w8H-Ri-6Jx"/>
+                        <segue destination="umV-dG-K3x" kind="presentation" identifier="FromOutfitFavsToDetail" modalPresentationStyle="overFullScreen" id="w8H-Ri-6Jx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJ0-oc-WbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
