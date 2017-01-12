@@ -48,7 +48,7 @@ class PannableViewController: UIViewController, UIViewControllerTransitioningDel
                     animations: {
                         self.view.transform = scaleTransform
                         self.view.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
-                        self.view.frame.origin = CGPoint(x: self.view.frame.origin.x, y: self.view.frame.size.height)
+                        self.view.frame.origin = CGPoint(x: finalFrame.origin.x, y: finalFrame.origin.y)
                     },
                     completion: { (isCompleted) in
                         if isCompleted { self.dismiss(animated: false, completion: nil) }

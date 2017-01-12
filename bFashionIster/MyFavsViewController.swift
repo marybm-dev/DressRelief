@@ -31,6 +31,7 @@ class MyFavsViewController: MeuItemViewController {
     
     var selectedOutfit: Outfit!
     var selectedImage: UIImageView!
+    var selectedImageFrame: CGRect!
     
     var editButton: UIBarButtonItem!
     var isEditingFavs = false
@@ -210,6 +211,11 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             let cell = collectionView.cellForItem(at: indexPath) as! OutfitCollectionViewCell
             self.selectedImage = cell.outfitImageView
             
+            guard let attributes = collectionView.layoutAttributesForItem(at: indexPath) else { return }
+            
+            let cellRect = attributes.frame
+            let cellFrameInSuperview = collectionView.convert(cellRect, to: collectionView.superview)
+            self.selectedImageFrame = cellFrameInSuperview
             performSegue(withIdentifier: OutfitSegue.FromOutfitFavsToDetail.rawValue, sender: nil)
         }
     }
@@ -219,7 +225,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             let outfitDetailViewController = segue.destination as! OutfitDetailViewController
             outfitDetailViewController.outfit = selectedOutfit
             outfitDetailViewController.transitioningDelegate = self
-            outfitDetailViewController.originalFrame = self.selectedImage.layer.frame
+            outfitDetailViewController.originalFrame = self.selectedImageFrame
         }
     }
 }
