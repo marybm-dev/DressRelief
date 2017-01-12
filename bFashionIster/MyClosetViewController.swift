@@ -38,11 +38,7 @@ class MyClosetViewController: MeuItemViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard realm != nil else { return }
-        realm.refresh()
-        outfits = getUnfavoritedOutfits()
-//        allOutfits = outfits   // this is crashing - seems like indices get reset between swipes?
-        kolodaView.reloadData()
+        refreshArrays()
     }
     
     @IBAction func didTapDislikeButton(_ sender: Any) {
@@ -57,12 +53,23 @@ class MyClosetViewController: MeuItemViewController {
         allOutfits = realm.objects(Outfit.self)
         return allOutfits.filter("isLiked = false")
     }
+    
+    func refreshArrays() {
+        guard realm != nil else { return }
+        realm.refresh()
+        outfits = getUnfavoritedOutfits()
+        if allOutfits.count > outfits.count {
+            allOutfits = outfits
+        }
+        kolodaView.reloadData()
+    }
 }
 
 //MARK: KolodaViewDelegate
 extension MyClosetViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        kolodaView.resetCurrentCardIndex()
+        refreshArrays()
+        koloda.resetCurrentCardIndex()
     }
     
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
@@ -104,7 +111,7 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-        guard index != outfits.count else { return }
+        guard index != allOutfits.count else { return }
         
         let outfit = allOutfits[index]
         
