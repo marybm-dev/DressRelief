@@ -13,7 +13,7 @@
 		4452B3161E0264CA0068A85E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B3151E0264CA0068A85E /* Extensions.swift */; };
 		4460BD251E08D01A00753281 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD241E08D01A00753281 /* TestData.swift */; };
 		4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD261E08D7C900753281 /* ArticleCollectionView.swift */; };
-		446390C91E27117C002FDAE2 /* ViewControllerPannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446390C81E27117C002FDAE2 /* ViewControllerPannable.swift */; };
+		446390C91E27117C002FDAE2 /* PannableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446390C81E27117C002FDAE2 /* PannableViewController.swift */; };
 		446390CB1E27123C002FDAE2 /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */; };
 		447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798011DFC9EBA004DA42D /* AppDelegate.swift */; };
 		447798091DFC9EBA004DA42D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447798081DFC9EBA004DA42D /* Assets.xcassets */; };
@@ -64,7 +64,7 @@
 		4452B3151E0264CA0068A85E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4460BD241E08D01A00753281 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		4460BD261E08D7C900753281 /* ArticleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionView.swift; sourceTree = "<group>"; };
-		446390C81E27117C002FDAE2 /* ViewControllerPannable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPannable.swift; sourceTree = "<group>"; };
+		446390C81E27117C002FDAE2 /* PannableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
 		446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDelegate.swift; sourceTree = "<group>"; };
 		447797FE1DFC9EBA004DA42D /* bFashionIster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bFashionIster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447798011DFC9EBA004DA42D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 			children = (
 				4432F1621E242F7600054F87 /* Koloda */,
 				448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */,
-				446390C81E27117C002FDAE2 /* ViewControllerPannable.swift */,
+				446390C81E27117C002FDAE2 /* PannableViewController.swift */,
 				446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */,
 			);
 			name = Animations;
@@ -474,7 +474,7 @@
 				447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */,
 				44E8652C1E17655300251310 /* CustomOverlayView.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
-				446390C91E27117C002FDAE2 /* ViewControllerPannable.swift in Sources */,
+				446390C91E27117C002FDAE2 /* PannableViewController.swift in Sources */,
 				448DE6561E1D78BA007582E0 /* TransitionAnimator.swift in Sources */,
 				447D854E1E121F5600F6CD6D /* OutfitCollectionViewCell.swift in Sources */,
 				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerPannable: UIViewController, UIViewControllerTransitioningDelegate {
+class PannableViewController: UIViewController, UIViewControllerTransitioningDelegate {
     var panGestureRecognizer: UIPanGestureRecognizer?
     var originalPosition: CGPoint?
     var originalFrame: CGRect?

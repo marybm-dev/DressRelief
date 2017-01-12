@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OutfitDetailViewController: ViewControllerPannable {
+class OutfitDetailViewController: PannableViewController {
 
     var outfit: Outfit!
     
