@@ -172,7 +172,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        let availableHeight = view.frame.height - paddingSpace - 64.0 - 88.0 // navBar space
+        let availableHeight = view.frame.height - paddingSpace - 64.0 - 72.0 - 49.0 // navBar space - section headers - tabBar
         let heightPerItem = availableHeight / itemsPerRow
         
         return CGSize(width: widthPerItem, height: heightPerItem)

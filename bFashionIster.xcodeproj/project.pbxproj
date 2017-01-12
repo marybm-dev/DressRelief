@@ -304,8 +304,8 @@
 				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
 				44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */,
 				447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */,
-				44E8652E1E17657D00251310 /* OverlayView.xib */,
 				44E8652B1E17655300251310 /* CustomOverlayView.xib */,
+				44E8652E1E17657D00251310 /* OverlayView.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
