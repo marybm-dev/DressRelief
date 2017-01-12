@@ -172,7 +172,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        let availableHeight = view.frame.height - paddingSpace - 64.0 - 72.0 - 49.0 // navBar space - section headers - tabBar
+        let availableHeight = view.frame.height - paddingSpace - 64.0 - 68.0 - 49.0 // navBar space - section headers - tabBar
         let heightPerItem = availableHeight / itemsPerRow
         
         return CGSize(width: widthPerItem, height: heightPerItem)
@@ -183,7 +183,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10.0
+        return 1.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
