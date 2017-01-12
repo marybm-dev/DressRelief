@@ -14,7 +14,7 @@
         <scene sceneID="lfZ-Bf-W8K">
             <objects>
                 <tableViewController storyboardIdentifier="ArticleDetailViewController" id="FSf-yx-163" customClass="ArticleDetailViewController" customModule="bFashionIster" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ec0-Qa-AtB">
+                    <tableView key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ec0-Qa-AtB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -420,6 +420,6 @@
         <image name="shutter" width="102" height="102"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jVL-nX-mEf"/>
+        <segue reference="aJT-Ge-hH6"/>
     </inferredMetricsTieBreakers>
 </document>
