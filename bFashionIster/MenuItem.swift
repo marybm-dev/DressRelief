@@ -16,6 +16,7 @@ enum IconName: String {
     case account,   accountFilled
     case settings,  settingsFilled
     case about,     aboutFilled
+    case star,      starFilled 
     
     case version, feedback, icons8 // used in about tableView
 }
