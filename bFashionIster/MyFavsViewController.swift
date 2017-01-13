@@ -26,11 +26,12 @@ class MyFavsViewController: MeuItemViewController {
     let colors = Category.allColors
     var categoryColors = [String: UIColor]()
     
-    let itemsPerRow: CGFloat = 2
+    let itemsPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0, right: 0.0)
     
     var selectedOutfit: Outfit!
     var selectedImage: UIImageView!
+    var selectedImageFrame: CGRect!
     
     var editButton: UIBarButtonItem!
     var isEditingFavs = false
@@ -52,10 +53,7 @@ class MyFavsViewController: MeuItemViewController {
         categories = getOutfitCategories()
         setOutfitsHashTable()
         setCategoryColors()
-        
-        transition.dismissCompletion = {
-            self.selectedImage!.isHidden = false
-        }
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -174,7 +172,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        let availableHeight = view.frame.height - paddingSpace - 64.0 - 88.0 // navBar space
+        let availableHeight = view.frame.height - paddingSpace - 64.0 - 68.0 - 49.0 // navBar space - section headers - tabBar
         let heightPerItem = availableHeight / itemsPerRow
         
         return CGSize(width: widthPerItem, height: heightPerItem)
@@ -185,7 +183,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10.0
+        return 1.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -213,6 +211,11 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             let cell = collectionView.cellForItem(at: indexPath) as! OutfitCollectionViewCell
             self.selectedImage = cell.outfitImageView
             
+            guard let attributes = collectionView.layoutAttributesForItem(at: indexPath) else { return }
+            
+            let cellRect = attributes.frame
+            let cellFrameInSuperview = collectionView.convert(cellRect, to: collectionView.superview)
+            self.selectedImageFrame = cellFrameInSuperview
             performSegue(withIdentifier: OutfitSegue.FromOutfitFavsToDetail.rawValue, sender: nil)
         }
     }
@@ -222,6 +225,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             let outfitDetailViewController = segue.destination as! OutfitDetailViewController
             outfitDetailViewController.outfit = selectedOutfit
             outfitDetailViewController.transitioningDelegate = self
+            outfitDetailViewController.originalFrame = self.selectedImageFrame
         }
     }
 }
@@ -230,16 +234,12 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
 extension MyFavsViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
         transition.originFrame = selectedImage!.superview!.convert(selectedImage!.frame, to: nil)
         transition.presenting = true
-        selectedImage!.isHidden = true
-        
         return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
         transition.presenting = false
         return transition
     }

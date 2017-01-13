@@ -19,15 +19,17 @@ class MyClosetViewController: MeuItemViewController {
     
     var realm: Realm!
     var outfits: Results<Outfit>!
-    
+    var allOutfits: Results<Outfit>!
+
     @IBOutlet weak var kolodaView: KolodaView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         realm = try! Realm()
-        outfits = realm.objects(Outfit.self)
-        
+        outfits = getUnfavoritedOutfits()
+        allOutfits = outfits
+
         kolodaView.dataSource = self
         kolodaView.delegate = self
         
@@ -36,10 +38,7 @@ class MyClosetViewController: MeuItemViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard realm != nil else { return }
-        realm.refresh()
-        outfits = realm.objects(Outfit.self)
-        kolodaView.reloadData()
+        refreshArrays()
     }
     
     @IBAction func didTapDislikeButton(_ sender: Any) {
@@ -49,12 +48,28 @@ class MyClosetViewController: MeuItemViewController {
     @IBAction func didTapLikeButton(_ sender: Any) {
         kolodaView.swipe(SwipeResultDirection.right)
     }
+    
+    func getUnfavoritedOutfits() -> Results<Outfit> {
+        allOutfits = realm.objects(Outfit.self)
+        return allOutfits.filter("isLiked = false")
+    }
+    
+    func refreshArrays() {
+        guard realm != nil else { return }
+        realm.refresh()
+        outfits = getUnfavoritedOutfits()
+        if allOutfits.count > outfits.count {
+            allOutfits = outfits
+        }
+        kolodaView.reloadData()
+    }
 }
 
 //MARK: KolodaViewDelegate
 extension MyClosetViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        kolodaView.resetCurrentCardIndex()
+        refreshArrays()
+        koloda.resetCurrentCardIndex()
     }
     
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
@@ -85,7 +100,7 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let outfit: Outfit = outfits[Int(index)]
+        let outfit: Outfit = allOutfits[index]
         outfit.setImagePath()
         let image = Helper.image(atPath: outfit.combinedImgUrl)
         let imageView = UIImageView(image: image)
@@ -96,9 +111,9 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-        guard index != outfits.count else { return }
+        guard index != allOutfits.count else { return }
         
-        let outfit = outfits[index]
+        let outfit = allOutfits[index]
         
         try! realm.write {
             if direction == SwipeResultDirection.left {

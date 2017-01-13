@@ -147,7 +147,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="SUs-bG-cS8" id="LMg-cK-AhY"/>
-                        <segue destination="umV-dG-K3x" kind="presentation" identifier="FromOutfitFavsToDetail" id="w8H-Ri-6Jx"/>
+                        <segue destination="umV-dG-K3x" kind="presentation" identifier="FromOutfitFavsToDetail" modalPresentationStyle="overFullScreen" id="w8H-Ri-6Jx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJ0-oc-WbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,10 +167,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MkJ-CN-O7k">
-                                <rect key="frame" x="0.0" y="40" width="375" height="585"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="541"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8K-dM-doM">
-                                <rect key="frame" x="0.0" y="625" width="375" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8K-dM-doM">
+                                <rect key="frame" x="0.0" y="559" width="375" height="42"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="yaw-Bg-dwR"/>
@@ -180,14 +180,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="MkJ-CN-O7k" firstAttribute="top" secondItem="KuL-kQ-YWb" secondAttribute="top" constant="40" id="9YA-Jl-fP2"/>
+                            <constraint firstItem="MkJ-CN-O7k" firstAttribute="top" secondItem="KuL-kQ-YWb" secondAttribute="top" constant="60" id="9YA-Jl-fP2"/>
                             <constraint firstAttribute="trailing" secondItem="MkJ-CN-O7k" secondAttribute="trailing" id="9rt-EY-Oz1"/>
-                            <constraint firstItem="chd-Hm-j2a" firstAttribute="top" secondItem="a8K-dM-doM" secondAttribute="bottom" id="CEO-op-dU9"/>
                             <constraint firstItem="a8K-dM-doM" firstAttribute="leading" secondItem="KuL-kQ-YWb" secondAttribute="leading" id="DLi-hG-5uq"/>
-                            <constraint firstItem="chd-Hm-j2a" firstAttribute="top" secondItem="MkJ-CN-O7k" secondAttribute="bottom" constant="42" id="GFt-Lj-cI2"/>
+                            <constraint firstItem="chd-Hm-j2a" firstAttribute="top" secondItem="MkJ-CN-O7k" secondAttribute="bottom" constant="66" id="GFt-Lj-cI2"/>
                             <constraint firstItem="MkJ-CN-O7k" firstAttribute="leading" secondItem="KuL-kQ-YWb" secondAttribute="leading" id="eyj-Lb-bD1"/>
+                            <constraint firstItem="a8K-dM-doM" firstAttribute="bottom" secondItem="MkJ-CN-O7k" secondAttribute="bottom" id="mBM-1d-VJv"/>
                             <constraint firstAttribute="trailing" secondItem="a8K-dM-doM" secondAttribute="trailing" id="q2s-AD-DEv"/>
                         </constraints>
                     </view>
@@ -229,10 +229,16 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="delegate" destination="Xh1-RH-miu" id="R0b-6L-kps"/>
                         <segue destination="oZQ-nZ-LrX" kind="relationship" relationship="rootViewController" id="JQ6-Qv-Pct"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZ1-e0-Rfb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Xh1-RH-miu" customClass="ControllerDelegate" customModule="bFashionIster" customModuleProvider="target">
+                    <connections>
+                        <outlet property="navigationController" destination="pHI-BC-qBh" id="lk4-dA-KAk"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="394" y="-537"/>
         </scene>

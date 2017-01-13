@@ -13,6 +13,8 @@
 		4452B3161E0264CA0068A85E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B3151E0264CA0068A85E /* Extensions.swift */; };
 		4460BD251E08D01A00753281 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD241E08D01A00753281 /* TestData.swift */; };
 		4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD261E08D7C900753281 /* ArticleCollectionView.swift */; };
+		446390C91E27117C002FDAE2 /* PannableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446390C81E27117C002FDAE2 /* PannableViewController.swift */; };
+		446390CB1E27123C002FDAE2 /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */; };
 		447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447798011DFC9EBA004DA42D /* AppDelegate.swift */; };
 		447798091DFC9EBA004DA42D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447798081DFC9EBA004DA42D /* Assets.xcassets */; };
 		4477980C1DFC9EBA004DA42D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4477980A1DFC9EBA004DA42D /* LaunchScreen.storyboard */; };
@@ -62,6 +64,8 @@
 		4452B3151E0264CA0068A85E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4460BD241E08D01A00753281 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		4460BD261E08D7C900753281 /* ArticleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionView.swift; sourceTree = "<group>"; };
+		446390C81E27117C002FDAE2 /* PannableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
+		446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDelegate.swift; sourceTree = "<group>"; };
 		447797FE1DFC9EBA004DA42D /* bFashionIster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bFashionIster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447798011DFC9EBA004DA42D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		447798081DFC9EBA004DA42D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,6 +144,15 @@
 			name = Create;
 			sourceTree = "<group>";
 		};
+		4432F1621E242F7600054F87 /* Koloda */ = {
+			isa = PBXGroup;
+			children = (
+				44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */,
+				44E8652A1E17655300251310 /* CustomOverlayView.swift */,
+			);
+			name = Koloda;
+			sourceTree = "<group>";
+		};
 		447797F51DFC9EBA004DA42D = {
 			isa = PBXGroup;
 			children = (
@@ -186,9 +199,10 @@
 		448DE65B1E1DE0E7007582E0 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				4432F1621E242F7600054F87 /* Koloda */,
 				448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */,
-				44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */,
-				44E8652A1E17655300251310 /* CustomOverlayView.swift */,
+				446390C81E27117C002FDAE2 /* PannableViewController.swift */,
+				446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -290,8 +304,8 @@
 				44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */,
 				44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */,
 				447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */,
-				44E8652E1E17657D00251310 /* OverlayView.xib */,
 				44E8652B1E17655300251310 /* CustomOverlayView.xib */,
+				44E8652E1E17657D00251310 /* OverlayView.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -460,6 +474,7 @@
 				447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */,
 				44E8652C1E17655300251310 /* CustomOverlayView.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
+				446390C91E27117C002FDAE2 /* PannableViewController.swift in Sources */,
 				448DE6561E1D78BA007582E0 /* TransitionAnimator.swift in Sources */,
 				447D854E1E121F5600F6CD6D /* OutfitCollectionViewCell.swift in Sources */,
 				4452B3161E0264CA0068A85E /* Extensions.swift in Sources */,
@@ -469,6 +484,7 @@
 				44CDFC711E05FC67002FFC6D /* Article.swift in Sources */,
 				44CDFC6D1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift in Sources */,
 				447798021DFC9EBA004DA42D /* AppDelegate.swift in Sources */,
+				446390CB1E27123C002FDAE2 /* ControllerDelegate.swift in Sources */,
 				44A777C31DFDF67400FD2A48 /* MenuItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

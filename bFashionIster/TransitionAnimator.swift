@@ -9,6 +9,7 @@
 import UIKit
 
 class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    weak var transitionContext: UIViewControllerContextTransitioning?
     
     let duration = 0.7
     var presenting = true
@@ -20,6 +21,8 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        
+        self.transitionContext = transitionContext
         
         let containerView = transitionContext.containerView
         let toView = transitionContext.view(forKey: .to)!
@@ -37,25 +40,20 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             finalFrame.height / initialFrame.height
         
         
-        let scaleTransform = CGAffineTransform(scaleX: xScaleFactor,
-                                               y: yScaleFactor)
+        let scaleTransform = CGAffineTransform(scaleX: xScaleFactor, y: yScaleFactor)
         
         if presenting {
             detailView.transform = scaleTransform
-            detailView.center = CGPoint(
-                x: initialFrame.midX,
-                y: initialFrame.midY)
+            detailView.center = CGPoint( x: initialFrame.midX, y: initialFrame.midY)
             detailView.clipsToBounds = true
         }
         
         containerView.addSubview(toView)
         containerView.bringSubview(toFront: detailView)
         
-        UIView.animate(withDuration: duration, delay:0.0,
-                       usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0,
+        UIView.animate(withDuration: duration, delay:0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0,
             animations: {
-                detailView.transform = self.presenting ?
-                CGAffineTransform.identity : scaleTransform
+                detailView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
                 detailView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
             },
             completion:{_ in
