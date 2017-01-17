@@ -36,15 +36,8 @@ class Helper {
             // attempt to load "named" image
             if let image = UIImage(named: article.imgUrl) {
                 imageView.image = image
-                
             } else {
-                // defaults image - just in case
-                if article.articleType == ArticleType.top.rawValue {
-                    imageView.image = #imageLiteral(resourceName: "topsBar")
-                    
-                } else {
-                    imageView.image = #imageLiteral(resourceName: "bottomsBar")
-                }
+                imageView.image = nil
             }
         }
     }
