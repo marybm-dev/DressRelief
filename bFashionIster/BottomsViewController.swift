@@ -48,7 +48,7 @@ class BottomsViewController: ArticleCollectionView {
                 self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
                 
             }, completion: { (completed: Bool) in
-                // do any updates
+                self.collectionView.reloadData()
             })
             
             break
