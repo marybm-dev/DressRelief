@@ -28,7 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TestData.defaults()
         
         // Setup styles
-        self.configureAppStyling()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = Helper.initTabBarController()
+        window?.makeKeyAndVisible()
+        window?.tintColor = .white
         
         return true
     }
@@ -53,89 +56,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController?.view.frame = CGRect(x: viewFrame.origin.x, y: viewFrame.origin.y + adjustment, width: viewFrame.size.width, height: viewFrame.size.height)
         UIView.commitAnimations()
     }
-}
-
-extension AppDelegate {
-    
-    func configureAppStyling() {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = initTabBarController()
-        window?.makeKeyAndVisible()
-    }
-    
-    func initNavigationControllers() -> [UINavigationController] {
-        // init storyboards
-        let closetStoryboard = UIStoryboard(name: "Closet", bundle: nil)
-        let articlesStoryboard = UIStoryboard(name: "Articles", bundle: nil)
-        let accountStoryboard = UIStoryboard(name: "Account", bundle: nil)
-        
-        // init navigation controllers
-        let myClosetNavigationController = closetStoryboard.instantiateViewController(withIdentifier: "MyClosetNavigationController") as! UINavigationController
-        let myFavsNavigationController = closetStoryboard.instantiateViewController(withIdentifier: "MyFavsNavigationController") as! UINavigationController
-        let topsNavigationController = articlesStoryboard.instantiateViewController(withIdentifier: "TopsNavigationController") as! UINavigationController
-        let bottomsNavigationController = articlesStoryboard.instantiateViewController(withIdentifier: "BottomsNavigationController") as! UINavigationController
-        let settingsNavigationController = accountStoryboard.instantiateViewController(withIdentifier: "SettingsNavigationController") as! UINavigationController
-        
-        // init tabBar items
-        myClosetNavigationController.tabBarItem = UITabBarItem(title: nil, image: (#imageLiteral(resourceName: "closet")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "closetFilled"))
-        myClosetNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
-        myClosetNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
-        myClosetNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-        
-        myFavsNavigationController.tabBarItem = UITabBarItem(title: nil, image: (#imageLiteral(resourceName: "favs")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "favsFilled"))
-        myFavsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
-        myFavsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
-        myFavsNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 3, left: 0, bottom: -3, right: 0)
-        
-        topsNavigationController.tabBarItem = UITabBarItem(title: nil, image: (#imageLiteral(resourceName: "tops")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "topsFilled"))
-        topsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
-        topsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
-        topsNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-        
-        bottomsNavigationController.tabBarItem = UITabBarItem(title: nil, image: (#imageLiteral(resourceName: "bottoms")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "bottomsFilled"))
-        bottomsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
-        bottomsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
-        bottomsNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-        
-        settingsNavigationController.tabBarItem = UITabBarItem(title: nil, image: (#imageLiteral(resourceName: "about")).withRenderingMode(.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "aboutFilled"))
-        settingsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.normal)
-        settingsNavigationController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.customBlue()], for:.selected)
-        settingsNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-        
-        // init navBar items
-        let closetItem = MenuItem(title: "Wardrobe", iconName: .closet, iconFilledName: .closetFilled)
-        let myFavsItem = MenuItem(title: "Favorites", iconName: .favs, iconFilledName: .favsFilled)
-        let topsItem = MenuItem(title: "Tops", iconName: .tops, iconFilledName: .topsFilled)
-        let bottomsItem = MenuItem(title: "Bottoms", iconName: .bottoms, iconFilledName: .bottomsFilled)
-        let aboutItem = MenuItem(title: "About", iconName: .about, iconFilledName: .aboutFilled)
-
-        // add the menuItems to their respected viewController
-        (myClosetNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = closetItem
-        (myFavsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = myFavsItem
-        (topsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = topsItem
-        (bottomsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = bottomsItem
-        (settingsNavigationController.childViewControllers.first as? MeuItemViewController)?.menuItem = aboutItem
-        
-        return [myClosetNavigationController, myFavsNavigationController, topsNavigationController, bottomsNavigationController, settingsNavigationController]
-    }
-    
-    func initTabBarController() -> UITabBarController {
-        // setup the tab bar
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = initNavigationControllers()
-        
-        // add styles to nav and tab bars
-        let navBar = UINavigationBar.appearance()
-        navBar.tintColor = UIColor.appleLightestGray()
-        navBar.barStyle = UIBarStyle.black
-        navBar.barTintColor = UIColor.emeraldGreen()
-        
-        let tabBar = UITabBar.appearance()
-        tabBar.tintColor = UIColor.customBlue()                // bar button items
-        let tabBarBackground = #imageLiteral(resourceName: "bgFlatGray")
-        tabBar.backgroundImage = tabBarBackground
-        
-        return tabBarController
-    }
-    
 }

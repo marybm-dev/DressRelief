@@ -19,28 +19,28 @@ class MyClosetViewController: MeuItemViewController {
     
     var realm: Realm!
     var outfits: Results<Outfit>!
-    var allOutfits: Results<Outfit>!
+    var subscription: NotificationToken?
+    
+    var didUpdate = false
+    var originalCount = 0
 
     @IBOutlet weak var kolodaView: KolodaView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        realm = try! Realm()
-        outfits = getUnfavoritedOutfits()
-        allOutfits = outfits
-
         kolodaView.dataSource = self
         kolodaView.delegate = self
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
+        
+        realm = try! Realm()
+        outfits = getUnfavoritedOutfits()
+        originalCount = outfits.count
+        subscription = notificationSubscription(for: outfits)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        refreshArrays()
-    }
-    
+
     @IBAction func didTapDislikeButton(_ sender: Any) {
         kolodaView.swipe(SwipeResultDirection.left)
     }
@@ -50,25 +50,34 @@ class MyClosetViewController: MeuItemViewController {
     }
     
     func getUnfavoritedOutfits() -> Results<Outfit> {
-        allOutfits = realm.objects(Outfit.self)
+        let allOutfits = realm.objects(Outfit.self)
         return allOutfits.filter("isLiked = false")
     }
     
-    func refreshArrays() {
-        guard realm != nil else { return }
-        realm.refresh()
-        outfits = getUnfavoritedOutfits()
-        if allOutfits.count > outfits.count {
-            allOutfits = outfits
+    func notificationSubscription(for outfits: Results<Outfit>) -> NotificationToken {
+        return outfits.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Outfit>>) in
+            self?.updateUI(with: changes)
+        })
+    }
+    
+    func updateUI(with changes: RealmCollectionChange<Results<Outfit>>) {
+        switch changes {
+        case .initial(_):
+            kolodaView.reloadData()
+        case .update(_, _, _, _):
+            didUpdate = true
+        case let .error(error):
+            print(error.localizedDescription)
         }
-        kolodaView.reloadData()
+
+        didUpdate = false
     }
 }
 
 //MARK: KolodaViewDelegate
 extension MyClosetViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        refreshArrays()
+        originalCount = outfits.count
         koloda.resetCurrentCardIndex()
     }
     
@@ -96,11 +105,16 @@ extension MyClosetViewController: KolodaViewDelegate {
 extension MyClosetViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return outfits.count
+        return outfits != nil ? outfits.count : 0
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let outfit: Outfit = allOutfits[index]
+        var indexToUse = index
+        if didUpdate || outfits.count == index {
+            indexToUse -= 1
+        }
+
+        let outfit: Outfit = outfits[indexToUse]
         outfit.setImagePath()
         let image = Helper.image(atPath: outfit.combinedImgUrl)
         let imageView = UIImageView(image: image)
@@ -111,15 +125,12 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-        guard index != allOutfits.count else { return }
-        
-        let outfit = allOutfits[index]
+        let offset = originalCount - outfits.count
+        let indexToUse = index - offset
         
         try! realm.write {
-            if direction == SwipeResultDirection.left {
-                outfit.isLiked = false
-                
-            } else if direction == SwipeResultDirection.right {
+            if direction == SwipeResultDirection.right {
+                let outfit = outfits[indexToUse]
                 outfit.isLiked = true
             }
         }
