@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C807580BE00CD2180086C14 /* Pods_bFashionIster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62F2F795F36CDC2EDE7AF3F /* Pods_bFashionIster.framework */; };
-		442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */; };
 		443017DD1E0CD6E0000755BD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443017DC1E0CD6E0000755BD /* Helper.swift */; };
 		4452B3161E0264CA0068A85E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B3151E0264CA0068A85E /* Extensions.swift */; };
 		4460BD251E08D01A00753281 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD241E08D01A00753281 /* TestData.swift */; };
@@ -27,6 +26,7 @@
 		447D854E1E121F5600F6CD6D /* OutfitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447D854C1E121F5600F6CD6D /* OutfitCollectionViewCell.swift */; };
 		447D854F1E121F5600F6CD6D /* OutfitCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */; };
 		447D85511E122C1100F6CD6D /* OutfitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */; };
+		44895F101E4A3023007EF85E /* MeuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44895F0F1E4A3023007EF85E /* MeuItemViewController.swift */; };
 		448DE6561E1D78BA007582E0 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */; };
 		448DE6581E1D9E51007582E0 /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448DE6571E1D9E51007582E0 /* AboutTableViewCell.swift */; };
 		448DE65A1E1D9EF8007582E0 /* AboutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448DE6591E1D9EF8007582E0 /* AboutItem.swift */; };
@@ -35,7 +35,6 @@
 		44A777B01DFDD3C800FD2A48 /* Closet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A777AE1DFDD3C800FD2A48 /* Closet.storyboard */; };
 		44A777B31DFDD3D300FD2A48 /* Articles.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A777B11DFDD3D300FD2A48 /* Articles.storyboard */; };
 		44A777B51DFDD3DB00FD2A48 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A777B41DFDD3DB00FD2A48 /* Account.storyboard */; };
-		44A777BE1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */; };
 		44A777BF1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */; };
 		44A777C31DFDF67400FD2A48 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A777C21DFDF67400FD2A48 /* MenuItem.swift */; };
 		44AF4A041E0CDBB800A17659 /* ArticleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4A031E0CDBB800A17659 /* ArticleEditViewController.swift */; };
@@ -59,7 +58,6 @@
 
 /* Begin PBXFileReference section */
 		1EB40BD5E21C1FE1FBA685C3 /* Pods-bFashionIster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bFashionIster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bFashionIster/Pods-bFashionIster.debug.xcconfig"; sourceTree = "<group>"; };
-		442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeuItemViewController.swift; sourceTree = "<group>"; };
 		443017DC1E0CD6E0000755BD /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4452B3151E0264CA0068A85E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4460BD241E08D01A00753281 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
@@ -80,6 +78,7 @@
 		447D854C1E121F5600F6CD6D /* OutfitCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitCollectionViewCell.swift; sourceTree = "<group>"; };
 		447D854D1E121F5600F6CD6D /* OutfitCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutfitCollectionViewCell.xib; sourceTree = "<group>"; };
 		447D85501E122C1100F6CD6D /* OutfitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitDetailViewController.swift; sourceTree = "<group>"; };
+		44895F0F1E4A3023007EF85E /* MeuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeuItemViewController.swift; sourceTree = "<group>"; };
 		448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
 		448DE6571E1D9E51007582E0 /* AboutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableViewCell.swift; sourceTree = "<group>"; };
 		448DE6591E1D9EF8007582E0 /* AboutItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutItem.swift; sourceTree = "<group>"; };
@@ -88,7 +87,6 @@
 		44A777AF1DFDD3C800FD2A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Closet.storyboard; sourceTree = "<group>"; };
 		44A777B21DFDD3D300FD2A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Articles.storyboard; sourceTree = "<group>"; };
 		44A777B41DFDD3DB00FD2A48 /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
-		44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		44A777BD1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		44A777C21DFDF67400FD2A48 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		44AF4A031E0CDBB800A17659 /* ArticleEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleEditViewController.swift; sourceTree = "<group>"; };
@@ -246,8 +244,7 @@
 		44A777B71DFDD5BE00FD2A48 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				442F28CC1E05AA6300AAD5FE /* MeuItemViewController.swift */,
-				44A777BC1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift */,
+				44895F0F1E4A3023007EF85E /* MeuItemViewController.swift */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -466,13 +463,12 @@
 				44AF4A041E0CDBB800A17659 /* ArticleEditViewController.swift in Sources */,
 				44CD8DC61DFF8BCE00BD4CF1 /* SettingsViewController.swift in Sources */,
 				44CD8DBC1DFF8B8900BD4CF1 /* MyClosetViewController.swift in Sources */,
-				44A777BE1DFDF4EA00FD2A48 /* MenuItemCollectionViewCell.swift in Sources */,
 				448E37E11E05EB1E00A62DC6 /* User.swift in Sources */,
 				44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */,
 				447CBDB71E0966F700176997 /* Category.swift in Sources */,
-				442F28CD1E05AA6300AAD5FE /* MeuItemViewController.swift in Sources */,
 				447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */,
 				44E8652C1E17655300251310 /* CustomOverlayView.swift in Sources */,
+				44895F101E4A3023007EF85E /* MeuItemViewController.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
 				446390C91E27117C002FDAE2 /* PannableViewController.swift in Sources */,
 				448DE6561E1D78BA007582E0 /* TransitionAnimator.swift in Sources */,
@@ -629,7 +625,7 @@
 				DEVELOPMENT_TEAM = 6NZ47HJYTD;
 				INFOPLIST_FILE = bFashionIster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mmartinez.bFashionIster;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmartinez.DressRelief;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -643,7 +639,7 @@
 				DEVELOPMENT_TEAM = 6NZ47HJYTD;
 				INFOPLIST_FILE = bFashionIster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mmartinez.bFashionIster;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmartinez.DressRelief;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
