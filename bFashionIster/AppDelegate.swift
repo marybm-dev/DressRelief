@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = Helper.initTabBarController()
         window?.makeKeyAndVisible()
+        window?.tintColor = .white
         
         return true
     }
