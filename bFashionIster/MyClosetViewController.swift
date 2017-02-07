@@ -63,19 +63,13 @@ class MyClosetViewController: MeuItemViewController {
     func updateUI(with changes: RealmCollectionChange<Results<Outfit>>) {
         switch changes {
         case .initial(_):
-            print("\n===== initial =====")
             kolodaView.reloadData()
         case .update(_, _, _, _):
-            print("\n===== update =====")
             didUpdate = true
         case let .error(error):
             print(error.localizedDescription)
         }
-        
-        for outfit in outfits {
-            print(outfit.outfitId)
-        }
-        print("==========\n")
+
         didUpdate = false
     }
 }
@@ -115,8 +109,6 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        print("outfits: \(outfits.count)   viewForCardAt index: \(index)")
-
         var indexToUse = index
         if didUpdate || outfits.count == index {
             indexToUse -= 1
@@ -133,14 +125,11 @@ extension MyClosetViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-        print("outfits: \(outfits.count)   didSwipeCardAt index: \(index) \t originalCount: \(originalCount)")
-        
         let offset = originalCount - outfits.count
         let indexToUse = index - offset
         
         try! realm.write {
             if direction == SwipeResultDirection.right {
-                print("... updating...\t indexToUse: \(indexToUse)\t index: \(index) \t offset:\(offset)")
                 let outfit = outfits[indexToUse]
                 outfit.isLiked = true
             }
