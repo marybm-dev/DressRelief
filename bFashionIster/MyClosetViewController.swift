@@ -25,6 +25,7 @@ class MyClosetViewController: MeuItemViewController {
     var originalCount = 0
 
     @IBOutlet weak var kolodaView: KolodaView!
+    @IBOutlet weak var emptyImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,11 @@ class MyClosetViewController: MeuItemViewController {
         outfits = getUnfavoritedOutfits()
         originalCount = outfits.count
         subscription = notificationSubscription(for: outfits)
+        toggleHidden()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.refresh()
     }
 
     @IBAction func didTapDislikeButton(_ sender: Any) {
@@ -47,6 +53,18 @@ class MyClosetViewController: MeuItemViewController {
     
     @IBAction func didTapLikeButton(_ sender: Any) {
         kolodaView.swipe(SwipeResultDirection.right)
+    }
+    
+    func refresh() {
+        if outfits.count != originalCount {
+            originalCount = outfits.count
+            toggleHidden()
+            kolodaView.resetCurrentCardIndex()
+        }
+    }
+    
+    func toggleHidden() {
+        emptyImageView.isHidden = (outfits.count == 0) ? false : true
     }
     
     func getUnfavoritedOutfits() -> Results<Outfit> {

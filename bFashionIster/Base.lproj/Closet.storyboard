@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -40,24 +40,32 @@
                                 <rect key="frame" x="30" y="104" width="315" height="451"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyWardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-Nr-fNX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="39r-Ta-zuA" firstAttribute="width" secondItem="tdB-aK-bJv" secondAttribute="width" id="2cm-Ox-IET"/>
                             <constraint firstItem="39r-Ta-zuA" firstAttribute="centerY" secondItem="tdB-aK-bJv" secondAttribute="centerY" id="5ER-Fb-Yf1"/>
                             <constraint firstAttribute="trailing" secondItem="tSf-h8-cLy" secondAttribute="trailing" constant="30" id="DxI-Z1-Q30"/>
+                            <constraint firstItem="Wsz-Nr-fNX" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="FNC-i2-ghQ"/>
                             <constraint firstItem="39r-Ta-zuA" firstAttribute="top" secondItem="tSf-h8-cLy" secondAttribute="bottom" constant="16" id="JZx-Xv-XmS"/>
                             <constraint firstItem="tSf-h8-cLy" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" constant="30" id="NWs-UR-Qsl"/>
+                            <constraint firstAttribute="trailing" secondItem="Wsz-Nr-fNX" secondAttribute="trailing" id="Ph8-VW-30O"/>
                             <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="39r-Ta-zuA" secondAttribute="bottom" constant="20" id="PwD-dy-iV8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tdB-aK-bJv" secondAttribute="trailing" constant="74" id="RP4-Eh-zC3"/>
                             <constraint firstItem="39r-Ta-zuA" firstAttribute="height" secondItem="tdB-aK-bJv" secondAttribute="height" id="YKI-Ts-dRA"/>
                             <constraint firstItem="tdB-aK-bJv" firstAttribute="leading" secondItem="39r-Ta-zuA" secondAttribute="trailing" constant="43" id="aX5-Ik-aH5"/>
                             <constraint firstItem="tSf-h8-cLy" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" constant="40" id="q5k-7M-fy3"/>
+                            <constraint firstItem="Wsz-Nr-fNX" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="tys-V4-u4v"/>
+                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="Wsz-Nr-fNX" secondAttribute="bottom" id="xSd-dA-xkI"/>
                             <constraint firstItem="39r-Ta-zuA" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leadingMargin" constant="74" id="xjS-Cj-NjX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DeK-8B-E3J"/>
                     <connections>
+                        <outlet property="emptyImageView" destination="Wsz-Nr-fNX" id="3N0-HN-mP6"/>
                         <outlet property="kolodaView" destination="tSf-h8-cLy" id="NCE-Zu-fKL"/>
                     </connections>
                 </viewController>
@@ -134,19 +142,25 @@
                                     <outlet property="delegate" destination="oZQ-nZ-LrX" id="SsF-Xw-IjQ"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyLikes" translatesAutoresizingMaskIntoConstraints="NO" id="Pim-N7-Kf5">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Pim-N7-Kf5" secondAttribute="trailing" id="07Y-yN-ify"/>
+                            <constraint firstItem="gkJ-Ry-PG6" firstAttribute="top" secondItem="Pim-N7-Kf5" secondAttribute="bottom" id="EF9-16-POB"/>
                             <constraint firstItem="gkJ-Ry-PG6" firstAttribute="top" secondItem="SUs-bG-cS8" secondAttribute="bottom" id="Z5j-NM-Ori"/>
+                            <constraint firstItem="Pim-N7-Kf5" firstAttribute="leading" secondItem="nY6-nq-ACX" secondAttribute="leading" id="bOv-V3-IwH"/>
                             <constraint firstAttribute="trailing" secondItem="SUs-bG-cS8" secondAttribute="trailing" id="fNU-Ox-UiV"/>
                             <constraint firstItem="SUs-bG-cS8" firstAttribute="leading" secondItem="nY6-nq-ACX" secondAttribute="leading" id="nSP-7U-rMH"/>
+                            <constraint firstItem="Pim-N7-Kf5" firstAttribute="top" secondItem="hJY-ub-Qyv" secondAttribute="bottom" id="sqB-8l-e7w"/>
                             <constraint firstItem="SUs-bG-cS8" firstAttribute="top" secondItem="nY6-nq-ACX" secondAttribute="top" id="uCx-46-Kk2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="beg-94-Lxf">
-                        <barButtonItem key="rightBarButtonItem" image="filter" id="Afi-GT-aKg"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="beg-94-Lxf"/>
                     <connections>
                         <outlet property="collectionView" destination="SUs-bG-cS8" id="LMg-cK-AhY"/>
+                        <outlet property="emptyImageView" destination="Pim-N7-Kf5" id="rTe-oa-xdc"/>
                         <segue destination="umV-dG-K3x" kind="presentation" identifier="FromOutfitFavsToDetail" modalPresentationStyle="overFullScreen" id="w8H-Ri-6Jx"/>
                     </connections>
                 </viewController>
@@ -245,7 +259,8 @@
     </scenes>
     <resources>
         <image name="dislike" width="76" height="76"/>
-        <image name="filter" width="25" height="25"/>
+        <image name="emptyLikes" width="375" height="667"/>
+        <image name="emptyWardrobe" width="375" height="667"/>
         <image name="like" width="76" height="76"/>
     </resources>
 </document>

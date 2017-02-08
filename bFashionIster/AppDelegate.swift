@@ -25,13 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         
         // Test data
-        TestData.defaults()
+//        TestData.defaults()
         
         // Setup styles
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = Helper.initTabBarController()
         window?.makeKeyAndVisible()
-        window?.tintColor = .white
         
         return true
     }

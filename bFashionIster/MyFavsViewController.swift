@@ -12,6 +12,7 @@ import RealmSwift
 class MyFavsViewController: MeuItemViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyImageView: UIImageView!
     
     let allCategories = Category.allValues
     
@@ -48,17 +49,22 @@ class MyFavsViewController: MeuItemViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "OutfitCell")
         
         favs = getFavs()
+        toggleHidden()
         collectionView.reloadData()
 
         categories = getOutfitCategories()
         setOutfitsHashTable()
         setCategoryColors()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refreshData()
+        toggleHidden()
+    }
+    
+    func toggleHidden() {
+        emptyImageView.isHidden = (favs?.count == 0) ? false : true
     }
 }
 
@@ -199,6 +205,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             let alertController = UIAlertController(title: "Delete Favorite?", message: "This will remove the outfit from your favorites.", preferredStyle: UIAlertControllerStyle.alert)
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) -> Void in
                 self.unfavorite(outfit: self.selectedOutfit)
+                print("deleted \(self.selectedOutfit)")
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
                 print("canceled")
@@ -273,8 +280,6 @@ extension MyFavsViewController {
         let realm = try! Realm()
         try! realm.write {
             outfit.isLiked = false
-            outfit.top?.countLikes -= 1
-            outfit.bottom?.countLikes -= 1
         }
     }
 }
