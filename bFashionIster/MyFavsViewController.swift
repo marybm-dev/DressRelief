@@ -199,6 +199,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             let alertController = UIAlertController(title: "Delete Favorite?", message: "This will remove the outfit from your favorites.", preferredStyle: UIAlertControllerStyle.alert)
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) -> Void in
                 self.unfavorite(outfit: self.selectedOutfit)
+                print("deleted \(self.selectedOutfit)")
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
                 print("canceled")
@@ -273,8 +274,6 @@ extension MyFavsViewController {
         let realm = try! Realm()
         try! realm.write {
             outfit.isLiked = false
-            outfit.top?.countLikes -= 1
-            outfit.bottom?.countLikes -= 1
         }
     }
 }

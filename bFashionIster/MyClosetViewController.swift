@@ -40,6 +40,10 @@ class MyClosetViewController: MeuItemViewController {
         originalCount = outfits.count
         subscription = notificationSubscription(for: outfits)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.refresh()
+    }
 
     @IBAction func didTapDislikeButton(_ sender: Any) {
         kolodaView.swipe(SwipeResultDirection.left)
@@ -47,6 +51,13 @@ class MyClosetViewController: MeuItemViewController {
     
     @IBAction func didTapLikeButton(_ sender: Any) {
         kolodaView.swipe(SwipeResultDirection.right)
+    }
+    
+    func refresh() {
+        if outfits.count != originalCount {
+            originalCount = outfits.count
+            kolodaView.resetCurrentCardIndex()
+        }
     }
     
     func getUnfavoritedOutfits() -> Results<Outfit> {

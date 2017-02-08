@@ -17,6 +17,7 @@ class SettingsViewController: MeuItemViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.window?.tintColor = .white
         tableView.reloadData()
     }
 }
