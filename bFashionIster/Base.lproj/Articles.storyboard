@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,12 +45,19 @@
                                     <outlet property="delegate" destination="HIF-hI-y0S" id="fJm-1e-4eT"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyTops" translatesAutoresizingMaskIntoConstraints="NO" id="GpP-Fx-KtW">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Xex-c7-EQc" firstAttribute="top" secondItem="Nxj-1W-3fw" secondAttribute="top" id="7j2-2t-i6X"/>
                             <constraint firstItem="Xex-c7-EQc" firstAttribute="leading" secondItem="Nxj-1W-3fw" secondAttribute="leading" id="Cnf-rB-tTj"/>
+                            <constraint firstItem="GpP-Fx-KtW" firstAttribute="leading" secondItem="Nxj-1W-3fw" secondAttribute="leading" id="Nac-0d-mHw"/>
+                            <constraint firstItem="GpP-Fx-KtW" firstAttribute="top" secondItem="z82-5j-0Yq" secondAttribute="bottom" id="bNI-bo-7j8"/>
                             <constraint firstItem="QCc-PK-dJB" firstAttribute="top" secondItem="Xex-c7-EQc" secondAttribute="bottom" id="eSp-aX-ldr"/>
                             <constraint firstAttribute="trailing" secondItem="Xex-c7-EQc" secondAttribute="trailing" id="tiO-wo-CQg"/>
+                            <constraint firstItem="QCc-PK-dJB" firstAttribute="top" secondItem="GpP-Fx-KtW" secondAttribute="bottom" id="tvo-Fh-pXX"/>
+                            <constraint firstAttribute="trailing" secondItem="GpP-Fx-KtW" secondAttribute="trailing" id="v4J-bP-Qm3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="J1W-Wn-HZF">
@@ -62,12 +69,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Xex-c7-EQc" id="BCN-qc-ok0"/>
+                        <outlet property="emptyImageView" destination="GpP-Fx-KtW" id="AwB-RT-JcK"/>
                         <segue destination="gae-eF-z3s" kind="presentation" identifier="ToDetailFromTops" id="vEL-Dt-fYb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ab0-08-IoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-196" y="713.79310344827593"/>
+            <point key="canvasLocation" x="-197.10144927536234" y="713.31521739130437"/>
         </scene>
         <!--ArticleCreateNavigationController-->
         <scene sceneID="e1u-OA-yMr">
@@ -131,11 +139,18 @@
                                     <outlet property="delegate" destination="o0P-BU-TNf" id="bpz-x5-HH1"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyBottoms" translatesAutoresizingMaskIntoConstraints="NO" id="wqG-lI-3Te">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="YlZ-h8-jkr" firstAttribute="top" secondItem="wqG-lI-3Te" secondAttribute="bottom" id="Sif-I0-bre"/>
                             <constraint firstItem="l1X-6p-6Mi" firstAttribute="top" secondItem="rsg-v9-Vhh" secondAttribute="top" id="VqP-3w-ChU"/>
                             <constraint firstItem="YlZ-h8-jkr" firstAttribute="top" secondItem="l1X-6p-6Mi" secondAttribute="bottom" id="WX1-4q-KBg"/>
+                            <constraint firstItem="wqG-lI-3Te" firstAttribute="leading" secondItem="rsg-v9-Vhh" secondAttribute="leading" id="ZDy-Lu-RKF"/>
                             <constraint firstAttribute="trailing" secondItem="l1X-6p-6Mi" secondAttribute="trailing" id="fPo-5R-BLj"/>
+                            <constraint firstAttribute="trailing" secondItem="wqG-lI-3Te" secondAttribute="trailing" id="fXI-Ey-VoV"/>
+                            <constraint firstItem="wqG-lI-3Te" firstAttribute="top" secondItem="XSh-fr-JBx" secondAttribute="bottom" id="iO2-cL-2yJ"/>
                             <constraint firstItem="l1X-6p-6Mi" firstAttribute="leading" secondItem="rsg-v9-Vhh" secondAttribute="leading" id="oO8-Ss-QVn"/>
                         </constraints>
                     </view>
@@ -148,12 +163,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="l1X-6p-6Mi" id="fXE-4N-f8o"/>
+                        <outlet property="emptyImageView" destination="wqG-lI-3Te" id="h8T-Ry-aZW"/>
                         <segue destination="emU-Av-QwD" kind="presentation" identifier="ToDetailFromBottoms" id="e2E-G9-ni6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ot1-p8-XPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="701.60000000000002" y="713.79310344827593"/>
+            <point key="canvasLocation" x="701.44927536231887" y="713.31521739130437"/>
         </scene>
         <!--ArticleDetailNavigationController-->
         <scene sceneID="zGL-X7-hQu">
@@ -206,4 +222,8 @@
             <point key="canvasLocation" x="-396" y="1160"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="emptyBottoms" width="375" height="667"/>
+        <image name="emptyTops" width="375" height="667"/>
+    </resources>
 </document>

@@ -11,6 +11,8 @@ import RealmSwift
 
 class TopsViewController: ArticleCollectionView {
     
+    @IBOutlet weak var emptyImageView: UIImageView!
+    
     override var items: Results<Article>! {
         didSet {
             collectionView.reloadData()
@@ -21,7 +23,12 @@ class TopsViewController: ArticleCollectionView {
         super.viewDidLoad()
 
         items = getTops()
+        toggleHidden()
         subscription = notificationSubscription(for: items)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        toggleHidden()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +41,10 @@ class TopsViewController: ArticleCollectionView {
         articles = realm.objects(Article.self)
         
         return articles.filter("articleType = %@", ArticleType.top.rawValue)
+    }
+    
+    func toggleHidden() {
+        emptyImageView.isHidden = (items?.count == 0) ? false : true
     }
     
     override func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
