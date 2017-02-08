@@ -157,9 +157,7 @@
                             <constraint firstItem="SUs-bG-cS8" firstAttribute="top" secondItem="nY6-nq-ACX" secondAttribute="top" id="uCx-46-Kk2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="beg-94-Lxf">
-                        <barButtonItem key="rightBarButtonItem" image="filter" id="Afi-GT-aKg"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="beg-94-Lxf"/>
                     <connections>
                         <outlet property="collectionView" destination="SUs-bG-cS8" id="LMg-cK-AhY"/>
                         <outlet property="emptyImageView" destination="Pim-N7-Kf5" id="rTe-oa-xdc"/>
@@ -263,7 +261,6 @@
         <image name="dislike" width="76" height="76"/>
         <image name="emptyLikes" width="375" height="667"/>
         <image name="emptyWardrobe" width="375" height="667"/>
-        <image name="filter" width="25" height="25"/>
         <image name="like" width="76" height="76"/>
     </resources>
 </document>
