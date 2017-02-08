@@ -12,6 +12,7 @@ import RealmSwift
 class MyFavsViewController: MeuItemViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyImageView: UIImageView!
     
     let allCategories = Category.allValues
     
@@ -48,17 +49,22 @@ class MyFavsViewController: MeuItemViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "OutfitCell")
         
         favs = getFavs()
+        toggleHidden()
         collectionView.reloadData()
 
         categories = getOutfitCategories()
         setOutfitsHashTable()
         setCategoryColors()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refreshData()
+        toggleHidden()
+    }
+    
+    func toggleHidden() {
+        emptyImageView.isHidden = (favs?.count == 0) ? false : true
     }
 }
 
