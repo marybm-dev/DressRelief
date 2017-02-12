@@ -21,36 +21,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsX-8S-B00">
-                                <rect key="frame" x="0.0" y="64" width="375" height="302"/>
-                            </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpT-yP-LDE">
-                                <rect key="frame" x="0.0" y="365" width="375" height="302"/>
-                            </scrollView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyWardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-Nr-fNX">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Fp-Zgi">
+                                <rect key="frame" x="0.0" y="79" width="375" height="573"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsX-8S-B00">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="286.5"/>
+                                        <color key="backgroundColor" red="1" green="0.74008818330000004" blue="0.53136655700000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </scrollView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpT-yP-LDE">
+                                        <rect key="frame" x="0.0" y="286.5" width="375" height="286.5"/>
+                                        <color key="backgroundColor" red="0.34149546679999998" green="0.68102575229999995" blue="0.80109471450000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </scrollView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hpT-yP-LDE" firstAttribute="top" secondItem="QsX-8S-B00" secondAttribute="bottom" constant="-1" id="1Nq-S2-Z3l"/>
-                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="hpT-yP-LDE" secondAttribute="bottom" id="4Kj-2R-pIU"/>
                             <constraint firstItem="Wsz-Nr-fNX" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="FNC-i2-ghQ"/>
                             <constraint firstAttribute="trailing" secondItem="Wsz-Nr-fNX" secondAttribute="trailing" id="Ph8-VW-30O"/>
-                            <constraint firstItem="hpT-yP-LDE" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="Tgg-9r-Nxs"/>
-                            <constraint firstItem="QsX-8S-B00" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="Ylx-Kn-jqi"/>
-                            <constraint firstAttribute="trailing" secondItem="QsX-8S-B00" secondAttribute="trailing" id="bP0-SL-caa"/>
-                            <constraint firstItem="QsX-8S-B00" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="bRJ-Ar-9n6"/>
-                            <constraint firstItem="hpT-yP-LDE" firstAttribute="width" secondItem="QsX-8S-B00" secondAttribute="width" id="ccn-Ej-gjG"/>
-                            <constraint firstItem="hpT-yP-LDE" firstAttribute="height" secondItem="QsX-8S-B00" secondAttribute="height" id="ceG-fu-0DA"/>
-                            <constraint firstAttribute="trailing" secondItem="hpT-yP-LDE" secondAttribute="trailing" id="t8a-2l-DyU"/>
+                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="PoR-bf-gs6"/>
+                            <constraint firstAttribute="trailing" secondItem="gPX-Fp-Zgi" secondAttribute="trailing" id="QDK-lT-I3K"/>
+                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="Xa7-ML-RmD"/>
+                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="15" id="iu0-ep-nLN"/>
+                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="top" secondItem="6GC-Fh-bub" secondAttribute="top" constant="79" id="jtm-wj-aeW"/>
+                            <constraint firstAttribute="trailing" secondItem="gPX-Fp-Zgi" secondAttribute="trailing" id="pQu-4p-JBQ"/>
                             <constraint firstItem="Wsz-Nr-fNX" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="tys-V4-u4v"/>
                             <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="Wsz-Nr-fNX" secondAttribute="bottom" id="xSd-dA-xkI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DeK-8B-E3J"/>
                     <connections>
+                        <outlet property="bottomsScrollView" destination="hpT-yP-LDE" id="fzL-1X-x1z"/>
                         <outlet property="emptyImageView" destination="Wsz-Nr-fNX" id="3N0-HN-mP6"/>
+                        <outlet property="topsScrollView" destination="QsX-8S-B00" id="2aL-Po-R7b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euU-Qt-r0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
