@@ -31,6 +31,11 @@ class MyClosetViewController: MeuItemViewController {
     
     var subscriptions = [NotificationToken]()
     
+    let itemsPerRow: CGFloat = 1
+    let itemsPerCol: CGFloat = 1
+    let sectionInsets = UIEdgeInsets(top: 0.0, left: 25.0, bottom: 0.0, right: 25.0)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,5 +120,34 @@ extension MyClosetViewController: UICollectionViewDataSource {
         }
         
     }
+}
+
+// Mark: - UICollectionViewDelegateFlowLayout
+extension MyClosetViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sidePaddingSpace = CGFloat(25.0) * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - sidePaddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        let bottomPaddingSpace = self.sectionInsets.bottom * itemsPerCol
+        let availableHeight = collectionView.frame.height - bottomPaddingSpace
+        let heightPerItem = availableHeight / itemsPerCol
+
+        return CGSize(width: widthPerItem, height: heightPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 25.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
     
 }
+
