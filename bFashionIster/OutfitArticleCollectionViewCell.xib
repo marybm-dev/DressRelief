@@ -27,7 +27,7 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="kmL-L3-vSZ" secondAttribute="bottom" id="E9c-D1-WuM"/>
                 <constraint firstAttribute="trailing" secondItem="kmL-L3-vSZ" secondAttribute="trailing" id="b6I-uH-9WN"/>
-                <constraint firstAttribute="top" secondItem="kmL-L3-vSZ" secondAttribute="top" id="sHL-my-aMt"/>
+                <constraint firstItem="kmL-L3-vSZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sHL-my-aMt"/>
                 <constraint firstItem="kmL-L3-vSZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vSH-LI-Oz4"/>
             </constraints>
             <size key="customSize" width="147" height="121"/>
