@@ -12,11 +12,22 @@ import RealmSwift
 class MyClosetViewController: MeuItemViewController {
     
     @IBOutlet weak var emptyImageView: UIImageView!
-    @IBOutlet weak var topsScrollView: UIScrollView!
-    @IBOutlet weak var bottomsScrollView: UIScrollView!
+    @IBOutlet weak var topsCollectionView: UICollectionView!
+    @IBOutlet weak var bottomsCollectionView: UICollectionView!
     
-    var tops: Results<Article>!
-    var bottoms: Results<Article>!
+    var tops: Results<Article>! {
+        didSet {
+            topsCollectionView.reloadData()
+            print("tops: \(tops.count)")
+        }
+    }
+    
+    var bottoms: Results<Article>! {
+        didSet {
+            bottomsCollectionView.reloadData()
+            print("bottoms: \(bottoms.count)")
+        }
+    }
     
     var subscriptions = [NotificationToken]()
     
@@ -29,21 +40,10 @@ class MyClosetViewController: MeuItemViewController {
         let topsSubscription = notificationSubscription(for: tops)
         let bottomsSubscription = notificationSubscription(for: bottoms)
         subscriptions = [topsSubscription, bottomsSubscription]
-        
-        if let topsCount = tops?.count {
-            if topsScrollView.subviews.count < topsCount {
-                topsScrollView.viewWithTag(0)?.tag = 1000 //prevent confusion when looking up images
-                setupListFor(tops, in: topsScrollView)
-            }
-        }
-        
-        if let bottomsCount = bottoms?.count {
-            if bottomsScrollView.subviews.count < bottomsCount {
-                bottomsScrollView.viewWithTag(0)?.tag = 1000 //prevent confusion when looking up images
-                setupListFor(bottoms, in: bottomsScrollView)
-            }
-        }
-        
+
+        let nib = UINib(nibName: "OutfitArticleCollectionViewCell", bundle: nil)
+        topsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitTopCell")
+        bottomsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitBottomCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,42 +67,7 @@ class MyClosetViewController: MeuItemViewController {
         
         return articles.filter("articleType = %@", ArticleType.bottom.rawValue)
     }
-    
-    //add all images to the list
-    func setupListFor(_ items: Results<Article>!, in listView: UIScrollView) {
-        for i in items.indices {
-            
-            //create image view
-            let imageView  = UIImageView(image: Helper.image(atPath: items[i].imgUrl))
-            imageView.tag = i
-            imageView.contentMode = .scaleToFill
-            imageView.isUserInteractionEnabled = true
-//            imageView.layer.cornerRadius = 15.0
-            imageView.layer.masksToBounds = true
-            listView.addSubview(imageView)
-        }
-        
-        listView.backgroundColor = UIColor.clear
-        position(items, in: listView)
-    }
-    
 
-    //position all images inside the list
-    func position(_ items: Results<Article>!, in listView: UIScrollView) {
-        let listHeight = listView.frame.height
-        let horizontalPadding: CGFloat = 10.0
-        
-        for i in items.indices {
-            let imageView = listView.viewWithTag(i) as! UIImageView
-            imageView.frame = CGRect(
-                x: CGFloat(i) * listHeight + CGFloat(i+1) * horizontalPadding, y: 0.0,
-                width: listHeight, height: listHeight)
-        }
-        
-        listView.contentSize = CGSize(
-            width: CGFloat(items.count) * (listHeight + horizontalPadding) + horizontalPadding,
-            height:  0)
-    }
     
     // Mark: - Realm Subscription
     func notificationSubscription(for items: Results<Article>) -> NotificationToken {
@@ -114,4 +79,41 @@ class MyClosetViewController: MeuItemViewController {
     func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
         // TODO: how do I update the imageViews in the listView?
     }
+}
+
+extension MyClosetViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == topsCollectionView {
+            return tops?.count ?? 0
+            
+        } else {
+            return bottoms?.count ?? 0
+            
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == topsCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitTopCell", for: indexPath) as! OutfitArticleCollectionViewCell
+            
+            let top = tops[indexPath.row]
+            cell.article = top
+            
+            return cell
+            
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitBottomCell", for: indexPath) as! OutfitArticleCollectionViewCell
+            
+            let bottom = bottoms[indexPath.row]
+            cell.article = bottom
+            
+            return cell
+            
+        }
+        
+    }
+    
 }

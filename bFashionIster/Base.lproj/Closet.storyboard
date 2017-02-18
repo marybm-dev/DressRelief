@@ -27,15 +27,67 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Fp-Zgi">
                                 <rect key="frame" x="0.0" y="79" width="375" height="573"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsX-8S-B00">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fdN-Wc-us6">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="286.5"/>
-                                        <color key="backgroundColor" red="1" green="0.74008818330000004" blue="0.53136655700000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </scrollView>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpT-yP-LDE">
+                                        <color key="backgroundColor" red="1" green="0.81274622679999997" blue="0.27220106119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="i8k-kU-9CL">
+                                            <size key="itemSize" width="250" height="245"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitTopCell" id="KCd-S3-z7V" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="21" width="250" height="245"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="245"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="lFo-gG-Zd9" id="sPI-U3-q5f"/>
+                                            <outlet property="delegate" destination="lFo-gG-Zd9" id="63m-In-LZ7"/>
+                                        </connections>
+                                    </collectionView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFl-q8-5TW">
                                         <rect key="frame" x="0.0" y="286.5" width="375" height="286.5"/>
-                                        <color key="backgroundColor" red="0.34149546679999998" green="0.68102575229999995" blue="0.80109471450000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </scrollView>
+                                        <color key="backgroundColor" red="1" green="0.52284586440000003" blue="0.533221363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AtV-DR-GUV">
+                                            <size key="itemSize" width="250" height="245"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitBottomCell" id="cZ3-0d-8N2" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="21" width="250" height="245"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="245"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="lFo-gG-Zd9" id="IVE-es-2oM"/>
+                                            <outlet property="delegate" destination="lFo-gG-Zd9" id="668-B1-X3M"/>
+                                        </connections>
+                                    </collectionView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fdN-Wc-us6" secondAttribute="trailing" id="4Hb-jU-PUp"/>
+                                    <constraint firstItem="fdN-Wc-us6" firstAttribute="leading" secondItem="gPX-Fp-Zgi" secondAttribute="leading" id="8wY-t9-0jG"/>
+                                    <constraint firstItem="hFl-q8-5TW" firstAttribute="top" secondItem="fdN-Wc-us6" secondAttribute="bottom" id="V6Y-wZ-fgs"/>
+                                    <constraint firstItem="fdN-Wc-us6" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="top" id="XId-Vp-z2u"/>
+                                    <constraint firstAttribute="trailing" secondItem="hFl-q8-5TW" secondAttribute="trailing" id="eCM-t5-ecQ"/>
+                                    <constraint firstItem="hFl-q8-5TW" firstAttribute="top" secondItem="fdN-Wc-us6" secondAttribute="bottom" id="fSt-Ae-z4I"/>
+                                    <constraint firstItem="hFl-q8-5TW" firstAttribute="leading" secondItem="gPX-Fp-Zgi" secondAttribute="leading" id="woE-ig-liJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="hFl-q8-5TW" secondAttribute="bottom" id="xkg-2G-4CD"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -54,9 +106,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="DeK-8B-E3J"/>
                     <connections>
-                        <outlet property="bottomsScrollView" destination="hpT-yP-LDE" id="fzL-1X-x1z"/>
+                        <outlet property="bottomsCollectionView" destination="hFl-q8-5TW" id="fwl-Ps-j16"/>
                         <outlet property="emptyImageView" destination="Wsz-Nr-fNX" id="3N0-HN-mP6"/>
-                        <outlet property="topsScrollView" destination="QsX-8S-B00" id="2aL-Po-R7b"/>
+                        <outlet property="topsCollectionView" destination="fdN-Wc-us6" id="159-he-vwR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euU-Qt-r0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
