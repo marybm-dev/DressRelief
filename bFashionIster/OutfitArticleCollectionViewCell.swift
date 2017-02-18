@@ -23,17 +23,13 @@ class OutfitArticleCollectionViewCell: UICollectionViewCell {
     }
 
     override func updateConstraints() {
-        print("updating constraints...")
-        
         if article.articleType == ArticleType.top.rawValue {
-            print("top...")
             topConstraint.constant = 25
             bottomConstraint.constant = 0
             self.articleImageView.round(corners: [.topLeft, .topRight], radius: 8)
             
             
         } else if article.articleType == ArticleType.bottom.rawValue {
-            print("bottom...")
             topConstraint.constant = 0
             bottomConstraint.constant = 25
             self.articleImageView.round(corners: [.bottomLeft, .bottomRight], radius: 8)

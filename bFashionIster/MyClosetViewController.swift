@@ -38,7 +38,7 @@ class MyClosetViewController: MeuItemViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tops = getTops()
         bottoms = getBottoms()
         
@@ -84,6 +84,20 @@ class MyClosetViewController: MeuItemViewController {
     func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
         // TODO: how do I update the imageViews in the listView?
     }
+    
+}
+
+extension MyClosetViewController: UIScrollViewDelegate {
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let collectionView: UICollectionView = (scrollView == topsCollectionView) ? topsCollectionView : bottomsCollectionView
+
+        var currentCellOffset: CGPoint = collectionView.contentOffset
+        currentCellOffset.x += collectionView.frame.size.width / 2
+        if let indexPath = collectionView.indexPathForItem(at: currentCellOffset) {
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
 }
 
 extension MyClosetViewController: UICollectionViewDataSource {
@@ -103,22 +117,17 @@ extension MyClosetViewController: UICollectionViewDataSource {
         
         if collectionView == topsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitTopCell", for: indexPath) as! OutfitArticleCollectionViewCell
-            
             let top = tops[indexPath.row]
             cell.article = top
-            
             return cell
             
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitBottomCell", for: indexPath) as! OutfitArticleCollectionViewCell
-            
             let bottom = bottoms[indexPath.row]
             cell.article = bottom
-            
             return cell
             
         }
-        
     }
 }
 
@@ -126,7 +135,7 @@ extension MyClosetViewController: UICollectionViewDataSource {
 extension MyClosetViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let sidePaddingSpace = CGFloat(25.0) * (itemsPerRow + 1)
+        let sidePaddingSpace = self.sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = collectionView.frame.width - sidePaddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
@@ -148,6 +157,6 @@ extension MyClosetViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
-    
+
 }
 
