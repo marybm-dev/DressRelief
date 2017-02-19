@@ -14,6 +14,7 @@ class MyClosetViewController: MeuItemViewController {
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var topsCollectionView: UICollectionView!
     @IBOutlet weak var bottomsCollectionView: UICollectionView!
+    @IBOutlet weak var likeButton: UIButton!
     
     var tops: Results<Article>! {
         didSet {
@@ -38,6 +39,8 @@ class MyClosetViewController: MeuItemViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        likeButton.round(corners: [.allCorners], radius: (likeButton.frame.size.width/2), borderColor: .flatGray(), borderWidth: 5.0)
 
         tops = getTops()
         bottoms = getBottoms()

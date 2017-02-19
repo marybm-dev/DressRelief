@@ -25,10 +25,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Fp-Zgi">
-                                <rect key="frame" x="0.0" y="79" width="375" height="573"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="538"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fdN-Wc-us6">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="286.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="269"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="i8k-kU-9CL">
                                             <size key="itemSize" width="250" height="265.5"/>
@@ -38,7 +38,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitTopCell" id="KCd-S3-z7V" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="11" width="250" height="265.5"/>
+                                                <rect key="frame" x="0.0" y="2" width="250" height="265.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="265.5"/>
@@ -52,7 +52,7 @@
                                         </connections>
                                     </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFl-q8-5TW">
-                                        <rect key="frame" x="0.0" y="286.5" width="375" height="286.5"/>
+                                        <rect key="frame" x="0.0" y="269" width="375" height="269"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="AtV-DR-GUV">
                                             <size key="itemSize" width="250" height="265.5"/>
@@ -62,7 +62,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitBottomCell" id="cZ3-0d-8N2" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="11" width="250" height="265.5"/>
+                                                <rect key="frame" x="0.0" y="2" width="250" height="265.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="265.5"/>
@@ -87,16 +87,28 @@
                                     <constraint firstAttribute="bottom" secondItem="hFl-q8-5TW" secondAttribute="bottom" id="xkg-2G-4CD"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUj-Dh-QzH">
+                                <rect key="frame" x="157.5" y="592" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MW0-Is-xD0"/>
+                                    <constraint firstAttribute="width" constant="60" id="RBs-7s-896"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" image="likeButton"/>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IUj-Dh-QzH" firstAttribute="centerX" secondItem="6GC-Fh-bub" secondAttribute="centerX" id="1rv-V4-BYr"/>
+                            <constraint firstItem="IUj-Dh-QzH" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="-10" id="CIW-7x-U7S"/>
                             <constraint firstItem="Wsz-Nr-fNX" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="FNC-i2-ghQ"/>
                             <constraint firstAttribute="trailing" secondItem="Wsz-Nr-fNX" secondAttribute="trailing" id="Ph8-VW-30O"/>
                             <constraint firstItem="gPX-Fp-Zgi" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="PoR-bf-gs6"/>
                             <constraint firstAttribute="trailing" secondItem="gPX-Fp-Zgi" secondAttribute="trailing" id="QDK-lT-I3K"/>
                             <constraint firstItem="gPX-Fp-Zgi" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="Xa7-ML-RmD"/>
-                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="15" id="iu0-ep-nLN"/>
-                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="top" secondItem="6GC-Fh-bub" secondAttribute="top" constant="79" id="jtm-wj-aeW"/>
+                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="65" id="iu0-ep-nLN"/>
+                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="top" secondItem="6GC-Fh-bub" secondAttribute="top" constant="64" id="jtm-wj-aeW"/>
                             <constraint firstAttribute="trailing" secondItem="gPX-Fp-Zgi" secondAttribute="trailing" id="pQu-4p-JBQ"/>
                             <constraint firstItem="Wsz-Nr-fNX" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="tys-V4-u4v"/>
                             <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="Wsz-Nr-fNX" secondAttribute="bottom" id="xSd-dA-xkI"/>
@@ -106,6 +118,7 @@
                     <connections>
                         <outlet property="bottomsCollectionView" destination="hFl-q8-5TW" id="fwl-Ps-j16"/>
                         <outlet property="emptyImageView" destination="Wsz-Nr-fNX" id="3N0-HN-mP6"/>
+                        <outlet property="likeButton" destination="IUj-Dh-QzH" id="ubu-zW-rFo"/>
                         <outlet property="topsCollectionView" destination="fdN-Wc-us6" id="159-he-vwR"/>
                     </connections>
                 </viewController>
@@ -300,5 +313,6 @@
     <resources>
         <image name="emptyLikes" width="414" height="736"/>
         <image name="emptyWardrobe" width="414" height="736"/>
+        <image name="likeButton" width="32" height="32"/>
     </resources>
 </document>
