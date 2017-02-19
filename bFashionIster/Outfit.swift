@@ -121,3 +121,10 @@ class Outfit: Object {
 enum OutfitSegue: String {
     case FromOutfitFavsToDetail
 }
+
+struct OutfitResult {
+    var exists = false
+    var outfit: Outfit?
+    var top: Article? = nil
+    var bottom: Article? = nil
+}

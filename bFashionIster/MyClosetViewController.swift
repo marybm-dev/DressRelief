@@ -16,6 +16,8 @@ class MyClosetViewController: MeuItemViewController {
     @IBOutlet weak var bottomsCollectionView: UICollectionView!
     @IBOutlet weak var likeButton: UIButton!
     
+    let realm = try! Realm()
+    
     var tops: Results<Article>! {
         didSet {
             topsCollectionView.reloadData()
@@ -43,16 +45,16 @@ class MyClosetViewController: MeuItemViewController {
 
         likeButton.round(corners: [.allCorners], radius: (likeButton.frame.size.width/2), borderColor: .flatGray(), borderWidth: 5.0)
 
+        let nib = UINib(nibName: "OutfitArticleCollectionViewCell", bundle: nil)
+        topsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitTopCell")
+        bottomsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitBottomCell")
+
         tops = getTops()
         bottoms = getBottoms()
         
         let topsSubscription = notificationSubscription(for: tops)
         let bottomsSubscription = notificationSubscription(for: bottoms)
         subscriptions = [topsSubscription, bottomsSubscription]
-
-        let nib = UINib(nibName: "OutfitArticleCollectionViewCell", bundle: nil)
-        topsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitTopCell")
-        bottomsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitBottomCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,40 +68,20 @@ class MyClosetViewController: MeuItemViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         viewHasLoaded = true
+        self.updateLikeButtonImage(isLiked: nil)
     }
 
     @IBAction func didTapLikeButton(_ sender: Any) {
-        print("liked")
-        
-        // grab the visible cells from both collectionViews
-        let visibleTops = topsCollectionView.visibleCells
-        let visibleBottoms = bottomsCollectionView.visibleCells
-        guard visibleTops.count > 0,
-            visibleBottoms.count > 0 else {
-            return
-        }
-        // get the current top and bottom
-        let topCell = visibleTops.first as? OutfitArticleCollectionViewCell
-        let bottomCell = visibleBottoms.first as? OutfitArticleCollectionViewCell
-        guard let top = topCell?.article,
-            let bottom = bottomCell?.article else {
-            return
-        }
-        
-        // determine if this outfit exists and if it was previously liked
-        let realm = try! Realm()
-        let outfits = realm.objects(Outfit.self)
-        let result = outfits.filter("top.articleId == '\(top.articleId)' AND bottom.articleId == '\(bottom.articleId)'")
-        let exists = result.count > 0
-        
-        var isLiked = true
+        let outfitResult = outfitExists()
+        let exists = outfitResult.exists
+        var isLiked = exists
         
         // update the database
         try! realm.write {
             
             // like or dislike it if it exists
             if exists {
-                let outfit = result.first
+                let outfit = outfitResult.outfit
                 guard outfit != nil else {
                     return
                 }
@@ -118,7 +100,12 @@ class MyClosetViewController: MeuItemViewController {
                 
             // create it since it doesn't exist
             } else {
-                let newOutfit = Outfit(top: top, bottom: bottom)
+                guard outfitResult.top != nil,
+                    outfitResult.bottom != nil else {
+                        return
+                }
+                
+                let newOutfit = Outfit(top: outfitResult.top!, bottom: outfitResult.bottom!)
                 newOutfit.isLiked = true
                 newOutfit.top?.countLikes += 1
                 newOutfit.bottom?.countLikes += 1
@@ -128,8 +115,7 @@ class MyClosetViewController: MeuItemViewController {
             }
         }
         
-        let updatedImage = isLiked ? #imageLiteral(resourceName: "likeFilled") : #imageLiteral(resourceName: "likeButton")
-        likeButton.setImage(updatedImage, for: .normal)
+        self.updateLikeButtonImage(isLiked: isLiked)
     }
     
     func toggleHidden() {
@@ -137,19 +123,57 @@ class MyClosetViewController: MeuItemViewController {
     }
     
     func getTops() -> Results<Article> {
-        let realm = try! Realm()
         let articles = realm.objects(Article.self)
         
         return articles.filter("articleType = %@", ArticleType.top.rawValue)
     }
     
     func getBottoms() -> Results<Article> {
-        let realm = try! Realm()
         let articles = realm.objects(Article.self)
         
         return articles.filter("articleType = %@", ArticleType.bottom.rawValue)
     }
 
+    func outfitExists() -> OutfitResult {
+        // grab the visible cells from both collectionViews
+        let visibleTops = topsCollectionView.visibleCells
+        let visibleBottoms = bottomsCollectionView.visibleCells
+        guard visibleTops.count > 0,
+            visibleBottoms.count > 0 else {
+                return OutfitResult(exists: false, outfit: nil, top: nil, bottom: nil)
+        }
+        // get the current top and bottom
+        let topCell = visibleTops.first as? OutfitArticleCollectionViewCell
+        let bottomCell = visibleBottoms.first as? OutfitArticleCollectionViewCell
+        guard let top = topCell?.article,
+            let bottom = bottomCell?.article else {
+                return OutfitResult(exists: false, outfit: nil, top: nil, bottom: nil)
+        }
+        
+        // determine if this outfit exists and if it was previously liked
+        let outfits = realm.objects(Outfit.self)
+        let result = outfits.filter("top.articleId == '\(top.articleId)' AND bottom.articleId == '\(bottom.articleId)'")
+        let exists = result.count > 0
+        
+        return OutfitResult(exists: exists, outfit: result.first, top: top, bottom: bottom)
+    }
+    
+    func updateLikeButtonImage(isLiked: Bool?) {
+        var imageToUse: UIImage!
+        if isLiked != nil {
+            imageToUse = isLiked! ? #imageLiteral(resourceName: "likeFilled") : #imageLiteral(resourceName: "likeButton")
+        
+        } else {
+            let outfitResult = outfitExists()
+            if !outfitResult.exists {
+                imageToUse = #imageLiteral(resourceName: "likeButton")
+            } else {
+                imageToUse = (outfitResult.outfit?.isLiked)! ? #imageLiteral(resourceName: "likeFilled") : #imageLiteral(resourceName: "likeButton")
+            }
+        }
+        
+        self.likeButton.setImage(imageToUse, for: .normal)
+    }
     
     // Mark: - Realm Subscription
     func notificationSubscription(for items: Results<Article>) -> NotificationToken {
@@ -176,6 +200,12 @@ extension MyClosetViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let collectionView: UICollectionView = (scrollView == topsCollectionView) ? topsCollectionView : bottomsCollectionView
         self.scrollToCenter(collectionView: collectionView)
+        
+        // wait to update likeButton
+        let delayInSeconds = 0.125
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+            self.updateLikeButtonImage(isLiked: nil)
+        }
     }
 }
 
