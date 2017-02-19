@@ -71,8 +71,65 @@ class MyClosetViewController: MeuItemViewController {
     @IBAction func didTapLikeButton(_ sender: Any) {
         print("liked")
         
-        // determine if this was previously liked
+        // grab the visible cells from both collectionViews
+        let visibleTops = topsCollectionView.visibleCells
+        let visibleBottoms = bottomsCollectionView.visibleCells
+        guard visibleTops.count > 0,
+            visibleBottoms.count > 0 else {
+            return
+        }
+        // get the current top and bottom
+        let topCell = visibleTops.first as? OutfitArticleCollectionViewCell
+        let bottomCell = visibleBottoms.first as? OutfitArticleCollectionViewCell
+        guard let top = topCell?.article,
+            let bottom = bottomCell?.article else {
+            return
+        }
         
+        // determine if this outfit exists and if it was previously liked
+        let realm = try! Realm()
+        let outfits = realm.objects(Outfit.self)
+        let result = outfits.filter("top.articleId == '\(top.articleId)' AND bottom.articleId == '\(bottom.articleId)'")
+        let exists = result.count > 0
+        
+        var isLiked = true
+        
+        // update the database
+        try! realm.write {
+            
+            // like or dislike it if it exists
+            if exists {
+                let outfit = result.first
+                guard outfit != nil else {
+                    return
+                }
+                
+                if (outfit?.isLiked)! {
+                    outfit?.isLiked = false
+                    outfit?.top?.countLikes -= 1
+                    outfit?.bottom?.countLikes -= 1
+                } else {
+                    outfit?.isLiked = true
+                    outfit?.top?.countLikes += 1
+                    outfit?.bottom?.countLikes += 1
+                }
+                
+                isLiked = (outfit?.isLiked)!
+                
+            // create it since it doesn't exist
+            } else {
+                let newOutfit = Outfit(top: top, bottom: bottom)
+                newOutfit.isLiked = true
+                newOutfit.top?.countLikes += 1
+                newOutfit.bottom?.countLikes += 1
+                realm.add(newOutfit)
+                
+                isLiked = true
+            }
+        }
+        
+        let updatedImage = isLiked ? #imageLiteral(resourceName: "likeFilled") : #imageLiteral(resourceName: "likeButton")
+        likeButton.setImage(updatedImage, for: .normal)
     }
     
     func toggleHidden() {

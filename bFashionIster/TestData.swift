@@ -47,9 +47,9 @@ class TestData {
             realm.add(bottoms3)
             realm.add(bottoms4)
 
-            let result = matchedOutfits(with: realm)
-            guard let outfits = result else { return }
-            realm.add(outfits)
+//            let result = matchedOutfits(with: realm)
+//            guard let outfits = result else { return }
+//            realm.add(outfits)
         }
     }
     

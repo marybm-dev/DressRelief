@@ -48,21 +48,12 @@ class Outfit: Object {
         self.color = "\(top.color) + \(bottom.color)"
         self.texture = "\(top.texture) + \(bottom.texture)"
         
-        self.setImagePathInBackground { (imagePath) in
-            guard let imagePath = imagePath else { return }
-            let realm = try! Realm()
-            try! realm.write {
-                self.combinedImgUrl = imagePath
-            }
-        }
+        self.setImagePath()
     }
 
     func setImagePath() {
         if self.combinedImgUrl.isEmpty {
-            let realm = try! Realm()
-            try! realm.write {
-                self.combinedImgUrl = self.outfitImagePath()
-            }
+            self.combinedImgUrl = self.outfitImagePath()
         }
     }
     
