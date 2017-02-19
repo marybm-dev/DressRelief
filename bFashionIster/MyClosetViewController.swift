@@ -36,10 +36,11 @@ class MyClosetViewController: MeuItemViewController {
     let itemsPerCol: CGFloat = 1
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 25.0, bottom: 0.0, right: 25.0)
 
+    var viewHasLoaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         likeButton.round(corners: [.allCorners], radius: (likeButton.frame.size.width/2), borderColor: .flatGray(), borderWidth: 5.0)
 
         tops = getTops()
@@ -56,8 +57,24 @@ class MyClosetViewController: MeuItemViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.toggleHidden()
+        
+        if viewHasLoaded {
+            self.scrollToCenter(collectionView: topsCollectionView)
+            self.scrollToCenter(collectionView: bottomsCollectionView)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewHasLoaded = true
     }
 
+    @IBAction func didTapLikeButton(_ sender: Any) {
+        print("liked")
+        
+        // determine if this was previously liked
+        
+    }
+    
     func toggleHidden() {
         emptyImageView.isHidden = (tops?.count == 0 || bottoms?.count == 0) ? false : true
     }
@@ -88,18 +105,20 @@ class MyClosetViewController: MeuItemViewController {
         // TODO: how do I update the imageViews in the listView?
     }
     
+    func scrollToCenter(collectionView: UICollectionView) {
+        var currentCellOffset: CGPoint = collectionView.contentOffset
+        currentCellOffset.x += collectionView.frame.size.width / 2
+        if let indexPath = collectionView.indexPathForItem(at: currentCellOffset) {
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
 }
 
 extension MyClosetViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let collectionView: UICollectionView = (scrollView == topsCollectionView) ? topsCollectionView : bottomsCollectionView
-
-        var currentCellOffset: CGPoint = collectionView.contentOffset
-        currentCellOffset.x += collectionView.frame.size.width / 2
-        if let indexPath = collectionView.indexPathForItem(at: currentCellOffset) {
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
+        self.scrollToCenter(collectionView: collectionView)
     }
 }
 
