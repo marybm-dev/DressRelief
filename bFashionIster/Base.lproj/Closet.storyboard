@@ -21,6 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyWardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-Nr-fNX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Fp-Zgi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="538"/>
                                 <subviews>
@@ -35,7 +38,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitTopCell" id="KCd-S3-z7V" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="-30" width="250" height="265.5"/>
+                                                <rect key="frame" x="0.0" y="2" width="250" height="265.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="265.5"/>
@@ -97,22 +100,17 @@
                                     <action selector="didTapLikeButton:" destination="lFo-gG-Zd9" eventType="touchUpInside" id="55I-Gu-SeH"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyWardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-Nr-fNX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IUj-Dh-QzH" firstAttribute="centerX" secondItem="6GC-Fh-bub" secondAttribute="centerX" id="1rv-V4-BYr"/>
                             <constraint firstItem="IUj-Dh-QzH" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="-10" id="CIW-7x-U7S"/>
                             <constraint firstItem="Wsz-Nr-fNX" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="FNC-i2-ghQ"/>
+                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="65" id="LT5-QZ-RCV"/>
+                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="NJ3-Zv-zsa"/>
                             <constraint firstAttribute="trailing" secondItem="Wsz-Nr-fNX" secondAttribute="trailing" id="Ph8-VW-30O"/>
-                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="PoR-bf-gs6"/>
-                            <constraint firstAttribute="trailing" secondItem="gPX-Fp-Zgi" secondAttribute="trailing" id="QDK-lT-I3K"/>
-                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="Xa7-ML-RmD"/>
-                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="65" id="iu0-ep-nLN"/>
-                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="top" secondItem="6GC-Fh-bub" secondAttribute="top" constant="64" id="jtm-wj-aeW"/>
-                            <constraint firstAttribute="trailing" secondItem="gPX-Fp-Zgi" secondAttribute="trailing" id="pQu-4p-JBQ"/>
+                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="Sjv-tD-IfZ"/>
+                            <constraint firstAttribute="trailing" secondItem="gPX-Fp-Zgi" secondAttribute="trailing" id="kc2-89-8ab"/>
                             <constraint firstItem="Wsz-Nr-fNX" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="tys-V4-u4v"/>
                             <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="Wsz-Nr-fNX" secondAttribute="bottom" id="xSd-dA-xkI"/>
                         </constraints>

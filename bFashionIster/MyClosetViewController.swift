@@ -192,6 +192,8 @@ class MyClosetViewController: MeuItemViewController {
         if let indexPath = collectionView.indexPathForItem(at: currentCellOffset) {
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
+        
+        
     }
 }
 
