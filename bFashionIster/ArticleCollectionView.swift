@@ -12,6 +12,8 @@ import RealmSwift
 class ArticleCollectionView: MeuItemViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyImageView: UIImageView!
+    
     
     var articles: Results<Article>!
     var items: Results<Article>!
@@ -35,18 +37,61 @@ class ArticleCollectionView: MeuItemViewController {
         editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(MyFavsViewController.didTapEditButton))
         navigationItem.setLeftBarButton(editButton, animated: true)
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        toggleHidden()
+        toggleEditing(nil)
+    }
     
-    func removeArticle(item: Article) {
-        let realm = try! Realm()
-        try! realm.write {
-            realm.delete(item)
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        toggleEditing(true)
+    }
+    
+    func toggleHidden() {
+        emptyImageView.isHidden = (items?.count == 0) ? false : true
     }
     
     func didTapEditButton() {
         isEditingArticles = !isEditingArticles
         editButton.title = isEditingArticles ? "Done" : "Edit"
         collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+    
+    func toggleEditing(_ willDisappear: Bool?) {
+        let shouldHide = (items.count ?? 0) == 0 ? true : false
+        
+        if isEditingArticles {
+            // there are no more items
+            if shouldHide {
+                isEditingArticles = false
+                shouldDisplayEditButton(false)
+                toggleHidden()
+                return
+            }
+
+            // there still are items but I am leaving the view
+            if let willDisappear = willDisappear {
+                if willDisappear {
+                    didTapEditButton()
+                    return
+                }
+            }
+            
+            // there still are items and I am editing - do nothing
+            
+        } else {
+            if !shouldHide {
+                shouldDisplayEditButton(true)
+            } else {
+                shouldDisplayEditButton(false)
+            }
+        }
+    }
+
+    func shouldDisplayEditButton(_ shouldDisplay: Bool) {
+        editButton.title = shouldDisplay ? "Edit" : ""
+        editButton.isEnabled = shouldDisplay ? true : false
     }
     
     func animateEditing(cell: ArticleCollectionViewCell) {
@@ -61,6 +106,13 @@ class ArticleCollectionView: MeuItemViewController {
                 cell.closeButton.alpha = 0
             }, completion: nil)
             cell.stopWobbling()
+        }
+    }
+    
+    func removeArticle(item: Article) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(item)
         }
     }
     
@@ -130,6 +182,7 @@ extension ArticleCollectionView: UICollectionViewDelegateFlowLayout {
             let alertController = UIAlertController(title: "Delete Item?", message: "This will remove the item from your collection.", preferredStyle: UIAlertControllerStyle.alert)
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) -> Void in
                 self.removeArticle(item: self.selectedItem)
+                self.toggleEditing(nil)
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
                 print("canceled")
