@@ -185,8 +185,12 @@ class MyClosetViewController: MeuItemViewController {
         switch changes {
         case .initial(_):
             print("initial")
+            topsCollectionView.reloadData()
+            bottomsCollectionView.reloadData()
         case .update(_, _, _, _):
             print("update")
+            topsCollectionView.reloadData()
+            bottomsCollectionView.reloadData()
         case let .error(error):
             print(error.localizedDescription)
         }
