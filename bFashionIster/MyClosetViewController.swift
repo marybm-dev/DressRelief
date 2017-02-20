@@ -123,13 +123,13 @@ class MyClosetViewController: MeuItemViewController {
     func getTops() -> Results<Article> {
         let articles = realm.objects(Article.self)
         
-        return articles.filter("articleType = %@", ArticleType.top.rawValue)
+        return articles.filter("articleType = %@", ArticleType.top.rawValue).sorted(byProperty: "created", ascending: false)
     }
     
     func getBottoms() -> Results<Article> {
         let articles = realm.objects(Article.self)
         
-        return articles.filter("articleType = %@", ArticleType.bottom.rawValue)
+        return articles.filter("articleType = %@", ArticleType.bottom.rawValue).sorted(byProperty: "created", ascending: false)
     }
 
     func outfitExists() -> OutfitResult {
