@@ -11,10 +11,11 @@ import RealmSwift
 
 class MyClosetViewController: MeuItemViewController {
     
-    @IBOutlet weak var emptyImageView: UIImageView!
+//    @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var topsCollectionView: UICollectionView!
     @IBOutlet weak var bottomsCollectionView: UICollectionView!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var emptyView: UIView!
     
     let realm = try! Realm()
     
@@ -117,7 +118,8 @@ class MyClosetViewController: MeuItemViewController {
     }
     
     func toggleHidden() {
-        emptyImageView.isHidden = (tops?.count == 0 || bottoms?.count == 0) ? false : true
+        emptyView.isHidden = (tops?.count == 0 || bottoms?.count == 0) ? false : true
+//        emptyImageView.isHidden = (tops?.count == 0 || bottoms?.count == 0) ? false : true
     }
     
     func getTops() -> Results<Article> {
