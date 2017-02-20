@@ -113,6 +113,10 @@ extension UIColor {
     class func flatDarkBlue() -> UIColor {
         return UIColor(netHex: 0x34495e)
     }
+    
+    class func coolBlue() -> UIColor {
+        return UIColor(netHex: 0x56c4e1)
+    }
 }
 
 extension CALayer {

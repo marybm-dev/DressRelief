@@ -21,14 +21,12 @@ class MyClosetViewController: MeuItemViewController {
     var tops: Results<Article>! {
         didSet {
             topsCollectionView.reloadData()
-            print("tops: \(tops.count)")
         }
     }
     
     var bottoms: Results<Article>! {
         didSet {
             bottomsCollectionView.reloadData()
-            print("bottoms: \(bottoms.count)")
         }
     }
     
@@ -184,6 +182,14 @@ class MyClosetViewController: MeuItemViewController {
     
     func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
         // TODO: how do I update the imageViews in the listView?
+        switch changes {
+        case .initial(_):
+            print("initial")
+        case .update(_, _, _, _):
+            print("update")
+        case let .error(error):
+            print(error.localizedDescription)
+        }
     }
     
     func scrollToCenter(collectionView: UICollectionView) {
@@ -192,8 +198,6 @@ class MyClosetViewController: MeuItemViewController {
         if let indexPath = collectionView.indexPathForItem(at: currentCellOffset) {
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
-        
-        
     }
 }
 
