@@ -17,7 +17,12 @@ class MyClosetViewController: MeuItemViewController {
     @IBOutlet weak var likeButton: UIButton!
     
     let realm = try! Realm()
-    
+    var subscriptions = [NotificationToken]()
+    var viewHasLoaded = false
+    let itemsPerRow: CGFloat = 1
+    let itemsPerCol: CGFloat = 1
+    let sectionInsets = UIEdgeInsets(top: 0.0, left: 25.0, bottom: 0.0, right: 25.0)
+
     var tops: Results<Article>! {
         didSet {
             topsCollectionView.reloadData()
@@ -29,14 +34,6 @@ class MyClosetViewController: MeuItemViewController {
             bottomsCollectionView.reloadData()
         }
     }
-    
-    var subscriptions = [NotificationToken]()
-    
-    let itemsPerRow: CGFloat = 1
-    let itemsPerCol: CGFloat = 1
-    let sectionInsets = UIEdgeInsets(top: 0.0, left: 25.0, bottom: 0.0, right: 25.0)
-
-    var viewHasLoaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

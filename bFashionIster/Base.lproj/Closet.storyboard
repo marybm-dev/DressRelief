@@ -21,9 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyWardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-Nr-fNX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Fp-Zgi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="538"/>
                                 <subviews>
@@ -38,7 +35,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitTopCell" id="KCd-S3-z7V" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="2" width="250" height="265.5"/>
+                                                <rect key="frame" x="0.0" y="-30" width="250" height="265.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="265.5"/>
@@ -100,6 +97,9 @@
                                     <action selector="didTapLikeButton:" destination="lFo-gG-Zd9" eventType="touchUpInside" id="55I-Gu-SeH"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyWardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-Nr-fNX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
