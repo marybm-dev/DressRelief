@@ -14,7 +14,6 @@ class ArticleCollectionView: MeuItemViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var emptyImageView: UIImageView!
     
-    
     var articles: Results<Article>!
     var items: Results<Article>!
     var subscription: NotificationToken?

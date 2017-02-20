@@ -61,11 +61,14 @@ class MyFavsViewController: MeuItemViewController {
         super.viewWillAppear(animated)
         self.refreshData()
         toggleHidden()
+        toggleEditing(nil)
     }
     
-    func toggleHidden() {
-        emptyImageView.isHidden = (favs?.count == 0) ? false : true
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        toggleEditing(true)
     }
+
 }
 
 // Mark: - Data Fetching
@@ -104,6 +107,57 @@ extension MyFavsViewController {
         categories = getOutfitCategories()
         setOutfitsHashTable()
         collectionView.reloadData()
+    }
+}
+
+// Mark: - Editing Logid
+extension MyFavsViewController {
+    
+    
+    func toggleHidden() {
+        emptyImageView.isHidden = (favs?.count == 0) ? false : true
+    }
+    
+    func didTapEditButton() {
+        isEditingFavs = !isEditingFavs
+        editButton.title = isEditingFavs ? "Done" : "Edit"
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+    
+    func toggleEditing(_ willDisappear: Bool?) {
+        let shouldHide = (favs.count ?? 0) == 0 ? true : false
+        
+        if isEditingFavs {
+            // there are no more items
+            if shouldHide {
+                isEditingFavs = false
+                shouldDisplayEditButton(false)
+                toggleHidden()
+                return
+            }
+            
+            // there still are items but I am leaving the view
+            if let willDisappear = willDisappear {
+                if willDisappear {
+                    didTapEditButton()
+                    return
+                }
+            }
+            
+            // there still are items and I am editing - do nothing
+            
+        } else {
+            if !shouldHide {
+                shouldDisplayEditButton(true)
+            } else {
+                shouldDisplayEditButton(false)
+            }
+        }
+    }
+    
+    func shouldDisplayEditButton(_ shouldDisplay: Bool) {
+        editButton.title = shouldDisplay ? "Edit" : ""
+        editButton.isEnabled = shouldDisplay ? true : false
     }
 }
 
@@ -205,7 +259,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
             let alertController = UIAlertController(title: "Delete Favorite?", message: "This will remove the outfit from your favorites.", preferredStyle: UIAlertControllerStyle.alert)
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) -> Void in
                 self.unfavorite(outfit: self.selectedOutfit)
-                print("deleted \(self.selectedOutfit)")
+                self.toggleEditing(nil)
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
                 print("canceled")
@@ -254,13 +308,7 @@ extension MyFavsViewController: UIViewControllerTransitioningDelegate {
 
 // Mark: - Actions
 extension MyFavsViewController {
-    
-    func didTapEditButton() {
-        isEditingFavs = !isEditingFavs
-        editButton.title = isEditingFavs ? "Done" : "Edit"
-        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
-    }
-    
+
     func animateEditing(for cell: OutfitCollectionViewCell) {
         if isEditingFavs {
             UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
