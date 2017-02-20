@@ -175,7 +175,8 @@ extension MyFavsViewController {
         case .initial(_):
             collectionView.reloadData()
         case .update(_, _, _, _):
-            self.refreshData()
+//            self.refreshData()
+            collectionView.reloadData()
             break
         case let .error(error):
             print(error.localizedDescription)
@@ -328,6 +329,8 @@ extension MyFavsViewController {
         let realm = try! Realm()
         try! realm.write {
             outfit.isLiked = false
+            outfit.top?.countLikes -= 1
+            outfit.bottom?.countLikes -= 1
         }
     }
 }
