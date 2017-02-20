@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,51 +21,126 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39r-Ta-zuA">
-                                <rect key="frame" x="90" y="571" width="76" height="76"/>
-                                <state key="normal" image="dislike"/>
-                                <connections>
-                                    <action selector="didTapDislikeButton:" destination="lFo-gG-Zd9" eventType="touchUpInside" id="QNo-ps-Yaw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdB-aK-bJv">
-                                <rect key="frame" x="209" y="571" width="76" height="76"/>
-                                <state key="normal" image="like"/>
-                                <connections>
-                                    <action selector="didTapLikeButton:" destination="lFo-gG-Zd9" eventType="touchUpInside" id="dLs-Ee-8GG"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSf-h8-cLy" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="30" y="104" width="315" height="451"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyWardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-Nr-fNX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-Nr-fNX">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Fp-Zgi">
+                                <rect key="frame" x="0.0" y="64" width="375" height="538"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fdN-Wc-us6">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="269"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="i8k-kU-9CL">
+                                            <size key="itemSize" width="250" height="265.5"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitTopCell" id="KCd-S3-z7V" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="2" width="250" height="265.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="265.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="lFo-gG-Zd9" id="sPI-U3-q5f"/>
+                                            <outlet property="delegate" destination="lFo-gG-Zd9" id="63m-In-LZ7"/>
+                                        </connections>
+                                    </collectionView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFl-q8-5TW">
+                                        <rect key="frame" x="0.0" y="269" width="375" height="269"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="AtV-DR-GUV">
+                                            <size key="itemSize" width="250" height="265.5"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OutfitBottomCell" id="cZ3-0d-8N2" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="2" width="250" height="265.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="265.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="lFo-gG-Zd9" id="IVE-es-2oM"/>
+                                            <outlet property="delegate" destination="lFo-gG-Zd9" id="668-B1-X3M"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fdN-Wc-us6" secondAttribute="trailing" id="4Hb-jU-PUp"/>
+                                    <constraint firstItem="fdN-Wc-us6" firstAttribute="leading" secondItem="gPX-Fp-Zgi" secondAttribute="leading" id="8wY-t9-0jG"/>
+                                    <constraint firstItem="hFl-q8-5TW" firstAttribute="top" secondItem="fdN-Wc-us6" secondAttribute="bottom" id="V6Y-wZ-fgs"/>
+                                    <constraint firstItem="fdN-Wc-us6" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="top" id="XId-Vp-z2u"/>
+                                    <constraint firstAttribute="trailing" secondItem="hFl-q8-5TW" secondAttribute="trailing" id="eCM-t5-ecQ"/>
+                                    <constraint firstItem="hFl-q8-5TW" firstAttribute="top" secondItem="fdN-Wc-us6" secondAttribute="bottom" id="fSt-Ae-z4I"/>
+                                    <constraint firstItem="hFl-q8-5TW" firstAttribute="leading" secondItem="gPX-Fp-Zgi" secondAttribute="leading" id="woE-ig-liJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="hFl-q8-5TW" secondAttribute="bottom" id="xkg-2G-4CD"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUj-Dh-QzH">
+                                <rect key="frame" x="157.5" y="592" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MW0-Is-xD0"/>
+                                    <constraint firstAttribute="width" constant="60" id="RBs-7s-896"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" image="likeButton"/>
+                                <connections>
+                                    <action selector="didTapLikeButton:" destination="lFo-gG-Zd9" eventType="touchUpInside" id="55I-Gu-SeH"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5o-Ji-hFT">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyWardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="JOk-Bl-3iN">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="JOk-Bl-3iN" firstAttribute="top" secondItem="f5o-Ji-hFT" secondAttribute="top" id="Cfq-Yi-0fa"/>
+                                    <constraint firstAttribute="bottom" secondItem="JOk-Bl-3iN" secondAttribute="bottom" id="FCR-dC-xzs"/>
+                                    <constraint firstAttribute="trailing" secondItem="JOk-Bl-3iN" secondAttribute="trailing" id="H7d-Bj-3GV"/>
+                                    <constraint firstItem="JOk-Bl-3iN" firstAttribute="leading" secondItem="f5o-Ji-hFT" secondAttribute="leading" id="Yx3-JM-cgi"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="39r-Ta-zuA" firstAttribute="width" secondItem="tdB-aK-bJv" secondAttribute="width" id="2cm-Ox-IET"/>
-                            <constraint firstItem="39r-Ta-zuA" firstAttribute="centerY" secondItem="tdB-aK-bJv" secondAttribute="centerY" id="5ER-Fb-Yf1"/>
-                            <constraint firstAttribute="trailing" secondItem="tSf-h8-cLy" secondAttribute="trailing" constant="30" id="DxI-Z1-Q30"/>
+                            <constraint firstItem="IUj-Dh-QzH" firstAttribute="centerX" secondItem="6GC-Fh-bub" secondAttribute="centerX" id="1rv-V4-BYr"/>
+                            <constraint firstAttribute="trailing" secondItem="f5o-Ji-hFT" secondAttribute="trailing" id="9o3-5O-RdT"/>
+                            <constraint firstItem="IUj-Dh-QzH" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="-10" id="CIW-7x-U7S"/>
                             <constraint firstItem="Wsz-Nr-fNX" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="FNC-i2-ghQ"/>
-                            <constraint firstItem="39r-Ta-zuA" firstAttribute="top" secondItem="tSf-h8-cLy" secondAttribute="bottom" constant="16" id="JZx-Xv-XmS"/>
-                            <constraint firstItem="tSf-h8-cLy" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" constant="30" id="NWs-UR-Qsl"/>
+                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="gPX-Fp-Zgi" secondAttribute="bottom" constant="65" id="LT5-QZ-RCV"/>
+                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="NJ3-Zv-zsa"/>
                             <constraint firstAttribute="trailing" secondItem="Wsz-Nr-fNX" secondAttribute="trailing" id="Ph8-VW-30O"/>
-                            <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="39r-Ta-zuA" secondAttribute="bottom" constant="20" id="PwD-dy-iV8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="tdB-aK-bJv" secondAttribute="trailing" constant="74" id="RP4-Eh-zC3"/>
-                            <constraint firstItem="39r-Ta-zuA" firstAttribute="height" secondItem="tdB-aK-bJv" secondAttribute="height" id="YKI-Ts-dRA"/>
-                            <constraint firstItem="tdB-aK-bJv" firstAttribute="leading" secondItem="39r-Ta-zuA" secondAttribute="trailing" constant="43" id="aX5-Ik-aH5"/>
-                            <constraint firstItem="tSf-h8-cLy" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" constant="40" id="q5k-7M-fy3"/>
+                            <constraint firstItem="gPX-Fp-Zgi" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="Sjv-tD-IfZ"/>
+                            <constraint firstItem="f5o-Ji-hFT" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="fuK-Fh-gAs"/>
+                            <constraint firstAttribute="bottom" secondItem="f5o-Ji-hFT" secondAttribute="bottom" id="hHZ-FB-yJI"/>
+                            <constraint firstAttribute="trailing" secondItem="gPX-Fp-Zgi" secondAttribute="trailing" id="kc2-89-8ab"/>
+                            <constraint firstItem="f5o-Ji-hFT" firstAttribute="top" secondItem="da3-X3-Wwy" secondAttribute="bottom" id="qro-u3-h8y"/>
                             <constraint firstItem="Wsz-Nr-fNX" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leading" id="tys-V4-u4v"/>
                             <constraint firstItem="Bo1-nc-wVL" firstAttribute="top" secondItem="Wsz-Nr-fNX" secondAttribute="bottom" id="xSd-dA-xkI"/>
-                            <constraint firstItem="39r-Ta-zuA" firstAttribute="leading" secondItem="6GC-Fh-bub" secondAttribute="leadingMargin" constant="74" id="xjS-Cj-NjX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DeK-8B-E3J"/>
                     <connections>
-                        <outlet property="emptyImageView" destination="Wsz-Nr-fNX" id="3N0-HN-mP6"/>
-                        <outlet property="kolodaView" destination="tSf-h8-cLy" id="NCE-Zu-fKL"/>
+                        <outlet property="bottomsCollectionView" destination="hFl-q8-5TW" id="fwl-Ps-j16"/>
+                        <outlet property="emptyView" destination="f5o-Ji-hFT" id="hh6-01-8aj"/>
+                        <outlet property="likeButton" destination="IUj-Dh-QzH" id="ubu-zW-rFo"/>
+                        <outlet property="topsCollectionView" destination="fdN-Wc-us6" id="159-he-vwR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euU-Qt-r0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -258,9 +332,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dislike" width="76" height="76"/>
-        <image name="emptyLikes" width="375" height="667"/>
-        <image name="emptyWardrobe" width="375" height="667"/>
-        <image name="like" width="76" height="76"/>
+        <image name="emptyLikes" width="414" height="736"/>
+        <image name="emptyWardrobe" width="414" height="736"/>
+        <image name="likeButton" width="32" height="32"/>
     </resources>
 </document>

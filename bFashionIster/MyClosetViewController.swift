@@ -7,154 +7,277 @@
 //
 
 import UIKit
-import Koloda
 import RealmSwift
-import pop
-
-private let frameAnimationSpringBounciness: CGFloat = 9
-private let frameAnimationSpringSpeed: CGFloat = 16
-private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
 class MyClosetViewController: MeuItemViewController {
     
-    var realm: Realm!
-    var outfits: Results<Outfit>!
-    var subscription: NotificationToken?
+//    @IBOutlet weak var emptyImageView: UIImageView!
+    @IBOutlet weak var topsCollectionView: UICollectionView!
+    @IBOutlet weak var bottomsCollectionView: UICollectionView!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var emptyView: UIView!
     
-    var didUpdate = false
-    var originalCount = 0
-
-    @IBOutlet weak var kolodaView: KolodaView!
-    @IBOutlet weak var emptyImageView: UIImageView!
+    let realm = try! Realm()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        kolodaView.dataSource = self
-        kolodaView.delegate = self
-        
-        kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
-        kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
-        
-        realm = try! Realm()
-        outfits = getUnfavoritedOutfits()
-        originalCount = outfits.count
-        subscription = notificationSubscription(for: outfits)
-        toggleHidden()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.refresh()
-    }
-
-    @IBAction func didTapDislikeButton(_ sender: Any) {
-        kolodaView.swipe(SwipeResultDirection.left)
-    }
-    
-    @IBAction func didTapLikeButton(_ sender: Any) {
-        kolodaView.swipe(SwipeResultDirection.right)
-    }
-    
-    func refresh() {
-        if outfits.count != originalCount {
-            originalCount = outfits.count
-            toggleHidden()
-            kolodaView.resetCurrentCardIndex()
+    var tops: Results<Article>! {
+        didSet {
+            topsCollectionView.reloadData()
         }
     }
     
+    var bottoms: Results<Article>! {
+        didSet {
+            bottomsCollectionView.reloadData()
+        }
+    }
+    
+    var subscriptions = [NotificationToken]()
+    
+    let itemsPerRow: CGFloat = 1
+    let itemsPerCol: CGFloat = 1
+    let sectionInsets = UIEdgeInsets(top: 0.0, left: 25.0, bottom: 0.0, right: 25.0)
+
+    var viewHasLoaded = false
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        likeButton.round(corners: [.allCorners], radius: (likeButton.frame.size.width/2), borderColor: .flatGray(), borderWidth: 5.0)
+
+        let nib = UINib(nibName: "OutfitArticleCollectionViewCell", bundle: nil)
+        topsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitTopCell")
+        bottomsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitBottomCell")
+
+        tops = getTops()
+        bottoms = getBottoms()
+        
+        let topsSubscription = notificationSubscription(for: tops)
+        let bottomsSubscription = notificationSubscription(for: bottoms)
+        subscriptions = [topsSubscription, bottomsSubscription]
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.toggleHidden()
+        
+        if viewHasLoaded {
+            self.scrollToCenter(collectionView: topsCollectionView)
+            self.scrollToCenter(collectionView: bottomsCollectionView)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewHasLoaded = true
+        self.updateLikeButtonImage(isLiked: nil)
+    }
+
+    @IBAction func didTapLikeButton(_ sender: Any) {
+        let outfitResult = outfitExists()
+        let exists = outfitResult.exists
+        var isLiked = exists
+        
+        // update the database
+        try! realm.write {
+            
+            // like or dislike it if it exists
+            if exists {
+                let outfit = outfitResult.outfit
+                guard outfit != nil else {
+                    return
+                }
+                
+                if (outfit?.isLiked)! {
+                    outfit?.isLiked = false
+                    outfit?.top?.countLikes -= 1
+                    outfit?.bottom?.countLikes -= 1
+                } else {
+                    outfit?.isLiked = true
+                    outfit?.top?.countLikes += 1
+                    outfit?.bottom?.countLikes += 1
+                }
+                
+                isLiked = (outfit?.isLiked)!
+                
+            // create it since it doesn't exist
+            } else {
+                guard outfitResult.top != nil,
+                    outfitResult.bottom != nil else {
+                        return
+                }
+                
+                let newOutfit = Outfit(top: outfitResult.top!, bottom: outfitResult.bottom!)
+                newOutfit.isLiked = true
+                newOutfit.top?.countLikes += 1
+                newOutfit.bottom?.countLikes += 1
+                realm.add(newOutfit)
+                
+                isLiked = true
+            }
+        }
+        
+        self.updateLikeButtonImage(isLiked: isLiked)
+    }
+    
     func toggleHidden() {
-        emptyImageView.isHidden = (outfits.count == 0) ? false : true
+        emptyView.isHidden = (tops?.count == 0 || bottoms?.count == 0) ? false : true
+//        emptyImageView.isHidden = (tops?.count == 0 || bottoms?.count == 0) ? false : true
     }
     
-    func getUnfavoritedOutfits() -> Results<Outfit> {
-        let allOutfits = realm.objects(Outfit.self)
-        return allOutfits.filter("isLiked = false")
+    func getTops() -> Results<Article> {
+        let articles = realm.objects(Article.self)
+        
+        return articles.filter("articleType = %@", ArticleType.top.rawValue).sorted(byProperty: "created", ascending: false)
     }
     
-    func notificationSubscription(for outfits: Results<Outfit>) -> NotificationToken {
-        return outfits.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Outfit>>) in
+    func getBottoms() -> Results<Article> {
+        let articles = realm.objects(Article.self)
+        
+        return articles.filter("articleType = %@", ArticleType.bottom.rawValue).sorted(byProperty: "created", ascending: false)
+    }
+
+    func outfitExists() -> OutfitResult {
+        // grab the visible cells from both collectionViews
+        let visibleTops = topsCollectionView.visibleCells
+        let visibleBottoms = bottomsCollectionView.visibleCells
+        guard visibleTops.count > 0,
+            visibleBottoms.count > 0 else {
+                return OutfitResult(exists: false, outfit: nil, top: nil, bottom: nil)
+        }
+        // get the current top and bottom
+        let topCell = visibleTops.first as? OutfitArticleCollectionViewCell
+        let bottomCell = visibleBottoms.first as? OutfitArticleCollectionViewCell
+        guard let top = topCell?.article,
+            let bottom = bottomCell?.article else {
+                return OutfitResult(exists: false, outfit: nil, top: nil, bottom: nil)
+        }
+        
+        // determine if this outfit exists and if it was previously liked
+        let outfits = realm.objects(Outfit.self)
+        let result = outfits.filter("top.articleId == '\(top.articleId)' AND bottom.articleId == '\(bottom.articleId)'")
+        let exists = result.count > 0
+        
+        return OutfitResult(exists: exists, outfit: result.first, top: top, bottom: bottom)
+    }
+    
+    func updateLikeButtonImage(isLiked: Bool?) {
+        var imageToUse: UIImage!
+        if isLiked != nil {
+            imageToUse = isLiked! ? #imageLiteral(resourceName: "likeFilled") : #imageLiteral(resourceName: "likeButton")
+        
+        } else {
+            let outfitResult = outfitExists()
+            if !outfitResult.exists {
+                imageToUse = #imageLiteral(resourceName: "likeButton")
+            } else {
+                imageToUse = (outfitResult.outfit?.isLiked)! ? #imageLiteral(resourceName: "likeFilled") : #imageLiteral(resourceName: "likeButton")
+            }
+        }
+        
+        self.likeButton.setImage(imageToUse, for: .normal)
+    }
+    
+    // Mark: - Realm Subscription
+    func notificationSubscription(for items: Results<Article>) -> NotificationToken {
+        return items.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Article>>) in
             self?.updateUI(with: changes)
         })
     }
     
-    func updateUI(with changes: RealmCollectionChange<Results<Outfit>>) {
+    func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
+        // TODO: how do I update the imageViews in the listView?
         switch changes {
         case .initial(_):
-            kolodaView.reloadData()
+            print("initial")
+            topsCollectionView.reloadData()
+            bottomsCollectionView.reloadData()
         case .update(_, _, _, _):
-            didUpdate = true
+            print("update")
+            topsCollectionView.reloadData()
+            bottomsCollectionView.reloadData()
         case let .error(error):
             print(error.localizedDescription)
         }
-
-        didUpdate = false
-    }
-}
-
-//MARK: KolodaViewDelegate
-extension MyClosetViewController: KolodaViewDelegate {
-    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        originalCount = outfits.count
-        koloda.resetCurrentCardIndex()
     }
     
-    func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
-        return true
-    }
-    
-    func kolodaShouldMoveBackgroundCard(_ koloda: KolodaView) -> Bool {
-        return false
-    }
-    
-    func kolodaShouldTransparentizeNextCard(_ koloda: KolodaView) -> Bool {
-        return true
-    }
-    
-    func koloda(kolodaBackgroundCardAnimation koloda: KolodaView) -> POPPropertyAnimation? {
-        let animation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
-        animation?.springBounciness = frameAnimationSpringBounciness
-        animation?.springSpeed = frameAnimationSpringSpeed
-        return animation
-    }
-}
-
-// MARK: KolodaViewDataSource
-extension MyClosetViewController: KolodaViewDataSource {
-    
-    func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return outfits != nil ? outfits.count : 0
-    }
-    
-    func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        var indexToUse = index
-        if didUpdate || outfits.count == index {
-            indexToUse -= 1
+    func scrollToCenter(collectionView: UICollectionView) {
+        var currentCellOffset: CGPoint = collectionView.contentOffset
+        currentCellOffset.x += collectionView.frame.size.width / 2
+        if let indexPath = collectionView.indexPathForItem(at: currentCellOffset) {
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
-
-        let outfit: Outfit = outfits[indexToUse]
-        outfit.setImagePath()
-        let image = Helper.image(atPath: outfit.combinedImgUrl)
-        let imageView = UIImageView(image: image)
-        imageView.layer.cornerRadius = 8
-        imageView.layer.masksToBounds = true
-        
-        return imageView
     }
-    
-    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-        let offset = originalCount - outfits.count
-        let indexToUse = index - offset
+}
+
+extension MyClosetViewController: UIScrollViewDelegate {
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let collectionView: UICollectionView = (scrollView == topsCollectionView) ? topsCollectionView : bottomsCollectionView
+        self.scrollToCenter(collectionView: collectionView)
         
-        try! realm.write {
-            if direction == SwipeResultDirection.right {
-                let outfit = outfits[indexToUse]
-                outfit.isLiked = true
-            }
+        // wait to update likeButton
+        let delayInSeconds = 0.125
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+            self.updateLikeButtonImage(isLiked: nil)
+        }
+    }
+}
+
+extension MyClosetViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == topsCollectionView {
+            return tops?.count ?? 0
+            
+        } else {
+            return bottoms?.count ?? 0
+            
         }
     }
     
-    func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
-        return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == topsCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitTopCell", for: indexPath) as! OutfitArticleCollectionViewCell
+            let top = tops[indexPath.row]
+            cell.article = top
+            return cell
+            
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitBottomCell", for: indexPath) as! OutfitArticleCollectionViewCell
+            let bottom = bottoms[indexPath.row]
+            cell.article = bottom
+            return cell
+            
+        }
     }
 }
+
+// Mark: - UICollectionViewDelegateFlowLayout
+extension MyClosetViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sidePaddingSpace = self.sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - sidePaddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        let bottomPaddingSpace = self.sectionInsets.bottom * itemsPerCol
+        let availableHeight = collectionView.frame.height - bottomPaddingSpace
+        let heightPerItem = availableHeight / itemsPerCol
+
+        return CGSize(width: widthPerItem, height: heightPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 25.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+
+}
+

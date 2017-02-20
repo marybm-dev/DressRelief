@@ -11,8 +11,6 @@ import RealmSwift
 
 class BottomsViewController: ArticleCollectionView {
 
-    @IBOutlet weak var emptyImageView: UIImageView!
-    
     override var items: Results<Article>! {
         didSet {
             collectionView.reloadData()
@@ -26,27 +24,14 @@ class BottomsViewController: ArticleCollectionView {
         toggleHidden()
         subscription = notificationSubscription(for: items)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        toggleHidden()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     func getBottoms() -> Results<Article> {
         let realm = try! Realm()
         articles = realm.objects(Article.self)
         
         return articles.filter("articleType = %@", ArticleType.bottom.rawValue)
     }
-    
-    func toggleHidden() {
-        emptyImageView.isHidden = (items?.count == 0) ? false : true
-    }
-    
+
     override func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
         switch changes {
         case .initial(_):
