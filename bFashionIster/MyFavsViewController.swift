@@ -20,9 +20,6 @@ class MyFavsViewController: MeuItemViewController {
     var notificationsSet = false
     var categoryTokens = [String: NotificationToken?]()
     
-    let colors = Category.allColors
-    var categoryColors = [String: UIColor]()
-    
     let itemsPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 1.0, bottom: 0, right: 0.0)
     
@@ -47,7 +44,6 @@ class MyFavsViewController: MeuItemViewController {
         favs = getFavs()
         toggleHidden()
         collectionView.reloadData()
-        setCategoryColors()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -72,19 +68,10 @@ extension MyFavsViewController {
         outfits = realm.objects(Outfit.self)
         return outfits.filter("isLiked = true")
     }
-
-    func setCategoryColors() {
-        let allCategories = Category.allValues
-        for (index,category) in allCategories.enumerated() {
-            categoryColors[category] = colors[index]
-        }
-    }
-
 }
 
 // Mark: - Editing Logid
 extension MyFavsViewController {
-    
     
     func toggleHidden() {
         emptyImageView.isHidden = (favs?.count == 0) ? false : true
@@ -169,9 +156,11 @@ extension MyFavsViewController: UICollectionViewDataSource {
         
         let outfit = favs[indexPath.row]
         cell.outfit = outfit
+        
 //        guard let color = categoryColors[outfit.category] else {
 //            return cell
 //        }
+        
 //        cell.layer.addBorder(edge: .right, color: .clear, thickness: 1.0)
         return cell
     }

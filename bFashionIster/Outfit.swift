@@ -116,6 +116,7 @@ class Outfit: Object {
 
         return path
     }
+    
 }
 
 enum OutfitSegue: String {
