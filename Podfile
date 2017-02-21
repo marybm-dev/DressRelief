@@ -7,8 +7,6 @@ target 'bFashionIster' do
 
   # Pods for bFashionIster
   pod 'RealmSwift'
-  pod 'Koloda', '~> 4.0'
-  pod 'KVNProgress'
 end
 
 post_install do |installer|
