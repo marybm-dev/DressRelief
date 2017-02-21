@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         
         // Test data
-//        TestData.defaults()
+        TestData.defaults()
         
         // Setup styles
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -14,12 +14,8 @@ class MyFavsViewController: MeuItemViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var emptyImageView: UIImageView!
     
-    let allCategories = Category.allValues
-    
-    var categories = [String]()
     var outfits: Results<Outfit>!
     var favs: Results<Outfit>!
-    var outfitsByCategory = [String: Results<Outfit>]()
     
     var notificationsSet = false
     var categoryTokens = [String: NotificationToken?]()
@@ -28,7 +24,7 @@ class MyFavsViewController: MeuItemViewController {
     var categoryColors = [String: UIColor]()
     
     let itemsPerRow: CGFloat = 3
-    let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0, right: 0.0)
+    let sectionInsets = UIEdgeInsets(top: 0.0, left: 1.0, bottom: 0, right: 0.0)
     
     var selectedOutfit: Outfit!
     var selectedImage: UIImageView!
@@ -51,15 +47,12 @@ class MyFavsViewController: MeuItemViewController {
         favs = getFavs()
         toggleHidden()
         collectionView.reloadData()
-
-        categories = getOutfitCategories()
-        setOutfitsHashTable()
         setCategoryColors()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.refreshData()
+        collectionView.reloadData()
         toggleHidden()
         toggleEditing(nil)
     }
@@ -79,35 +72,14 @@ extension MyFavsViewController {
         outfits = realm.objects(Outfit.self)
         return outfits.filter("isLiked = true")
     }
-    
-    func getOutfitCategories() -> [String] {
-        let allCategories = favs.map { $0.category }
-        return Array(Set(allCategories))
-    }
-    
-    func setOutfitsHashTable() {
-        outfits = getFavs()
-        for category in categories {
-            let results = outfits.filter("category = %@", category)
-            outfitsByCategory[category] = results
-            if !notificationsSet {
-                categoryTokens[category] = notificationSubscription(for: results)
-            }
-        }
-        notificationsSet = true
-    }
-    
+
     func setCategoryColors() {
+        let allCategories = Category.allValues
         for (index,category) in allCategories.enumerated() {
             categoryColors[category] = colors[index]
         }
     }
-    
-    func refreshData() {
-        categories = getOutfitCategories()
-        setOutfitsHashTable()
-        collectionView.reloadData()
-    }
+
 }
 
 // Mark: - Editing Logid
@@ -175,7 +147,6 @@ extension MyFavsViewController {
         case .initial(_):
             collectionView.reloadData()
         case .update(_, _, _, _):
-//            self.refreshData()
             collectionView.reloadData()
             break
         case let .error(error):
@@ -187,42 +158,24 @@ extension MyFavsViewController {
 // Mark: – UICollectionViewDataSource
 extension MyFavsViewController: UICollectionViewDataSource {
     
-    func outfit(for indexPath: IndexPath) -> Outfit? {
-        let category = categories[indexPath.section]
-        return outfitsByCategory[category]?[indexPath.row]
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return categories.count
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let category = categories[section]
-        return outfitsByCategory[category]?.count ?? 0
+        return favs?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitCell", for: indexPath) as! OutfitCollectionViewCell
         self.animateEditing(for: cell)
-        guard let outfit = outfit(for: indexPath) else {
-            return cell
-        }
+        
+        let outfit = favs[indexPath.row]
         cell.outfit = outfit
-        guard let color = categoryColors[outfit.category] else {
-            return cell
-        }
-        cell.layer.addBorder(edge: .left, color: color, thickness: 5.0)
+//        guard let color = categoryColors[outfit.category] else {
+//            return cell
+//        }
+//        cell.layer.addBorder(edge: .right, color: .clear, thickness: 1.0)
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "OutfitCategoryHeaderView", for: indexPath) as! OutfitCategoryHeaderView
-        let category = categories[indexPath.section]
-        headerView.category = category
-        headerView.containerView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 0.5)
-        headerView.containerView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 0.5)
-        return headerView
-    }
+
 }
 
 // Mark: - UICollectionViewDelegateFlowLayout
@@ -230,10 +183,10 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = self.sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
+        let availableWidth = collectionView.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        let availableHeight = view.frame.height - paddingSpace - 64.0 - 68.0 - 49.0 // navBar space - section headers - tabBar
+        let availableHeight = collectionView.frame.height - paddingSpace - 64.0 // navBar space - section headers
         let heightPerItem = availableHeight / itemsPerRow
         
         return CGSize(width: widthPerItem, height: heightPerItem)
@@ -252,7 +205,7 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let outfit = outfit(for: indexPath) else { return }
+        let outfit = favs[indexPath.row]
         self.selectedOutfit = outfit
         
         if isEditingFavs {
