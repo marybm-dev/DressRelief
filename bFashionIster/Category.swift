@@ -28,13 +28,13 @@ enum Category: Int, CustomStringConvertible {
     
     var color: UIColor {
         switch self {
-        case .professional:     return UIColor.flatRed()
-        case .casual:           return UIColor.flatYellow()
-        case .formal:           return UIColor.flatOrange()
+        case .professional:     return UIColor.flatOrange()
+        case .casual:           return UIColor.flatBlue()
+        case .formal:           return UIColor.flatDarkBlue()
         case .dressyCasual:     return UIColor.flatGreen()
-        case .nightOut:         return UIColor.flatBlue()
+        case .nightOut:         return UIColor.flatRed()
         case .sportsware:       return UIColor.flatPurple()
-        case .anytime:          return UIColor.flatDarkBlue()
+        case .anytime:          return UIColor.flatYellow()
         case .comfy:            return UIColor.flatDarkGray()
         default:                return UIColor.white
         }
@@ -43,6 +43,17 @@ enum Category: Int, CustomStringConvertible {
     static let allRawValues = professional.rawValue...comfy.rawValue
     static let allValues = allRawValues.map { Category(rawValue: $0)!.description }
     static let allColors = allRawValues.map { Category(rawValue: $0)!.color }
+    
+    static func colors() -> [String: UIColor] {
+        let colors = Category.allColors
+        var categoryColors = [String: UIColor]()
+        let allCategories = Category.allValues
+        for (index,category) in allCategories.enumerated() {
+            categoryColors[category] = colors[index]
+        }
+        
+        return categoryColors
+    }
 }
 
 struct CategoryItem {
