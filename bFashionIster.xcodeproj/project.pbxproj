@@ -41,6 +41,7 @@
 		44AF4A041E0CDBB800A17659 /* ArticleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4A031E0CDBB800A17659 /* ArticleEditViewController.swift */; };
 		44AF4A061E0CDF5100A17659 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4A051E0CDF5100A17659 /* ArticleDetailViewController.swift */; };
 		44AF4A091E0CE3C300A17659 /* ArticleCRUD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44AF4A071E0CE3C300A17659 /* ArticleCRUD.storyboard */; };
+		44B443D61E5CE1700047C94A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B443D51E5CE1700047C94A /* CloudKit.framework */; };
 		44CD8DBC1DFF8B8900BD4CF1 /* MyClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DBB1DFF8B8900BD4CF1 /* MyClosetViewController.swift */; };
 		44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DBD1DFF8B9A00BD4CF1 /* MyFavsViewController.swift */; };
 		44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DBF1DFF8BA700BD4CF1 /* TopsViewController.swift */; };
@@ -50,10 +51,8 @@
 		44CDFC6D1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDFC6B1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift */; };
 		44CDFC6E1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */; };
 		44CDFC711E05FC67002FFC6D /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDFC701E05FC67002FFC6D /* Article.swift */; };
-		44E8652C1E17655300251310 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8652A1E17655300251310 /* CustomOverlayView.swift */; };
 		44E8652D1E17655300251310 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E8652B1E17655300251310 /* CustomOverlayView.xib */; };
 		44E8652F1E17657D00251310 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E8652E1E17657D00251310 /* OverlayView.xib */; };
-		44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */; };
 		44FB34D71E22002D00EE32AB /* OutfitCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FB34D61E22002D00EE32AB /* OutfitCategoryHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +93,8 @@
 		44AF4A031E0CDBB800A17659 /* ArticleEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleEditViewController.swift; sourceTree = "<group>"; };
 		44AF4A051E0CDF5100A17659 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		44AF4A081E0CE3C300A17659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = bFashionIster/Base.lproj/ArticleCRUD.storyboard; sourceTree = "<group>"; };
+		44B443D41E5CE16E0047C94A /* bFashionIster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bFashionIster.entitlements; sourceTree = "<group>"; };
+		44B443D51E5CE1700047C94A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		44CD8DBB1DFF8B8900BD4CF1 /* MyClosetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClosetViewController.swift; sourceTree = "<group>"; };
 		44CD8DBD1DFF8B9A00BD4CF1 /* MyFavsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFavsViewController.swift; sourceTree = "<group>"; };
 		44CD8DBF1DFF8BA700BD4CF1 /* TopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopsViewController.swift; sourceTree = "<group>"; };
@@ -103,10 +104,8 @@
 		44CDFC6B1E05F8E8002FFC6D /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		44CDFC6C1E05F8E8002FFC6D /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
 		44CDFC701E05FC67002FFC6D /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		44E8652A1E17655300251310 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomOverlayView.swift; sourceTree = "<group>"; };
 		44E8652B1E17655300251310 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOverlayView.xib; sourceTree = "<group>"; };
 		44E8652E1E17657D00251310 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
-		44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundKolodaAnimator.swift; sourceTree = "<group>"; };
 		44FB34D61E22002D00EE32AB /* OutfitCategoryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitCategoryHeaderView.swift; sourceTree = "<group>"; };
 		C62F2F795F36CDC2EDE7AF3F /* Pods_bFashionIster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bFashionIster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0459BF5CBCBF72F759899DB /* Pods-bFashionIster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bFashionIster.release.xcconfig"; path = "Pods/Target Support Files/Pods-bFashionIster/Pods-bFashionIster.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C807580BE00CD2180086C14 /* Pods_bFashionIster.framework in Frameworks */,
+				44B443D61E5CE1700047C94A /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,15 +140,6 @@
 				44AF4A031E0CDBB800A17659 /* ArticleEditViewController.swift */,
 			);
 			name = Create;
-			sourceTree = "<group>";
-		};
-		4432F1621E242F7600054F87 /* Koloda */ = {
-			isa = PBXGroup;
-			children = (
-				44E865321E176B3800251310 /* BackgroundKolodaAnimator.swift */,
-				44E8652A1E17655300251310 /* CustomOverlayView.swift */,
-			);
-			name = Koloda;
 			sourceTree = "<group>";
 		};
 		4449D1F11E58A83600E34F30 /* Custom Cells */ = {
@@ -186,6 +177,7 @@
 		447798001DFC9EBA004DA42D /* bFashionIster */ = {
 			isa = PBXGroup;
 			children = (
+				44B443D41E5CE16E0047C94A /* bFashionIster.entitlements */,
 				447798011DFC9EBA004DA42D /* AppDelegate.swift */,
 				448E37D51E05E84A00A62DC6 /* Assets */,
 				447CBDBC1E096AE500176997 /* Common */,
@@ -211,7 +203,6 @@
 		448DE65B1E1DE0E7007582E0 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				4432F1621E242F7600054F87 /* Koloda */,
 				448DE6551E1D78BA007582E0 /* TransitionAnimator.swift */,
 				446390C81E27117C002FDAE2 /* PannableViewController.swift */,
 				446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */,
@@ -321,6 +312,7 @@
 		ADE8AF427F472C233543B32F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44B443D51E5CE1700047C94A /* CloudKit.framework */,
 				C62F2F795F36CDC2EDE7AF3F /* Pods_bFashionIster.framework */,
 			);
 			name = Frameworks;
@@ -363,6 +355,14 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 6NZ47HJYTD;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -462,7 +462,6 @@
 				4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */,
 				448DE6581E1D9E51007582E0 /* AboutTableViewCell.swift in Sources */,
 				44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */,
-				44E865331E176B3800251310 /* BackgroundKolodaAnimator.swift in Sources */,
 				447CBDB91E0967D700176997 /* Color.swift in Sources */,
 				4449D1F41E58A99700E34F30 /* OutfitArticleCollectionViewCell.swift in Sources */,
 				44FB34D71E22002D00EE32AB /* OutfitCategoryHeaderView.swift in Sources */,
@@ -479,7 +478,6 @@
 				44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */,
 				447CBDB71E0966F700176997 /* Category.swift in Sources */,
 				447CBDC41E09A46300176997 /* ArticleCreateImageTableViewCell.swift in Sources */,
-				44E8652C1E17655300251310 /* CustomOverlayView.swift in Sources */,
 				44895F101E4A3023007EF85E /* MeuItemViewController.swift in Sources */,
 				44CD8DC41DFF8BC300BD4CF1 /* AccountViewController.swift in Sources */,
 				446390C91E27117C002FDAE2 /* PannableViewController.swift in Sources */,
@@ -634,6 +632,7 @@
 			baseConfigurationReference = 1EB40BD5E21C1FE1FBA685C3 /* Pods-bFashionIster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = bFashionIster/bFashionIster.entitlements;
 				DEVELOPMENT_TEAM = 6NZ47HJYTD;
 				INFOPLIST_FILE = bFashionIster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -649,6 +648,7 @@
 			baseConfigurationReference = F0459BF5CBCBF72F759899DB /* Pods-bFashionIster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = bFashionIster/bFashionIster.entitlements;
 				DEVELOPMENT_TEAM = 6NZ47HJYTD;
 				INFOPLIST_FILE = bFashionIster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
