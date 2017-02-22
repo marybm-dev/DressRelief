@@ -16,9 +16,7 @@ class MyFavsViewController: MeuItemViewController {
     
     var outfits: Results<Outfit>!
     var favs: Results<Outfit>!
-    
-    var notificationsSet = false
-    var categoryTokens = [String: NotificationToken?]()
+    var subscription: NotificationToken?
     
     let itemsPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 1.0, bottom: 0, right: 0.0)
@@ -42,8 +40,8 @@ class MyFavsViewController: MeuItemViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "OutfitCell")
         
         favs = getFavs()
+        subscription = notificationSubscription(for: favs)
         toggleHidden()
-        collectionView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -84,8 +82,11 @@ extension MyFavsViewController {
     }
     
     func toggleEditing(_ willDisappear: Bool?) {
-        let shouldHide = (favs.count ?? 0) == 0 ? true : false
+        guard favs != nil else {
+            return
+        }
         
+        let shouldHide = favs.count == 0 ? true : false
         if isEditingFavs {
             // there are no more items
             if shouldHide {
@@ -94,7 +95,6 @@ extension MyFavsViewController {
                 toggleHidden()
                 return
             }
-            
             // there still are items but I am leaving the view
             if let willDisappear = willDisappear {
                 if willDisappear {
@@ -102,7 +102,6 @@ extension MyFavsViewController {
                     return
                 }
             }
-            
             // there still are items and I am editing - do nothing
             
         } else {
@@ -133,8 +132,15 @@ extension MyFavsViewController {
         switch changes {
         case .initial(_):
             collectionView.reloadData()
-        case .update(_, _, _, _):
-            collectionView.reloadData()
+        case .update(_, let deletions , let insertions, let modifications):
+            collectionView.performBatchUpdates({
+                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+            }, completion: { _ in
+                self.collectionView.reloadData()
+            })
+            break
         case let .error(error):
             print(error.localizedDescription)
         }

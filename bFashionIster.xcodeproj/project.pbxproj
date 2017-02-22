@@ -12,7 +12,6 @@
 		4449D1F41E58A99700E34F30 /* OutfitArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4449D1F21E58A99700E34F30 /* OutfitArticleCollectionViewCell.swift */; };
 		4449D1F51E58A99700E34F30 /* OutfitArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4449D1F31E58A99700E34F30 /* OutfitArticleCollectionViewCell.xib */; };
 		4452B3161E0264CA0068A85E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B3151E0264CA0068A85E /* Extensions.swift */; };
-		4460BD251E08D01A00753281 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD241E08D01A00753281 /* TestData.swift */; };
 		4460BD271E08D7C900753281 /* ArticleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460BD261E08D7C900753281 /* ArticleCollectionView.swift */; };
 		446390C91E27117C002FDAE2 /* PannableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446390C81E27117C002FDAE2 /* PannableViewController.swift */; };
 		446390CB1E27123C002FDAE2 /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */; };
@@ -62,7 +61,6 @@
 		4449D1F21E58A99700E34F30 /* OutfitArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		4449D1F31E58A99700E34F30 /* OutfitArticleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutfitArticleCollectionViewCell.xib; sourceTree = "<group>"; };
 		4452B3151E0264CA0068A85E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		4460BD241E08D01A00753281 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		4460BD261E08D7C900753281 /* ArticleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionView.swift; sourceTree = "<group>"; };
 		446390C81E27117C002FDAE2 /* PannableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
 		446390CA1E27123C002FDAE2 /* ControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDelegate.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 		447CBDBC1E096AE500176997 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4460BD241E08D01A00753281 /* TestData.swift */,
 				4452B3151E0264CA0068A85E /* Extensions.swift */,
 				443017DC1E0CD6E0000755BD /* Helper.swift */,
 			);
@@ -470,7 +467,6 @@
 				443017DD1E0CD6E0000755BD /* Helper.swift in Sources */,
 				447CBDC21E09A3FE00176997 /* ArticleCreateTableViewCell.swift in Sources */,
 				448E37DB1E05E88100A62DC6 /* Outfit.swift in Sources */,
-				4460BD251E08D01A00753281 /* TestData.swift in Sources */,
 				44AF4A041E0CDBB800A17659 /* ArticleEditViewController.swift in Sources */,
 				44CD8DC61DFF8BCE00BD4CF1 /* SettingsViewController.swift in Sources */,
 				44CD8DBC1DFF8B8900BD4CF1 /* MyClosetViewController.swift in Sources */,
