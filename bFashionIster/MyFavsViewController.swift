@@ -135,7 +135,6 @@ extension MyFavsViewController {
             collectionView.reloadData()
         case .update(_, _, _, _):
             collectionView.reloadData()
-            break
         case let .error(error):
             print(error.localizedDescription)
         }
@@ -153,15 +152,8 @@ extension MyFavsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitCell", for: indexPath) as! OutfitCollectionViewCell
         self.animateEditing(for: cell)
-        
         let outfit = favs[indexPath.row]
         cell.outfit = outfit
-        
-//        guard let color = categoryColors[outfit.category] else {
-//            return cell
-//        }
-        
-//        cell.layer.addBorder(edge: .right, color: .clear, thickness: 1.0)
         return cell
     }
 
