@@ -104,25 +104,13 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     }
     
     func saveImageToDocuments(image: UIImage, fileNameWithExtension: String) {
-        let image = cropImageIntoSquare(image: image)
-//        let imagePath = Helper.fileDirectory.appendingPathComponent("\(fileNameWithExtension)")
-  
+        guard let image = cropImageIntoSquare(image: image),
+            let imageData = UIImageJPEGRepresentation(image, 0.6) else {
+            return
+        }
         
         let docsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let finalDir = docsURL.appendingPathComponent(fileNameWithExtension)
-
-//        let imagePathString = Helper.applicationDocumentDirectory() + "/" + fileNameWithExtension
-//        print(imagePathString)
-//        let imagePath = URL(string: imagePathString)
-//        guard imagePath?.path != nil else {
-        guard finalDir.path != nil else {
-            return
-        }
-        guard let imageData = UIImageJPEGRepresentation(image!, 0.6) else {
-            return
-        }
-        
-//        let url = URL(fileURLWithPath: (imagePath?.path)!)
         do {
             try imageData.write(to: finalDir, options: .atomic)
         } catch let error {
@@ -132,7 +120,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
         
         selectedImageData = imageData
         selectedImagePath = finalDir.absoluteString
-        selectedImage = image! as UIImage
+        selectedImage = image
         performSegue(withIdentifier: ArticleSegue.FromImageToCreateArticle.rawValue, sender: nil)
     }
     

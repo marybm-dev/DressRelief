@@ -19,7 +19,6 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         didSet {
             likesCountLabel.text = "\(item.countLikes)"
             self.likedImageView.image = item.countLikes > 0 ? #imageLiteral(resourceName: "likedFilled") : #imageLiteral(resourceName: "liked")
-
             Helper.set(article: item, in: itemImageView)
         }
     }

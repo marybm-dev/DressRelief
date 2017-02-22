@@ -25,9 +25,20 @@ class Helper {
     }
     
     static func set(article: Article, in imageView: UIImageView) {
-        let url = Helper.urlForBookmark(bookmark: article.image)
-        print(url!)
-        let image = UIImage(contentsOfFile: (url?.path)!)
+        guard let url = Helper.urlForBookmark(bookmark: article.image) else {
+            imageView.image = nil
+            return
+        }
+        let image = UIImage(contentsOfFile: url.path)
+        imageView.image = image
+    }
+    
+    static func set(outfit: Outfit, in imageView: UIImageView) {
+        guard let url = Helper.urlForBookmark(bookmark: outfit.combinedImage) else {
+            imageView.image = nil
+            return
+        }
+        let image = UIImage(contentsOfFile: url.path)
         imageView.image = image
     }
     
@@ -52,6 +63,13 @@ class Helper {
         }
         
         return bookmarkURL
+    }
+    
+    static func image(from bookmarkData: Data) -> UIImage? {
+        guard let url = Helper.urlForBookmark(bookmark: bookmarkData) else {
+            return nil
+        }
+        return UIImage(contentsOfFile: url.path)
     }
 
     static func image(atPath articlePath: String) -> UIImage? {

@@ -46,12 +46,11 @@ class Outfit: Object {
 
     func setImagePath() {
         let imageResult = self.outfitImagePath()
-        guard let path = imageResult.path,
-            let url = URL(string: path) else {
+        guard let path = imageResult.path else {
             return
         }
 
-        if let outfitImage = Helper.bookmarkForURL(url: url) {
+        if let outfitImage = Helper.bookmarkForURL(url: path) {
             self.combinedImage = outfitImage
         }
     }
@@ -79,27 +78,25 @@ class Outfit: Object {
     }
     
     func outfitImagePath() -> OutfitImage {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let imagePathString = documentsPath.appending("/outfit-\(UUID().uuidString).jpg")
-        print(imagePathString)
-        
-        let imagePath = URL(string: imagePathString)
-        guard let path      = imagePath?.path,
-            let top         = UIImage(data: self.topImage as Data),
-            let bottom      = UIImage(data: self.bottomImage as Data),
+        let filename = "outfit-\(UUID().uuidString).jpg"
+        let docsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let finalDir = docsURL.appendingPathComponent(filename)
+
+        guard let top       = Helper.image(from: self.topImage),
+            let bottom      = Helper.image(from: self.bottomImage),
             let outfit      = Outfit.outfitImage(top: top, bottom: bottom),
             let imageData   = UIImageJPEGRepresentation(outfit, 0.6) else {
                 return OutfitImage(path: nil, data: nil)
         }
         
         do {
-            try imageData.write(to: URL(fileURLWithPath: path), options: .atomic)
+            try imageData.write(to: URL(fileURLWithPath: finalDir.path), options: .atomic)
         } catch let error {
             print("outfit image path error")
             print(error)
         }
         
-        return OutfitImage(path: path, data: imageData)
+        return OutfitImage(path: finalDir, data: imageData)
     }
 }
 
@@ -115,6 +112,6 @@ struct OutfitResult {
 }
 
 struct OutfitImage {
-    var path: String?
+    var path: URL?
     var data: Data?
 }
