@@ -18,17 +18,30 @@ class OutfitCollectionViewCell: UICollectionViewCell {
     
     var outfit: Outfit! {
         didSet {
-            outfitImageView.image = Helper.image(atPath: outfit.combinedImgUrl)
             
             topsCategoryLabel.text = " \((outfit.top?.category)!) "
             bottomsCategoryLabel.text = " \((outfit.bottom?.category)!) "
-
             topsCategoryLabel.backgroundColor = articleColor(for: outfit.top)
             bottomsCategoryLabel.backgroundColor = articleColor(for: outfit.bottom)
-            
             topsCategoryLabel.textColor = .white
             bottomsCategoryLabel.textColor = .white
             
+            let url = Helper.urlForBookmark(bookmark: outfit.combinedImage)
+            guard let urlPath = url?.absoluteString else {
+                return
+            }
+            
+            let image = UIImage(contentsOfFile: urlPath)
+            print(image)
+            outfitImageView.image = image
+            
+            //let image = UIImage(data: outfit.combinedImage)
+//            print(image)
+//
+//            let imageURL = Helper.urlForBookmark(bookmark: outfit.combinedImage)
+//            print(imageURL)
+//
+//            outfitImageView.image = Helper.image(atPath: (imageURL?.absoluteString)!)
         }
     }
     

@@ -14,7 +14,7 @@ class Article: Object {
     dynamic var created = Date()
     
     dynamic var articleType = ""
-    dynamic var imgUrl = ""
+    dynamic var image: Data = Data()
     dynamic var color = ""
     dynamic var texture = ""
     dynamic var category = ""
@@ -24,10 +24,10 @@ class Article: Object {
         return "articleId"
     }
     
-    convenience init(imgUrl: String, color: String, texture: String, category: String, type: String) {
+    convenience init(imgData: Data, color: String, texture: String, category: String, type: String) {
         self.init()
         
-        self.imgUrl = imgUrl
+        self.image = imgData
         self.color = color
         self.texture = texture
         self.category = category
