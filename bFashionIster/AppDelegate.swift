@@ -23,10 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var config = Realm.Configuration()
         config.deleteRealmIfMigrationNeeded = true
         Realm.Configuration.defaultConfiguration = config
-        
-        // Test data
-//        TestData.defaults()
-        
+
         // Setup styles
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = Helper.initTabBarController()
