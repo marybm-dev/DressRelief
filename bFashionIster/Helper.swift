@@ -71,19 +71,23 @@ class Helper {
         }
         return UIImage(contentsOfFile: url.path)
     }
-    
-    static func createImagesFolder() {
-        let fileManager = FileManager.default
-        let docsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let photoDir = docsURL.appendingPathComponent("Images").path
-        var isDir : ObjCBool = false
-        
-        // if path does not exist, create it
-        if !fileManager.fileExists(atPath: photoDir, isDirectory:&isDir) {
-            do {
-                try fileManager.createDirectory(atPath: photoDir, withIntermediateDirectories: true, attributes: nil)
-            } catch let error as NSError {
-                print("Error: \(error.localizedDescription)")
+
+    static func image(atPath articlePath: String) -> UIImage? {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let imagePathString = documentsPath.appending(articlePath)
+        print(imagePathString)
+
+        if FileManager.default.fileExists(atPath: imagePathString) {
+            let imageURL = URL(fileURLWithPath: imagePathString)
+            return UIImage(contentsOfFile: imageURL.path)
+            
+        } else {
+            // attempt to load "named" image
+            if let image = UIImage(named: articlePath) {
+                return image
+                
+            } else {
+                return nil
             }
         }
     }
