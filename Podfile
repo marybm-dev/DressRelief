@@ -7,6 +7,8 @@ target 'bFashionIster' do
 
   # Pods for bFashionIster
   pod 'RealmSwift'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 post_install do |installer|
