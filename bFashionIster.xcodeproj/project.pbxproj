@@ -40,7 +40,6 @@
 		44AF4A041E0CDBB800A17659 /* ArticleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4A031E0CDBB800A17659 /* ArticleEditViewController.swift */; };
 		44AF4A061E0CDF5100A17659 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF4A051E0CDF5100A17659 /* ArticleDetailViewController.swift */; };
 		44AF4A091E0CE3C300A17659 /* ArticleCRUD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44AF4A071E0CE3C300A17659 /* ArticleCRUD.storyboard */; };
-		44B443D61E5CE1700047C94A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B443D51E5CE1700047C94A /* CloudKit.framework */; };
 		44CD8DBC1DFF8B8900BD4CF1 /* MyClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DBB1DFF8B8900BD4CF1 /* MyClosetViewController.swift */; };
 		44CD8DBE1DFF8B9A00BD4CF1 /* MyFavsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DBD1DFF8B9A00BD4CF1 /* MyFavsViewController.swift */; };
 		44CD8DC01DFF8BA700BD4CF1 /* TopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD8DBF1DFF8BA700BD4CF1 /* TopsViewController.swift */; };
@@ -92,7 +91,6 @@
 		44AF4A051E0CDF5100A17659 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		44AF4A081E0CE3C300A17659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = bFashionIster/Base.lproj/ArticleCRUD.storyboard; sourceTree = "<group>"; };
 		44B443D41E5CE16E0047C94A /* bFashionIster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bFashionIster.entitlements; sourceTree = "<group>"; };
-		44B443D51E5CE1700047C94A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		44CD8DBB1DFF8B8900BD4CF1 /* MyClosetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClosetViewController.swift; sourceTree = "<group>"; };
 		44CD8DBD1DFF8B9A00BD4CF1 /* MyFavsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFavsViewController.swift; sourceTree = "<group>"; };
 		44CD8DBF1DFF8BA700BD4CF1 /* TopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopsViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C807580BE00CD2180086C14 /* Pods_bFashionIster.framework in Frameworks */,
-				44B443D61E5CE1700047C94A /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +306,6 @@
 		ADE8AF427F472C233543B32F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				44B443D51E5CE1700047C94A /* CloudKit.framework */,
 				C62F2F795F36CDC2EDE7AF3F /* Pods_bFashionIster.framework */,
 			);
 			name = Frameworks;
@@ -354,10 +350,10 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -628,7 +624,6 @@
 			baseConfigurationReference = 1EB40BD5E21C1FE1FBA685C3 /* Pods-bFashionIster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = bFashionIster/bFashionIster.entitlements;
 				DEVELOPMENT_TEAM = 6NZ47HJYTD;
 				INFOPLIST_FILE = bFashionIster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -644,7 +639,6 @@
 			baseConfigurationReference = F0459BF5CBCBF72F759899DB /* Pods-bFashionIster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = bFashionIster/bFashionIster.entitlements;
 				DEVELOPMENT_TEAM = 6NZ47HJYTD;
 				INFOPLIST_FILE = bFashionIster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
