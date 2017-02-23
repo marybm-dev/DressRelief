@@ -18,7 +18,8 @@ class MyClosetViewController: MeuItemViewController {
     @IBOutlet weak var emptyView: UIView!
     
     let realm = try! Realm()
-    
+    var subscriptions = [NotificationToken]()
+    var articles: Results<Article>!
     var tops: Results<Article>! {
         didSet {
             topsCollectionView.reloadData()
@@ -30,15 +31,11 @@ class MyClosetViewController: MeuItemViewController {
             bottomsCollectionView.reloadData()
         }
     }
-    
-    var subscriptions = [NotificationToken]()
-    
     let itemsPerRow: CGFloat = 1
     let itemsPerCol: CGFloat = 1
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 25.0, bottom: 0.0, right: 25.0)
-
     var viewHasLoaded = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,6 +45,7 @@ class MyClosetViewController: MeuItemViewController {
         topsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitTopCell")
         bottomsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitBottomCell")
 
+        articles = realm.objects(Article.self)
         tops = getTops()
         bottoms = getBottoms()
         
@@ -119,18 +117,13 @@ class MyClosetViewController: MeuItemViewController {
     
     func toggleHidden() {
         emptyView.isHidden = (tops?.count == 0 || bottoms?.count == 0) ? false : true
-//        emptyImageView.isHidden = (tops?.count == 0 || bottoms?.count == 0) ? false : true
     }
     
     func getTops() -> Results<Article> {
-        let articles = realm.objects(Article.self)
-        
         return articles.filter("articleType = %@", ArticleType.top.rawValue).sorted(byProperty: "created", ascending: false)
     }
     
     func getBottoms() -> Results<Article> {
-        let articles = realm.objects(Article.self)
-        
         return articles.filter("articleType = %@", ArticleType.bottom.rawValue).sorted(byProperty: "created", ascending: false)
     }
 
@@ -183,7 +176,6 @@ class MyClosetViewController: MeuItemViewController {
     }
     
     func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
-        // TODO: how do I update the imageViews in the listView?
         switch changes {
         case .initial(_):
             print("initial")
@@ -197,7 +189,7 @@ class MyClosetViewController: MeuItemViewController {
             print(error.localizedDescription)
         }
     }
-    
+
     func scrollToCenter(collectionView: UICollectionView) {
         var currentCellOffset: CGPoint = collectionView.contentOffset
         currentCellOffset.x += collectionView.frame.size.width / 2
