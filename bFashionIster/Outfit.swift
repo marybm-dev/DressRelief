@@ -19,9 +19,12 @@ class Outfit: Object {
     dynamic var topImage = Data()
     dynamic var bottomImage = Data()
     dynamic var combinedImage = Data()
-    dynamic var category = ""
-    dynamic var color = ""
-    dynamic var texture = ""
+    dynamic var topCategory = ""
+    dynamic var bottomCategory = ""
+    dynamic var topColor = ""
+    dynamic var bottomColor = ""
+    dynamic var topTexture = ""
+    dynamic var bottomTexture = ""
 
     override class func primaryKey() -> String? {
         return "outfitId"
@@ -33,14 +36,17 @@ class Outfit: Object {
     
     convenience init(top: Article, bottom: Article) {
         self.init()
-        
+
         self.top = top
         self.bottom = bottom
         self.topImage = top.image
         self.bottomImage = bottom.image
-        self.category = top.category
-        self.color = "\(top.color) + \(bottom.color)"
-        self.texture = "\(top.texture) + \(bottom.texture)"
+        self.topCategory = top.category
+        self.bottomCategory = bottom.category
+        self.topColor = top.color
+        self.bottomColor = bottom.color
+        self.topTexture = top.texture
+        self.bottomTexture = bottom.texture
         self.setImagePath()
     }
 

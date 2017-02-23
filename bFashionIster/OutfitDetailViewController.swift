@@ -23,7 +23,9 @@ class OutfitDetailViewController: PannableViewController {
             return
         }
         outfitImageView.image = UIImage(data: outfit.combinedImage)
-        categoryLabel.text = outfit.category
+        categoryLabel.text = outfit.topCategory
+        
+        // TODO: Add labels for both categories
     }
 
     override var prefersStatusBarHidden: Bool {

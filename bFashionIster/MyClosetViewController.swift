@@ -178,14 +178,15 @@ class MyClosetViewController: MeuItemViewController {
     func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
         switch changes {
         case .initial(_):
-            print("initial")
+            print("closet initial")
             topsCollectionView.reloadData()
             bottomsCollectionView.reloadData()
-        case .update(_, _, _, _):
-            print("update")
+        case .update(_, let deletions, let insertions, let modifications):
+            print("closet updates ... \ndel:\(deletions.count) \ninsert:\(insertions.count) \nmod:\(modifications.count)")
             topsCollectionView.reloadData()
             bottomsCollectionView.reloadData()
         case let .error(error):
+            print("*** ERROR in closet notificationBlock ***")
             print(error.localizedDescription)
         }
     }
