@@ -71,26 +71,6 @@ class Helper {
         }
         return UIImage(contentsOfFile: url.path)
     }
-
-    static func image(atPath articlePath: String) -> UIImage? {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let imagePathString = documentsPath.appending(articlePath)
-        print(imagePathString)
-
-        if FileManager.default.fileExists(atPath: imagePathString) {
-            let imageURL = URL(fileURLWithPath: imagePathString)
-            return UIImage(contentsOfFile: imageURL.path)
-            
-        } else {
-            // attempt to load "named" image
-            if let image = UIImage(named: articlePath) {
-                return image
-                
-            } else {
-                return nil
-            }
-        }
-    }
     
     static func createImagesFolder() {
         let fileManager = FileManager.default
