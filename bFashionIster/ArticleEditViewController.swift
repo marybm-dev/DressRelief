@@ -19,6 +19,7 @@ class ArticleEditViewController: UIViewController {
     var articleType: String!
     var articleImage: UIImage!
     var articleImagePath: String!
+    var articleImageData: Data!
     
     var categories = Category.allValues
     var colors = Color.allValues
@@ -90,15 +91,22 @@ class ArticleEditViewController: UIViewController {
     }
     
     func createArticle() {
-        let article = Article(imgUrl: articleImagePath, color: selectedColor, texture: selectedTexture, category: selectedCategory, type: articleType)
+        guard let imageURL = URL(string: articleImagePath) else {
+            print("oh no can't create article")
+            return
+        }
+        
+        guard let data = Helper.bookmarkForURL(url: imageURL) else {
+            print("oh no can't get bookmark")
+            return
+        }
+        
+        let article = Article(imgData: data, color: selectedColor, texture: selectedTexture, category: selectedCategory, type: articleType)
         
         let realm = try! Realm()
         try! realm.write {
             realm.add(article)
         }
-        
-        // When article is added generate outfits
-        self.generateOutfits(forArticle: article)
     }
     
     func editArticle() {
@@ -111,35 +119,11 @@ class ArticleEditViewController: UIViewController {
             article.color = selectedColor
             article.texture = selectedTexture
         }
-        
-        // When article is edited generate outfits
-        guard oldCategory != newCategory else { return }
-        self.generateOutfits(forArticle: article)
     }
     
     func shakeCells(at indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.shake()
-    }
-    
-    func generateOutfits(forArticle article: Article) {
-        let realm = try! Realm()
-        
-        let articleIsTop = articleType == ArticleType.top.rawValue
-        let typeToUse = articleIsTop ? ArticleType.bottom.rawValue : ArticleType.top.rawValue
-        guard let items = Article.all(ofArticleType: typeToUse, byCategory: selectedCategory, withRealm: realm) else { return }
-        
-        var matchedOutfits = [Outfit]()
-        for item in items {
-            let top = articleIsTop ? article : item
-            let bottom = !articleIsTop ? article : item
-            let outfit = Outfit(top: top, bottom: bottom)
-            matchedOutfits.append(outfit)
-        }
-        
-        try! realm.write {
-            realm.add(matchedOutfits)
-        }
     }
 }
 

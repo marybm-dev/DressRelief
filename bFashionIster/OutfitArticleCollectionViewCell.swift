@@ -17,7 +17,7 @@ class OutfitArticleCollectionViewCell: UICollectionViewCell {
     
     var article: Article! {
         didSet {
-            self.articleImageView.image = Helper.image(atPath: article.imgUrl)
+            Helper.set(article: article, in: articleImageView)
             self.updateConstraints()
         }
     }

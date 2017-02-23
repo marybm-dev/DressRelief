@@ -17,6 +17,18 @@ extension Dictionary {
     }
 }
 
+extension FileManager {
+    static func documentsDir() -> String {
+        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as [String]
+        return paths[0]
+    }
+    
+    static func cachesDir() -> String {
+        var paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true) as [String]
+        return paths[0]
+    }
+}
+
 extension String {
     func capitalizingFirstLetter() -> String {
         let first = String(characters.prefix(1)).capitalized

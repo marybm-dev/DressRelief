@@ -18,17 +18,13 @@ class OutfitCollectionViewCell: UICollectionViewCell {
     
     var outfit: Outfit! {
         didSet {
-            outfitImageView.image = Helper.image(atPath: outfit.combinedImgUrl)
-            
-            topsCategoryLabel.text = " \((outfit.top?.category)!) "
-            bottomsCategoryLabel.text = " \((outfit.bottom?.category)!) "
-
-            topsCategoryLabel.backgroundColor = articleColor(for: outfit.top)
-            bottomsCategoryLabel.backgroundColor = articleColor(for: outfit.bottom)
-            
+            topsCategoryLabel.text = " \(outfit.topCategory) "
+            bottomsCategoryLabel.text = " \(outfit.bottomCategory) "
+            topsCategoryLabel.backgroundColor = articleColor(for: outfit.topCategory)
+            bottomsCategoryLabel.backgroundColor = articleColor(for: outfit.bottomCategory)
             topsCategoryLabel.textColor = .white
             bottomsCategoryLabel.textColor = .white
-            
+            Helper.set(outfit: outfit, in: outfitImageView)
         }
     }
     
@@ -36,23 +32,17 @@ class OutfitCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         closeButton.rounded()
         outfitImageView.clipsToBounds = true
         topsCategoryLabel.clipsToBounds = true
         bottomsCategoryLabel.clipsToBounds = true
-        
         outfitImageView.layer.cornerRadius = 5
         topsCategoryLabel.layer.cornerRadius = 5
         bottomsCategoryLabel.layer.cornerRadius = 5
-        
         colors = Category.colors()
     }
 
-    func articleColor(for item: Article?) -> UIColor? {
-        guard let item = item else {
-            return nil
-        }
-        return colors[item.category]
+    func articleColor(for itemCategory: String) -> UIColor? {
+       return colors[itemCategory]
     }
 }

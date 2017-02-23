@@ -13,19 +13,18 @@ class Outfit: Object {
     
     dynamic var outfitId = NSUUID().uuidString
     dynamic var created = Date()
-    
     dynamic var isLiked = false
-    
     dynamic var top: Article?
     dynamic var bottom: Article?
-    
-    dynamic var topImgUrl = ""
-    dynamic var bottomImgUrl = ""
-    dynamic var combinedImgUrl = ""
-    
-    dynamic var category = ""
-    dynamic var color = ""
-    dynamic var texture = ""
+    dynamic var topImage = Data()
+    dynamic var bottomImage = Data()
+    dynamic var combinedImage = Data()
+    dynamic var topCategory = ""
+    dynamic var bottomCategory = ""
+    dynamic var topColor = ""
+    dynamic var bottomColor = ""
+    dynamic var topTexture = ""
+    dynamic var bottomTexture = ""
 
     override class func primaryKey() -> String? {
         return "outfitId"
@@ -37,42 +36,29 @@ class Outfit: Object {
     
     convenience init(top: Article, bottom: Article) {
         self.init()
-        
+
         self.top = top
         self.bottom = bottom
-        
-        self.topImgUrl = top.imgUrl
-        self.bottomImgUrl = bottom.imgUrl
-        
-        self.category = top.category
-        self.color = "\(top.color) + \(bottom.color)"
-        self.texture = "\(top.texture) + \(bottom.texture)"
-        
+        self.topImage = top.image
+        self.bottomImage = bottom.image
+        self.topCategory = top.category
+        self.bottomCategory = bottom.category
+        self.topColor = top.color
+        self.bottomColor = bottom.color
+        self.topTexture = top.texture
+        self.bottomTexture = bottom.texture
         self.setImagePath()
     }
 
     func setImagePath() {
-        if self.combinedImgUrl.isEmpty {
-            self.combinedImgUrl = self.outfitImagePath()
+        let imageResult = self.outfitImagePath()
+        guard let path = imageResult.path else {
+            return
         }
-    }
-    
-    func setImagePathInBackground(completion: @escaping (String?)->()) {
-        if self.combinedImgUrl.isEmpty {
-            let objectId = self.outfitId
-            DispatchQueue.global(qos: .userInitiated).async {
-                let realm = try! Realm()
-                let current = realm.object(ofType: Outfit.self, forPrimaryKey: objectId)
-                guard let imagePath = current?.outfitImagePath() else {
-                    completion(nil)
-                    return
-                }
-                DispatchQueue.main.async {
-                    completion(imagePath)
-                }
-            }
+
+        if let outfitImage = Helper.bookmarkForURL(url: path) {
+            self.combinedImage = outfitImage
         }
-        completion(nil)
     }
 
     static func outfitImage(top: UIImage, bottom: UIImage) -> UIImage? {
@@ -97,26 +83,27 @@ class Outfit: Object {
         return combinedImage
     }
     
-    func outfitImagePath() -> String {
-        let imagePath = Helper.fileDirectory.appendingPathComponent("Images/Outfit-\(UUID().uuidString).jpg")
-        
-        guard let path      = imagePath?.path,
-            let top         = Helper.image(atPath: self.topImgUrl),
-            let bottom      = Helper.image(atPath: self.bottomImgUrl),
+    func outfitImagePath() -> OutfitImage {
+        let filename = "outfit-\(UUID().uuidString).jpg"
+        let docsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let finalDir = docsURL.appendingPathComponent(filename)
+
+        guard let top       = Helper.image(from: self.topImage),
+            let bottom      = Helper.image(from: self.bottomImage),
             let outfit      = Outfit.outfitImage(top: top, bottom: bottom),
             let imageData   = UIImageJPEGRepresentation(outfit, 0.6) else {
-                return ""
+                return OutfitImage(path: nil, data: nil)
         }
         
         do {
-            try imageData.write(to: URL(fileURLWithPath: path), options: .atomic)
+            try imageData.write(to: URL(fileURLWithPath: finalDir.path), options: .atomic)
         } catch let error {
+            print("outfit image path error")
             print(error)
         }
-
-        return path
+        
+        return OutfitImage(path: finalDir, data: imageData)
     }
-    
 }
 
 enum OutfitSegue: String {
@@ -128,4 +115,9 @@ struct OutfitResult {
     var outfit: Outfit?
     var top: Article? = nil
     var bottom: Article? = nil
+}
+
+struct OutfitImage {
+    var path: URL?
+    var data: Data?
 }

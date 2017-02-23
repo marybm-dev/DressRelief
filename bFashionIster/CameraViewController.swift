@@ -22,6 +22,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     
     var selectedImage: UIImage!
     var selectedImagePath: String!
+    var selectedImageData: Data!
     
     override func viewDidLoad() {
 
@@ -96,24 +97,30 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     }
     
     func getUniqueFileName() -> String {
+        guard let articleType = articleType else {
+            return ""
+        }
         return "\(articleType)-\(UUID().uuidString).jpg"
     }
     
     func saveImageToDocuments(image: UIImage, fileNameWithExtension: String) {
-        let image = cropImageIntoSquare(image: image)
-        let imagePath = Helper.fileDirectory.appendingPathComponent("\(fileNameWithExtension)")
-
-        guard imagePath?.path != nil else { return }
-        guard let imageData = UIImageJPEGRepresentation(image!, 0.6) else { return }
+        guard let image = cropImageIntoSquare(image: image),
+            let imageData = UIImageJPEGRepresentation(image, 0.6) else {
+            return
+        }
         
+        let docsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let finalDir = docsURL.appendingPathComponent(fileNameWithExtension)
         do {
-            try imageData.write(to: URL(fileURLWithPath: (imagePath?.path)!), options: .atomic)
+            try imageData.write(to: finalDir, options: .atomic)
         } catch let error {
+            print("camera view controller - save image to documents")
             print(error)
         }
         
-        selectedImagePath = (imagePath?.path)! as String
-        selectedImage = image! as UIImage
+        selectedImageData = imageData
+        selectedImagePath = finalDir.absoluteString
+        selectedImage = image
         performSegue(withIdentifier: ArticleSegue.FromImageToCreateArticle.rawValue, sender: nil)
     }
     
@@ -141,6 +148,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
             articleEditViewController.articleImage = selectedImage
             articleEditViewController.articleImagePath = selectedImagePath
             articleEditViewController.articleType = self.articleType
+            articleEditViewController.articleImageData = self.selectedImageData
         }
     }
 }

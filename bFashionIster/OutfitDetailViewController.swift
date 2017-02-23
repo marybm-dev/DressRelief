@@ -19,12 +19,13 @@ class OutfitDetailViewController: PannableViewController {
         super.viewDidLoad()
 
         self.detailViewFrame = self.view.layer.frame
-        
         guard outfit != nil else {
             return
         }
-        outfitImageView.image = Helper.image(atPath: outfit.combinedImgUrl)
-        categoryLabel.text = outfit.category
+        outfitImageView.image = UIImage(data: outfit.combinedImage)
+        categoryLabel.text = outfit.topCategory
+        
+        // TODO: Add labels for both categories
     }
 
     override var prefersStatusBarHidden: Bool {
