@@ -122,7 +122,24 @@ class ArticleCollectionView: MeuItemViewController {
         })
     }
     
-    func updateUI(with changes: RealmCollectionChange<Results<Article>>) {   
+    func updateUI(with changes: RealmCollectionChange<Results<Article>>) {
+        switch changes {
+        case .initial(_):
+            print("article collection initial load")
+            collectionView.reloadData()
+        case .update(_, let deletions , let insertions, let modifications):
+            print("article collection updates ... \ndel:\(deletions.count) \ninsert:\(insertions.count) \nmod:\(modifications.count)")
+            collectionView.performBatchUpdates({
+                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
+                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+            }, completion: { _ in
+                self.collectionView.reloadData()
+            })
+            break
+        case let .error(error):
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -130,6 +147,10 @@ class ArticleCollectionView: MeuItemViewController {
 extension ArticleCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard items != nil else {
+            print("items are nil")
+            return 0
+        }
         return items.count
     }
     
