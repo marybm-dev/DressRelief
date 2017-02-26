@@ -46,9 +46,8 @@ class MyFavsViewController: MeuItemViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
         toggleHidden()
-        toggleEditing(nil)
+        toggleEditing()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,11 +55,13 @@ class MyFavsViewController: MeuItemViewController {
         toggleEditing(true)
     }
 
+    deinit {
+        subscription?.stop()
+    }
 }
 
 // Mark: - Data Fetching
 extension MyFavsViewController {
-    
     func getFavs() -> Results<Outfit> {
         let realm = try! Realm()
         outfits = realm.objects(Outfit.self)
@@ -70,7 +71,6 @@ extension MyFavsViewController {
 
 // Mark: - Editing Logid
 extension MyFavsViewController {
-    
     func toggleHidden() {
         emptyImageView.isHidden = (favs?.count == 0) ? false : true
     }
@@ -81,7 +81,7 @@ extension MyFavsViewController {
         collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
     }
     
-    func toggleEditing(_ willDisappear: Bool?) {
+    func toggleEditing(_ willDisappear: Bool? = nil) {
         guard favs != nil else {
             return
         }
@@ -105,10 +105,10 @@ extension MyFavsViewController {
             // there still are items and I am editing - do nothing
             
         } else {
-            if !shouldHide {
-                shouldDisplayEditButton(true)
-            } else {
+            if shouldHide {
                 shouldDisplayEditButton(false)
+            } else {
+                shouldDisplayEditButton(true)
             }
         }
     }
@@ -122,8 +122,8 @@ extension MyFavsViewController {
 // Mark: - SwiftRealm Notifications
 extension MyFavsViewController {
     
-    func notificationSubscription(for outfits: Results<Outfit>) -> NotificationToken {
-        return outfits.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Outfit>>) in
+    func notificationSubscription(for favorites: Results<Outfit>) -> NotificationToken {
+        return favorites.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Outfit>>) in
             self?.updateUI(with: changes)
         })
     }
@@ -131,27 +131,25 @@ extension MyFavsViewController {
     func updateUI(with changes: RealmCollectionChange<Results<Outfit>>) {
         switch changes {
         case .initial(_):
+            print("favs initial")
             collectionView.reloadData()
+            break
         case .update(_, let deletions , let insertions, let modifications):
-            collectionView.performBatchUpdates({
-                self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
-                self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
-                self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
-            }, completion: { _ in
-                self.collectionView.reloadData()
-            })
+            print("\n\nfavs updates ... total: \(favs.count) \ndel:\(deletions.count) \ninsert:\(insertions.count) \nmod:\(modifications.count)")
+            collectionView.reloadData()
             break
         case let .error(error):
+            print("*** ERROR in favs notificationBlock ***")
             print(error.localizedDescription)
+            break
         }
     }
 }
 
 // Mark: – UICollectionViewDataSource
 extension MyFavsViewController: UICollectionViewDataSource {
-    
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("numberOfItemInSection -favs- \(favs?.count)")
         return favs?.count ?? 0
     }
     
@@ -162,12 +160,10 @@ extension MyFavsViewController: UICollectionViewDataSource {
         cell.outfit = outfit
         return cell
     }
-
 }
 
 // Mark: - UICollectionViewDelegateFlowLayout
 extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = self.sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = collectionView.frame.width - paddingSpace
@@ -234,7 +230,6 @@ extension MyFavsViewController: UICollectionViewDelegateFlowLayout {
 
 // Mark: - UIViewControllerTransitioningDelegate
 extension MyFavsViewController: UIViewControllerTransitioningDelegate {
-    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.originFrame = selectedImage!.superview!.convert(selectedImage!.frame, to: nil)
         transition.presenting = true
@@ -249,7 +244,6 @@ extension MyFavsViewController: UIViewControllerTransitioningDelegate {
 
 // Mark: - Actions
 extension MyFavsViewController {
-
     func animateEditing(for cell: OutfitCollectionViewCell) {
         if isEditingFavs {
             UIView.animate(withDuration: 0.15, delay: 0, options: [], animations: {
@@ -269,8 +263,15 @@ extension MyFavsViewController {
         let realm = try! Realm()
         try! realm.write {
             outfit.isLiked = false
-            outfit.top?.countLikes -= 1
-            outfit.bottom?.countLikes -= 1
+            
+            guard let top = Article.find(by: outfit.topId, withRealm: realm),
+                let bottom = Article.find(by: outfit.bottomId, withRealm: realm) else {
+                    print("didn't find top or bottom to update as dis liked")
+                    return
+            }
+            
+            top.first?.countLikes -= 1
+            bottom.first?.countLikes -= 1
         }
     }
 }

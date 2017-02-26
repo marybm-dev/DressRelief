@@ -43,6 +43,11 @@ class Article: Object {
         let result = realm.objects(Article.self)
         return result.filter("articleType = %@", articleType)
     }
+    
+    static func find(by id: String, withRealm realm: Realm) -> Results<Article>! {
+        let result = realm.objects(Article.self)
+        return result.filter("articleId = %@", id)
+    }
 }
 
 enum ArticleType: String {

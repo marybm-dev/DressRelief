@@ -14,8 +14,8 @@ class Outfit: Object {
     dynamic var outfitId = NSUUID().uuidString
     dynamic var created = Date()
     dynamic var isLiked = false
-    dynamic var top: Article?
-    dynamic var bottom: Article?
+    dynamic var topId = ""
+    dynamic var bottomId = ""
     dynamic var topImage = Data()
     dynamic var bottomImage = Data()
     dynamic var combinedImage = Data()
@@ -30,15 +30,12 @@ class Outfit: Object {
         return "outfitId"
     }
     
-    override class func indexedProperties() -> [String] {
-        return ["isLiked"]
-    }
-    
     convenience init(top: Article, bottom: Article) {
         self.init()
 
-        self.top = top
-        self.bottom = bottom
+        self.topId = top.articleId
+        self.bottomId = bottom.articleId
+        
         self.topImage = top.image
         self.bottomImage = bottom.image
         self.topCategory = top.category

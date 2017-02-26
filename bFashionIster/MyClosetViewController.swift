@@ -20,22 +20,16 @@ class MyClosetViewController: MeuItemViewController {
     let realm = try! Realm()
     var subscriptions = [NotificationToken]()
     var articles: Results<Article>!
-    var tops: Results<Article>! {
-        didSet {
-            topsCollectionView.reloadData()
-        }
-    }
-    
-    var bottoms: Results<Article>! {
-        didSet {
-            bottomsCollectionView.reloadData()
-        }
-    }
+    var tops: Results<Article>!
+    var bottoms: Results<Article>!
     let itemsPerRow: CGFloat = 1
     let itemsPerCol: CGFloat = 1
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 25.0, bottom: 0.0, right: 25.0)
     var viewHasLoaded = false
 
+    var outfits: Results<Outfit>!
+    var outfitToken: NotificationToken?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +39,7 @@ class MyClosetViewController: MeuItemViewController {
         topsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitTopCell")
         bottomsCollectionView.register(nib, forCellWithReuseIdentifier: "OutfitBottomCell")
 
+        outfits = realm.objects(Outfit.self)
         articles = realm.objects(Article.self)
         tops = getTops()
         bottoms = getBottoms()
@@ -68,6 +63,12 @@ class MyClosetViewController: MeuItemViewController {
         self.updateLikeButtonImage(isLiked: nil)
     }
 
+    deinit {
+        for notificationToken in subscriptions {
+            notificationToken.stop()
+        }
+    }
+    
     @IBAction func didTapLikeButton(_ sender: Any) {
         let outfitResult = outfitExists()
         let exists = outfitResult.exists
@@ -75,7 +76,6 @@ class MyClosetViewController: MeuItemViewController {
         
         // update the database
         try! realm.write {
-            
             // like or dislike it if it exists
             if exists {
                 let outfit = outfitResult.outfit
@@ -84,15 +84,12 @@ class MyClosetViewController: MeuItemViewController {
                 }
                 
                 if (outfit?.isLiked)! {
-                    outfit?.isLiked = false
-                    outfit?.top?.countLikes -= 1
-                    outfit?.bottom?.countLikes -= 1
+                    print("liked -> unliked")
+                    self.unfavorite(outfit!)
                 } else {
-                    outfit?.isLiked = true
-                    outfit?.top?.countLikes += 1
-                    outfit?.bottom?.countLikes += 1
+                    print("unliked -> liked")
+                    self.favorite(outfit!)
                 }
-                
                 isLiked = (outfit?.isLiked)!
                 
             // create it since it doesn't exist
@@ -101,18 +98,62 @@ class MyClosetViewController: MeuItemViewController {
                     outfitResult.bottom != nil else {
                         return
                 }
-                
+                print("new -> liked")
                 let newOutfit = Outfit(top: outfitResult.top!, bottom: outfitResult.bottom!)
-                newOutfit.isLiked = true
-                newOutfit.top?.countLikes += 1
-                newOutfit.bottom?.countLikes += 1
-                realm.add(newOutfit)
+                self.favorite(newOutfit, isNew: true, theTop: outfitResult.top!, theBottom: outfitResult.bottom!)
                 
                 isLiked = true
             }
         }
-        
         self.updateLikeButtonImage(isLiked: isLiked)
+    }
+    
+    func favorite(_ outfit: Outfit, isNew: Bool = false, theTop: Article? = nil, theBottom: Article? = nil) {
+        outfit.isLiked = true
+        print("outfit liked")
+        print(outfit)
+        
+        if isNew {
+            realm.add(outfit)
+            print("new outfit added")
+            
+            guard theTop != nil,
+                theBottom != nil else {
+                    print("failed to update top or bottom like counts of new outfit")
+                    return
+            }
+            
+            theTop?.countLikes += 1
+            theBottom?.countLikes += 1
+            print("top/bottom countLikes += 1")
+        
+        } else {
+            guard let top = Article.find(by: outfit.topId, withRealm: realm),
+                let bottom = Article.find(by: outfit.bottomId, withRealm: realm) else {
+                    print("didn't find top or bottom to update as favorite")
+                    return
+            }
+            
+            top.first?.countLikes += 1
+            bottom.first?.countLikes += 1
+            print("top/bottom countLikes += 1")
+        }
+    }
+    
+    func unfavorite(_ outfit: Outfit) {
+        outfit.isLiked = false
+        print("outfit disliked")
+        print(outfit)
+        
+        guard let top = Article.find(by: outfit.topId, withRealm: realm),
+            let bottom = Article.find(by: outfit.bottomId, withRealm: realm) else {
+                print("didn't find top or bottom to update as dis liked")
+                return
+        }
+        
+        top.first?.countLikes -= 1
+        bottom.first?.countLikes -= 1
+        print("top/bottom countLikes -= 1")
     }
     
     func toggleHidden() {
@@ -120,11 +161,11 @@ class MyClosetViewController: MeuItemViewController {
     }
     
     func getTops() -> Results<Article> {
-        return articles.filter("articleType = %@", ArticleType.top.rawValue).sorted(byProperty: "created", ascending: false)
+        return articles.filter("articleType = %@", ArticleType.top.rawValue).sorted(byKeyPath: "created", ascending: false)
     }
     
     func getBottoms() -> Results<Article> {
-        return articles.filter("articleType = %@", ArticleType.bottom.rawValue).sorted(byProperty: "created", ascending: false)
+        return articles.filter("articleType = %@", ArticleType.bottom.rawValue).sorted(byKeyPath: "created", ascending: false)
     }
 
     func outfitExists() -> OutfitResult {
@@ -144,8 +185,7 @@ class MyClosetViewController: MeuItemViewController {
         }
         
         // determine if this outfit exists and if it was previously liked
-        let outfits = realm.objects(Outfit.self)
-        let result = outfits.filter("top.articleId == '\(top.articleId)' AND bottom.articleId == '\(bottom.articleId)'")
+        let result = outfits.filter("topId == '\(top.articleId)' AND bottomId == '\(bottom.articleId)'")
         let exists = result.count > 0
         
         return OutfitResult(exists: exists, outfit: result.first, top: top, bottom: bottom)
@@ -181,16 +221,32 @@ class MyClosetViewController: MeuItemViewController {
             print("closet initial")
             topsCollectionView.reloadData()
             bottomsCollectionView.reloadData()
+            break
         case .update(_, let deletions, let insertions, let modifications):
-            print("closet updates ... \ndel:\(deletions.count) \ninsert:\(insertions.count) \nmod:\(modifications.count)")
+            print("closet updates ... tops: \(tops.count) bottoms: \(bottoms.count) \ndel:\(deletions.count) \ndel:\(insertions.count) \nmod:\(modifications.count)")
             topsCollectionView.reloadData()
             bottomsCollectionView.reloadData()
+            break
         case let .error(error):
             print("*** ERROR in closet notificationBlock ***")
             print(error.localizedDescription)
+            break
         }
     }
+}
 
+extension MyClosetViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let collectionView: UICollectionView = (scrollView == topsCollectionView) ? topsCollectionView : bottomsCollectionView
+        self.scrollToCenter(collectionView: collectionView)
+        
+        // wait to update likeButton
+        let delayInSeconds = 0.0625
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+            self.updateLikeButtonImage(isLiked: nil)
+        }
+    }
+    
     func scrollToCenter(collectionView: UICollectionView) {
         var currentCellOffset: CGPoint = collectionView.contentOffset
         currentCellOffset.x += collectionView.frame.size.width / 2
@@ -200,35 +256,20 @@ class MyClosetViewController: MeuItemViewController {
     }
 }
 
-extension MyClosetViewController: UIScrollViewDelegate {
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let collectionView: UICollectionView = (scrollView == topsCollectionView) ? topsCollectionView : bottomsCollectionView
-        self.scrollToCenter(collectionView: collectionView)
-        
-        // wait to update likeButton
-        let delayInSeconds = 0.125
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-            self.updateLikeButtonImage(isLiked: nil)
-        }
-    }
-}
-
 extension MyClosetViewController: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topsCollectionView {
+            print("numberOfItemInSection -tops- \(tops?.count)")
             return tops?.count ?? 0
             
         } else {
+            print("numberOfItemInSection -bottoms- \(bottoms?.count)")
             return bottoms?.count ?? 0
             
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if collectionView == topsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitTopCell", for: indexPath) as! OutfitArticleCollectionViewCell
             let top = tops[indexPath.row]
@@ -240,14 +281,12 @@ extension MyClosetViewController: UICollectionViewDataSource {
             let bottom = bottoms[indexPath.row]
             cell.article = bottom
             return cell
-            
         }
     }
 }
 
 // Mark: - UICollectionViewDelegateFlowLayout
 extension MyClosetViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sidePaddingSpace = self.sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = collectionView.frame.width - sidePaddingSpace
@@ -271,6 +310,5 @@ extension MyClosetViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
-
 }
 
