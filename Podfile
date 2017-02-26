@@ -6,7 +6,7 @@ target 'bFashionIster' do
   use_frameworks!
 
   # Pods for bFashionIster
-  pod 'RealmSwift'
+  pod 'RealmSwift', '~> 2.4.3'
   pod 'Fabric'
   pod 'Crashlytics'
 end
