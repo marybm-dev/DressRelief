@@ -23,7 +23,7 @@ struct AboutItem {
         let feedback = AboutItem(title: "Feedback", imageName: .feedback)
         let icons8 = AboutItem(title: "Icons8", imageName: .icons8)
         
-        version.description = "1.1"
+        version.description = "1.1 (3)"
         
         return [version, feedback, icons8]
     }

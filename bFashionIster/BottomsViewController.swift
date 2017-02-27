@@ -39,6 +39,7 @@ class BottomsViewController: ArticleCollectionView {
         case let .update(_, deletions, insertions, modifications):
             
             collectionView.performBatchUpdates({
+                print("bottoms updates ... total: \(self.items.count) \ndel:\(deletions.count) \ninsert:\(insertions.count) \nmod:\(modifications.count)")
                 self.collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
                 self.collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
                 self.collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
