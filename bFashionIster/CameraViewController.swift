@@ -25,10 +25,75 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
     var selectedImageData: Data!
     
     override func viewDidLoad() {
-
+        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        print(status ==  AVAuthorizationStatus.authorized)
+        print(status ==  AVAuthorizationStatus.denied)
+        print(status ==  AVAuthorizationStatus.restricted)
+        print(status.rawValue)
+        
+        if status !=  AVAuthorizationStatus.authorized {
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { isAuthorized -> Void in
+                if !isAuthorized {
+                    // Camera not Authorized
+                    DispatchQueue.main.async {
+                        print("Camera not Authorized")
+                        self.checkCamera()
+                        return
+                    }
+                } else {
+                    self.initCameraView()
+                }
+            })
+        } else {
+            self.initCameraView()
+        }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    @IBAction func didTapCancelButton(_ sender: Any) {
+        captureSession.stopRunning()
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func didTapShutterButton(_ sender: Any) {
+        let settings = AVCapturePhotoSettings()
+        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
+                             kCVPixelBufferWidthKey as String: 160,
+                             kCVPixelBufferHeightKey as String: 160,
+                             ]
+        settings.previewPhotoFormat = previewFormat
+        self.sessionOutput.capturePhoto(with: settings, delegate: self)
+        print("Did tap shutter button")
+    }
+    
+    func checkCamera() {
+        let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        switch authStatus {
+        case AVAuthorizationStatus.authorized:
+            print("AVAuthorizationStatus.Authorized")
+        case AVAuthorizationStatus.denied:
+            print("AVAuthorizationStatus.Denied")
+            self.abort()
+        case AVAuthorizationStatus.notDetermined:
+            print("AVAuthorizationStatus.NotDetermined")
+            self.abort()
+        case AVAuthorizationStatus.restricted:
+            print("AVAuthorizationStatus.Restricted")
+            self.abort()
+        }
+    }
+    
+    func abort() {
+        let alertController = UIAlertController(title: "Uh oh. Something went wrong", message: "Camera use is not authorized. Toggle Camera Access in Settings App to use the Camera.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("OK")
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func initCameraView() {
         let defaultDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         if defaultDevice?.position == AVCaptureDevicePosition.back {
             do {
@@ -53,23 +118,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIN
                 print("exception!");
             }
         }
-    }
-    
-    @IBAction func didTapCancelButton(_ sender: Any) {
-        captureSession.stopRunning()
-        self.dismiss(animated: true, completion: nil)
-    }
-
-    @IBAction func didTapShutterButton(_ sender: Any) {
-        let settings = AVCapturePhotoSettings()
-        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
-        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
-                             kCVPixelBufferWidthKey as String: 160,
-                             kCVPixelBufferHeightKey as String: 160,
-                             ]
-        settings.previewPhotoFormat = previewFormat
-        self.sessionOutput.capturePhoto(with: settings, delegate: self)
-        print("Did tap shutter button")
     }
     
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
