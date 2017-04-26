@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="OutfitArticleCollectionViewCell" customModule="bFashionIster" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kmL-L3-vSZ">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="kmL-L3-vSZ" secondAttribute="bottom" id="E9c-D1-WuM"/>
+                <constraint firstAttribute="trailing" secondItem="kmL-L3-vSZ" secondAttribute="trailing" id="b6I-uH-9WN"/>
+                <constraint firstItem="kmL-L3-vSZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sHL-my-aMt"/>
+                <constraint firstItem="kmL-L3-vSZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vSH-LI-Oz4"/>
+            </constraints>
+            <size key="customSize" width="147" height="121"/>
+            <connections>
+                <outlet property="articleImageView" destination="kmL-L3-vSZ" id="wCd-7n-a9Z"/>
+                <outlet property="bottomConstraint" destination="E9c-D1-WuM" id="h2X-ZD-Moj"/>
+                <outlet property="topConstraint" destination="sHL-my-aMt" id="CqJ-Io-TDU"/>
+            </connections>
+            <point key="canvasLocation" x="82.5" y="89.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
