@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_bFashionIsterVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_bFashionIsterVersionString[];
+FOUNDATION_EXPORT double Pods_DressReliefVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_DressReliefVersionString[];
 

@@ -1,0 +1,6 @@
+framework module Pods_DressRelief {
+  umbrella header "Pods-DressRelief-umbrella.h"
+
+  export *
+  module * { export * }
+}
