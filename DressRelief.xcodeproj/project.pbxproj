@@ -47,8 +47,6 @@
 		44FB28671EB033E9006FCAA0 /* Closet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44FB281A1EB0313F006FCAA0 /* Closet.storyboard */; };
 		44FB28681EB033E9006FCAA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44FB281C1EB0313F006FCAA0 /* LaunchScreen.storyboard */; };
 		44FB28691EB033E9006FCAA0 /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44FB28101EB0313F006FCAA0 /* ArticleCollectionViewCell.xib */; };
-		44FB286A1EB033E9006FCAA0 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44FB28241EB0313F006FCAA0 /* CustomOverlayView.xib */; };
-		44FB286B1EB033E9006FCAA0 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44FB28331EB0313F006FCAA0 /* OverlayView.xib */; };
 		44FB286C1EB033E9006FCAA0 /* OutfitArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44FB282E1EB0313F006FCAA0 /* OutfitArticleCollectionViewCell.xib */; };
 		44FB286D1EB033E9006FCAA0 /* OutfitCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44FB28311EB0313F006FCAA0 /* OutfitCollectionViewCell.xib */; };
 		596526C1841B0301286D6144 /* Pods_DressRelief.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7400A8A9E4ED873FCD2625 /* Pods_DressRelief.framework */; };
@@ -81,7 +79,6 @@
 		44FB28211EB0313F006FCAA0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		44FB28221EB0313F006FCAA0 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		44FB28231EB0313F006FCAA0 /* ControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerDelegate.swift; sourceTree = "<group>"; };
-		44FB28241EB0313F006FCAA0 /* CustomOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomOverlayView.xib; sourceTree = "<group>"; };
 		44FB28251EB0313F006FCAA0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		44FB28261EB0313F006FCAA0 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		44FB28271EB0313F006FCAA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,7 +93,6 @@
 		44FB28301EB0313F006FCAA0 /* OutfitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitCollectionViewCell.swift; sourceTree = "<group>"; };
 		44FB28311EB0313F006FCAA0 /* OutfitCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutfitCollectionViewCell.xib; sourceTree = "<group>"; };
 		44FB28321EB0313F006FCAA0 /* OutfitDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitDetailViewController.swift; sourceTree = "<group>"; };
-		44FB28331EB0313F006FCAA0 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		44FB28341EB0313F006FCAA0 /* PannableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
 		44FB28351EB0313F006FCAA0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		44FB28361EB0313F006FCAA0 /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
@@ -246,8 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				44FB28231EB0313F006FCAA0 /* ControllerDelegate.swift */,
-				44FB28241EB0313F006FCAA0 /* CustomOverlayView.xib */,
-				44FB28331EB0313F006FCAA0 /* OverlayView.xib */,
 				44FB28341EB0313F006FCAA0 /* PannableViewController.swift */,
 				44FB28381EB0313F006FCAA0 /* TransitionAnimator.swift */,
 			);
@@ -352,8 +346,6 @@
 				44FB28671EB033E9006FCAA0 /* Closet.storyboard in Resources */,
 				44FB28681EB033E9006FCAA0 /* LaunchScreen.storyboard in Resources */,
 				44FB28691EB033E9006FCAA0 /* ArticleCollectionViewCell.xib in Resources */,
-				44FB286A1EB033E9006FCAA0 /* CustomOverlayView.xib in Resources */,
-				44FB286B1EB033E9006FCAA0 /* OverlayView.xib in Resources */,
 				44FB286C1EB033E9006FCAA0 /* OutfitArticleCollectionViewCell.xib in Resources */,
 				44FB286D1EB033E9006FCAA0 /* OutfitCollectionViewCell.xib in Resources */,
 			);
