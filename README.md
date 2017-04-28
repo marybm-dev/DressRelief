@@ -6,7 +6,8 @@ This is an iOS app built with Swift and Realm to catalog your closet.
 
 ## Screenshots
 
-![Outfit](outfit.PNG =214x380)!
-![Tops](tops.PNG =214x380)
-![Bottoms](bottoms.PNG =214x380)
-![Favorites](favorites.PNG =214x380)
+<span><img src="outfit.PNG" width="214" height="380" />
+<img src="tops.PNG" width="214" height="380" />
+<img src="bottoms.PNG" width="214" height="380" />
+<img src="favorites.PNG" width="214" height="380" />
+</span>
